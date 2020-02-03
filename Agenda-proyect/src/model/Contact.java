@@ -1,21 +1,24 @@
 package model;
-
+import java.time.LocalDate;
 
 public class Contact {
 	
 	private String avatar;
 	private String name;
 	private String email;
-	private int age;
 	private String phonenumber;
+	private LocalDate dateofbirth;
+	private int age;
+	private int enrolledcreditsnumber;
 	
-	private Contact (String avatar, String name, String email, int age, String phonenumber) {
+	
+	private Contact (String avatar, String name, String email, String phonenumber,LocalDate dateofbirth, int age) {
 		this.avatar = avatar;
 		this.name = name;
 		this.email = email;
-		this.age = age;
 		this.phonenumber = phonenumber;
-		
+		this.dateofbirth = dateofbirth;
+		this.age = age;
 	}
 
 	public String getAvatar() {
@@ -41,15 +44,7 @@ public class Contact {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
+	
 	public String getPhonenumber() {
 		return phonenumber;
 	}
@@ -57,5 +52,16 @@ public class Contact {
 	public void setPhonenumber(String phonenumber) {
 		this.phonenumber = phonenumber;
 	}
+	
+	public LocalDate getDateOfBirth() {
+		return dateofbirth;
+	}
+	
+	public int getAge() {
+		return age;
+	}
 
+	public void setAge(int age) {
+		this.age = age;
+	}
 }
