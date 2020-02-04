@@ -12,7 +12,7 @@ public class Contact {
 	private int enrolledcreditsnumber;
 	
 	
-	private Contact (String avatar, String name, String email, String phonenumber,LocalDate dateofbirth, int age) {
+	public Contact (String avatar, String name, String email, String phonenumber,LocalDate dateofbirth, int age) {
 		this.avatar = avatar;
 		this.name = name;
 		this.email = email;
