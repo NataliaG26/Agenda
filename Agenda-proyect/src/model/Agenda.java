@@ -3,6 +3,11 @@
  */
 package model;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,10 +24,16 @@ public class Agenda {
 	private Hashtable<String, Contact> contacts;
 	private Hashtable<String, Subject> subjects;
 
-	public Agenda() {
+	public final static String PATH_SUBJECTS = "Data/subjects.txt";
+	public final static String PATH_STUDENTS = "Data/students.txt";
+
+	public Agenda() throws IOException {
 
 		contacts = new Hashtable<String, Contact>();
 		subjects = new Hashtable<String, Subject>();
+		
+		readStudents();
+		readSubjects();
 
 	}
 
@@ -89,15 +100,15 @@ public class Agenda {
 		if (r >= l) { 
 			int mid = l + (r - l) / 2; 
 
-			
+
 			if (list.get(mid).getId().compareToIgnoreCase(key) == 0) 
 				return mid; 
 
-			
+
 			if (list.get(mid).getId().compareToIgnoreCase(key) > 0) 
 				return binarySearch(list, l, mid - 1, key); 
 
-			
+
 			return binarySearch(list, mid + 1, r, key); 
 		} 
 
@@ -148,7 +159,7 @@ public class Agenda {
 	}
 
 	public List<Contact> searchBySubject(String name){ 
-		
+
 		List<Contact> list = (List<Contact>) contacts.values();
 
 		for (int i = 0; i < list.size(); i++) {
@@ -254,6 +265,52 @@ public class Agenda {
 	public Hashtable<String, Subject> getSubjects(){
 
 		return subjects;
+
+	}
+
+	private void readSubjects() throws IOException {
+
+		FileReader fr = new FileReader(new File(PATH_SUBJECTS));
+		BufferedReader br = new BufferedReader(fr);
+
+		String line = br.readLine();
+		String[] parts = line.split(",");
+		while(line != null){
+
+
+
+
+			line = br.readLine();
+			if(line != null) {
+				parts = line.split(",");
+			}
+		}
+
+		br.close();
+		fr.close();
+
+	}
+
+	private void readStudents() throws IOException {
+
+		FileReader fr = new FileReader(new File(PATH_STUDENTS));
+		BufferedReader br = new BufferedReader(fr);
+
+		String line = br.readLine();
+		String[] parts = line.split(",");
+		while(line != null){
+
+
+
+
+			line = br.readLine();
+			if(line != null) {
+				parts = line.split(",");
+			}
+		}
+
+		br.close();
+		fr.close();
 
 	}
 
