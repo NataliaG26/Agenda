@@ -124,7 +124,7 @@ public class Agenda {
 
 		boolean removed = false;
 
-		if (!subjects.containsKey(name)) {
+		if (subjects.containsKey(name)) {
 			subjects.remove(name);
 			removed = true;
 		}
