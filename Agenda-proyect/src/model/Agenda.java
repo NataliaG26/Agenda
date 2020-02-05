@@ -4,6 +4,9 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -23,11 +26,11 @@ public class Agenda {
 
 	}
 
-	public boolean addContact(String avatar, String name, String email, String phonenumber,LocalDate dateofbirth, int age) {
+	public boolean addContact(String id, String avatar, String name, String email, String phonenumber,LocalDate dateofbirth, int age) {
 
 		boolean added = false;
 
-		Contact newContact = new Contact(avatar, name, email, phonenumber, dateofbirth, age);
+		Contact newContact = new Contact(id, avatar, name, email, phonenumber, dateofbirth, age);
 
 		if (!contacts.containsKey(name)) {
 			contacts.put(name, newContact);
@@ -50,7 +53,25 @@ public class Agenda {
 		return deleted;
 
 	}
+	/*
+	public Contact searchByID(String id){
 
+		List<Contact> list = (List<Contact>) contacts.values();
+
+		Collections.binarySearch(list, id, new Comparator<Contact>() {
+
+			@Override
+			public int compare(Contact o1, Contact o2) {
+				
+			}
+			
+			
+		})
+		
+		return list;
+
+	}*/
+	
 	public List<Contact> searchByName(String name){
 
 		List<Contact> list = (List<Contact>) contacts.values();
@@ -94,7 +115,7 @@ public class Agenda {
 	}
 
 	public List<Contact> searchBySubject(String name){ //need that the contact to has a list of his/her subjects in order to search
-													   //by subject
+		//by subject
 		List<Contact> list = (List<Contact>) contacts.values();
 
 		for (int i = 0; i < list.size(); i++) {
@@ -132,29 +153,75 @@ public class Agenda {
 		return removed;
 
 	}
-	
+
 	public Subject moreEnrolledSubject() {
-		
-		return null;
-		
+
+		List<Subject> list = new ArrayList<Subject>(subjects.values());
+
+		Collections.sort(list, new Comparator<Subject>() {
+
+			@Override
+			public int compare(Subject o1, Subject o2) {
+
+				if (o1.getStudentsEnrolled() > o2.getStudentsEnrolled()) {
+
+					return 1;
+
+				}else if (o1.getStudentsEnrolled() < o2.getStudentsEnrolled()) {
+
+					return -1;
+
+				}else {
+					return 0;
+				}
+
+			}
+
+		});
+
+		return list.get(0);
+
 	}
-	
+
 	public Subject lessEnrolledSubject() {
-		
-		return null;
-		
+
+		List<Subject> list = new ArrayList<Subject>(subjects.values());
+
+		Collections.sort(list, new Comparator<Subject>() {
+
+			@Override
+			public int compare(Subject o1, Subject o2) {
+
+				if (o1.getStudentsEnrolled() > o2.getStudentsEnrolled()) {
+
+					return 1;
+
+				}else if (o1.getStudentsEnrolled() < o2.getStudentsEnrolled()) {
+
+					return -1;
+
+				}else {
+					return 0;
+				}
+
+			}
+
+		});
+
+		return list.get(list.size()-1);
+
 	}
-	
+
 	public Hashtable<String, Contact> getContacts(){
-		
+
 		return contacts;
-		
+
 	}
-	
+
 	public Hashtable<String, Subject> getSubjects(){
-		
+
 		return subjects;
-		
+
 	}
 
 }
