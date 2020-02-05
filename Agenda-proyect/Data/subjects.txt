@@ -1,0 +1,10 @@
+Ingeniería económica,4,
+Proyecto integrador 1,3,
+Modelado de sistemas de información,2,
+Electricidad y magnetismo,4,
+Matematicas Discretas,3,
+Inferencia estadística,3,
+Electiva de humanidades,3,
+Calculo de una variable,4,
+Liderazgo,3,
+Calculo de varias variables,4
