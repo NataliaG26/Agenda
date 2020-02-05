@@ -53,25 +53,58 @@ public class Agenda {
 		return deleted;
 
 	}
-	/*
+
+
 	public Contact searchByID(String id){
 
 		List<Contact> list = (List<Contact>) contacts.values();
 
-		Collections.binarySearch(list, id, new Comparator<Contact>() {
+		list.sort(new Comparator<Contact>() {
 
 			@Override
 			public int compare(Contact o1, Contact o2) {
-				
-			}
-			
-			
-		})
-		
-		return list;
 
-	}*/
-	
+				if(o1.getId().compareTo(o2.getId()) > 0)
+					return 1;
+				else if(o1.getId().compareTo(o2.getId()) < 0)
+					return -1;
+				else 
+					return 0;
+			}
+
+		});
+
+		int index = binarySearch(list, 0, list.size()-1, id);
+
+		if (index == -1) {
+			return null;
+		}else {
+			return list.get(index);
+		}
+
+	}
+
+	private int binarySearch(List<Contact> list, int l, int r, String key) {
+
+		if (r >= l) { 
+			int mid = l + (r - l) / 2; 
+
+			
+			if (list.get(mid).getId().compareToIgnoreCase(key) == 0) 
+				return mid; 
+
+			
+			if (list.get(mid).getId().compareToIgnoreCase(key) > 0) 
+				return binarySearch(list, l, mid - 1, key); 
+
+			
+			return binarySearch(list, mid + 1, r, key); 
+		} 
+
+		return -1; 
+
+	}
+
 	public List<Contact> searchByName(String name){
 
 		List<Contact> list = (List<Contact>) contacts.values();
@@ -114,12 +147,12 @@ public class Agenda {
 
 	}
 
-	public List<Contact> searchBySubject(String name){ //need that the contact to has a list of his/her subjects in order to search
-		//by subject
+	public List<Contact> searchBySubject(String name){ 
+		
 		List<Contact> list = (List<Contact>) contacts.values();
 
 		for (int i = 0; i < list.size(); i++) {
-			if (true) {
+			if (!list.get(i).getMySubjects().containsKey(name)) {
 				list.remove(i);
 			}
 		}
