@@ -3,6 +3,7 @@ import java.time.LocalDate;
 
 public class Contact {
 	
+	private String id;
 	private String avatar;
 	private String name;
 	private String email;
@@ -21,6 +22,10 @@ public class Contact {
 		this.age = age;
 	}
 
+	public String getId() {
+		return id;
+	}
+	
 	public String getAvatar() {
 		return avatar;
 	}
