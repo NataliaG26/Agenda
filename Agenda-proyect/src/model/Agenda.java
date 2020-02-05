@@ -277,8 +277,14 @@ public class Agenda {
 		String[] parts = line.split(",");
 		while(line != null){
 
-
-
+			String name = parts[0];
+			int credits = Integer.valueOf(parts[1]);
+			int nrc = Integer.valueOf(parts[2]); 
+			int studentsEnrolled = Integer.valueOf(parts[3]);
+			
+			//Subject sub = new Subject(name, credits, nrc, studentsEnrolled);
+			
+			//subjects.put(name, sub);
 
 			line = br.readLine();
 			if(line != null) {
