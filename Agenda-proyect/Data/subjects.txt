@@ -1,9 +1,9 @@
-Ingeniería económica,4,0,0
+Ingenieria economica,4,0,0
 Proyecto integrador 1,3,0,0
-Modelado de sistemas de información,2,0,0
+Modelado de sistemas de informacion,2,0,0
 Electricidad y magnetismo,4,0,0
 Matematicas Discretas,3,0,0
-Inferencia estadística,3,0,0
+Inferencia estadistica,3,0,0
 Electiva de humanidades,3,0,0
 Calculo de una variable,4,0,0
 Liderazgo,3,0,0

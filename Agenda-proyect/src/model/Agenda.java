@@ -171,13 +171,13 @@ public class Agenda {
 		return list;
 
 	}
-
+	/*
 	public boolean addSubject(String name) { //need to read from the txt file to create the subject
 
 		boolean added = false;
 
 		if (!subjects.containsKey(name)) {
-			subjects.put(name, new Subject(name, 0, 0));
+			subjects.put(name, new Subject(name, 0, 0, 0));
 			added = true;
 		}
 
@@ -196,7 +196,7 @@ public class Agenda {
 
 		return removed;
 
-	}
+	}*/
 
 	public Subject moreEnrolledSubject() {
 
@@ -282,9 +282,9 @@ public class Agenda {
 			int nrc = Integer.valueOf(parts[2]); 
 			int studentsEnrolled = Integer.valueOf(parts[3]);
 			
-			//Subject sub = new Subject(name, credits, nrc, studentsEnrolled);
+			Subject sub = new Subject(name, credits, nrc, studentsEnrolled);
 			
-			//subjects.put(name, sub);
+			subjects.put(name, sub);
 
 			line = br.readLine();
 			if(line != null) {
