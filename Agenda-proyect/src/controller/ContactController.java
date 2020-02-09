@@ -75,6 +75,9 @@ public class ContactController implements Initializable{
 
     @FXML
     private TextField txtF_SubjectDep;
+    
+    private MainController main;
+    
 
     @FXML
     void addContactSubject(MouseEvent event) {
@@ -130,11 +133,31 @@ public class ContactController implements Initializable{
     void nextContact(MouseEvent event) {
 
     }
+    
+    //cambia la vista de la ventana para el estado de agregar contacto
+    public void setVisualNewContact() {
+    	image_EditContact.setVisible(false);
+    	image_deleteContact.setVisible(false);
+    	image_CancelEditSubject.setVisible(false);
+    	image_CheckEditSubject.setVisible(false);
+    }
+    
+    //cambia la vista de la ventana para el esatdo de mostrar contacto
+    public void setVisualShowContact() {
+    	
+    }
+    
+    
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	//cambia el objeto main controller para realizar la coneccion con la clase controladora principal de
+    public void setMainController(MainController mainController) {
+		this.main = mainController;
 	}
 
 }
