@@ -90,6 +90,8 @@ public class ContactController implements Initializable{
     private TextField txtF_SubjectDep;
     
     private MainController mainController;
+    
+    private int contact;
 
     @FXML
     void addContactSubject(MouseEvent event) {
@@ -165,9 +167,20 @@ public class ContactController implements Initializable{
     	
     }
     
-    private void showContact(String infoContact) {
+    private void showContact() {
     	//conectar modelo, lista con la info de los contactos
-    	//info por parametro
+    	//info por parametro correo, codigo, edad, cumplaños, carrera, creditos, avatar, materias,
+    	txtF_Name.setText(mainController.getContactName(contact));
+    	txtF_PhoneNumber.setText(mainController.getContactPhonenumber(contact));
+    	txtF_Email.setText(mainController.getContactEmail(contact));
+    	txtF_id.setText(mainController.getContactId(contact));
+    	txtF_age.setText(mainController.getContactAge(contact));
+    	String[] birthday = mainController.getContactBirthday(contact).split(" ");
+    	txtF_DayBirthday.setText(birthday[0]);
+    	cBox_MonthBirthday.setPromptText(birthday[1]);
+    	//txtF_Carrera.setText(mainController.getContactCarrera(contact));
+    	label_TotalCredits.setText(mainController.getContactEnrolledCreditsNumber(contact));
+    	//image_Avatar.mainController.getContactId(contact));
     }
     
     //cambia la visibilidad de la ventana y habilita las secciones para editar informacion de la materia
@@ -246,7 +259,8 @@ public class ContactController implements Initializable{
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+		contact = 0;
+		mainController = null;
 		
 	}
 	

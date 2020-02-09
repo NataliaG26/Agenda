@@ -70,6 +70,11 @@ public class Contact {
 		return dateofbirth;
 	}
 	
+	//retorna la fecha como un string numero del dia, espacio, mes en letras
+	public String toStringDateOfBirth() {
+		return "";
+	}
+	
 	public int getAge() {
 		return age;
 	}

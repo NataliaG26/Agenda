@@ -239,8 +239,8 @@ public class AgendaController implements Initializable{
 			menuContainer2.setVisible(false);
 			mainController = null;
 			contactController = null;
-			summaryController = loadScene("Summary").getController();
+			summaryController = null;
+			//summaryController = loadScene("Summary").getController();
 		}
-	
 
 }
