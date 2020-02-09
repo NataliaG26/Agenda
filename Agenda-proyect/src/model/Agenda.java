@@ -7,12 +7,15 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.StringTokenizer;
 
 /**
  * @author 
@@ -44,21 +47,21 @@ public class Agenda {
 	public final static String ORDER_LAST_NAME = "Por apellido";
 
 	
-	public Agenda() {
+	public Agenda() throws Exception {
 
 		contacts = new Hashtable<String, Contact>();
 		subjects = new Hashtable<String, Subject>();
-		/*
+		
 		readStudents();
-		readSubjects();*/
+		readSubjects();
 
 	}
 
-	public boolean addContact(String id, String avatar, String name, String email, String phonenumber,LocalDate dateofbirth, int age) {
+	public boolean addContact(String id, String avatar, String name, String email, String phonenumber,Date dateofbirth, int age) {
 
 		boolean added = false;
 
-		Contact newContact = new Contact(id, avatar, name, email, phonenumber, dateofbirth, age);
+		Contact newContact = new Contact(id, avatar, name, email, phonenumber, dateofbirth, age, 0);
 
 		if (!contacts.containsKey(name)) {
 			contacts.put(name, newContact);
@@ -188,13 +191,13 @@ public class Agenda {
 		return list;
 
 	}
-	/*
-	public boolean addSubject(String name) { //need to read from the txt file to create the subject
+	
+	public boolean addSubject(String subjectName, String studentId) { 
 
 		boolean added = false;
 
-		if (!subjects.containsKey(name)) {
-			subjects.put(name, new Subject(name, 0, 0, 0));
+		if (subjects.containsKey(subjectName) && contacts.containsKey(studentId)) {
+			contacts.get(studentId).getMySubjects().put(subjectName, subjects.get(subjectName));
 			added = true;
 		}
 
@@ -202,18 +205,22 @@ public class Agenda {
 
 	}
 
-	public boolean removeSubject(String name) {
+	public boolean removeSubject(String subjectName, String studentId) {
 
 		boolean removed = false;
 
-		if (subjects.containsKey(name)) {
-			subjects.remove(name);
-			removed = true;
+		if (contacts.containsKey(studentId)) {
+			
+			if (contacts.get(studentId).getMySubjects().containsKey(subjectName)) {
+				contacts.get(studentId).getMySubjects().remove(subjectName);
+				removed = true;
+			}
+			
 		}
 
 		return removed;
 
-	}*/
+	}
 
 	public Subject moreEnrolledSubject() {
 
@@ -285,62 +292,66 @@ public class Agenda {
 
 	}
 
-	private void readSubjects() {
+	private void readSubjects() throws IOException {
 		
-		try {
 		FileReader fr = new FileReader(new File(PATH_SUBJECTS));
 		BufferedReader br = new BufferedReader(fr);
-
+		
+		StringTokenizer st;
 		String line = br.readLine();
-		String[] parts = line.split(",");
-		while(line != null){
-
-			String name = parts[0];
-			int credits = Integer.valueOf(parts[1]);
-			int nrc = Integer.valueOf(parts[2]); 
-			int studentsEnrolled = Integer.valueOf(parts[3]);
+		
+		while(line != null) {
 			
-			Subject sub = new Subject(name, credits, nrc, studentsEnrolled);
+			st = new StringTokenizer(line, ",");
 			
+			String name = st.nextToken();
+			int credits = Integer.valueOf(st.nextToken());
+			int studentsEnrolled = Integer.valueOf(st.nextToken());
+			
+			Subject sub = new Subject(name, credits, studentsEnrolled);
 			subjects.put(name, sub);
-
+			
 			line = br.readLine();
-			if(line != null) {
-				parts = line.split(",");
-			}
+			
 		}
-
+		
 		br.close();
 		fr.close();
-		}catch(IOException e) {
-			System.err.println(e);
-		}
 
 	}
 
-	private void readStudents(){
-		try {
+	private void readStudents() throws Exception{
+		
 		FileReader fr = new FileReader(new File(PATH_STUDENTS));
 		BufferedReader br = new BufferedReader(fr);
-
+		
+		StringTokenizer st;
 		String line = br.readLine();
-		String[] parts = line.split(",");
-		while(line != null){
-
-			//read
-
-
+		
+		while(line != null) {
+			
+			st = new StringTokenizer(line, ",");
+			
+			String id = st.nextToken();
+			String avatar = st.nextToken();
+			String name = st.nextToken();
+			String email = st.nextToken();
+			String phoneNumber = st.nextToken();
+			String date = st.nextToken();
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
+			Date date2 = formatter.parse(date);
+			int age = Integer.valueOf(st.nextToken());
+			int enrolledcreditsnumber = Integer.valueOf(st.nextToken());
+			
+			Contact con = new Contact(id, avatar, name, email, phoneNumber, date2, age, enrolledcreditsnumber);
+			contacts.put(id, con);
+			
 			line = br.readLine();
-			if(line != null) {
-				parts = line.split(",");
-			}
+			
 		}
-
+		
 		br.close();
 		fr.close();
-		}catch(IOException e) {
-			System.err.println(e);
-		}
 
 	}
 

@@ -7,9 +7,13 @@ public class MainController {
 	
 	private Agenda agenda;
 	
+<<<<<<< HEAD
 	public final static double ICONE_SIZE = 32;
 	
 	public MainController() {
+=======
+	public MainController() throws Exception {
+>>>>>>> master
 		agenda = new Agenda();
 		
 	}
