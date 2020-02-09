@@ -102,7 +102,7 @@
                      </image>
                   </ImageView>
                   <Region prefHeight="191.0" prefWidth="10.0" />
-                  <ImageView fx:id="image_nextContact" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#nextContact" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imagenextContact" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#nextContact" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../desing/icons/next-page-48.png" />
                      </image>
@@ -146,7 +146,7 @@
                      </children>
                   </HBox>
                   <Region prefHeight="11.0" prefWidth="413.0" />
-                  <VBox prefHeight="125.0" prefWidth="407.0" style="-fx-background-color: #dcf3f4;">
+                  <VBox minHeight="125.0" minWidth="407.0" prefHeight="125.0" prefWidth="407.0" style="-fx-background-color: #dcf3f4;">
                      <children>
                         <HBox prefHeight="42.0" prefWidth="355.0">
                            <children>

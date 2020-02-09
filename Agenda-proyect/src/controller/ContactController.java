@@ -57,7 +57,7 @@ public class ContactController implements Initializable{
     private ComboBox<?> cBox_MonthBirthday;
 
     @FXML
-    private ImageView imagen_BackToContact;
+    private ImageView image_BackToContact;
 
     @FXML
     private ImageView image_nextContact;
@@ -91,7 +91,13 @@ public class ContactController implements Initializable{
     
     private MainController mainController;
     
+    //represnta el contacto que se esta visualizando
+    //es un entero que es la posicion de la lista visible
     private int contact;
+    
+    //representa la materia del contacto que esta siendo visible 
+    //es un entero que represnta la posicion de la materia en la lista de materias del contacto actual
+    private int subject;
 
     @FXML
     void addContactSubject(MouseEvent event) {
@@ -104,6 +110,13 @@ public class ContactController implements Initializable{
     void backToConact(MouseEvent event) {
     	//lista con la info de los contactos que va a mostrar
     	//showContact(info del contact actual/anterior);
+    	if(contact-1<0) {
+    		contact = mainController.getSizeContactsView()-1;
+    	}else {
+    		contact--;
+    	}
+    	showContact();
+    	setVisual_ShowSubjectNotSelected();
     }
 
     @FXML
@@ -115,7 +128,7 @@ public class ContactController implements Initializable{
 
     @FXML
     void cancelEditSubject(MouseEvent event) {
-    	setVisual_ShowSubject();
+    	setVisual_ShowSubjectSelected();
     	//con el contacto actual
     	//no hacer ningun cambio
     }
@@ -158,12 +171,32 @@ public class ContactController implements Initializable{
     void nextContact(MouseEvent event) {
     	//lista con la info de los contactos que va a mostrar
     	//showContact(info del contact actual/siguiente);
+    	if(contact+1>mainController.getSizeContactsView()-1) {
+    		contact = 0;
+    	}else {
+    		contact++;
+    	}
+    	showContact();
+    	setVisual_ShowSubjectNotSelected();
     }
     
   //cambia la vista de la ventana para el estado de agregar contacto
     public void setVisualNewContact() {
     	setVisual_EditContact();
     	//create a contact conect with model
+    	
+    }
+    
+    /*
+     * muestra la informacion de la materia segun los atributos contact y subject 
+     */
+    private void showSubject() {
+    	//modificar info subject
+    	/*
+    	txtF_SubjectName.setText(mainController.getSubjectNameContact(contact, subject));
+    	txtF_CredistSubject.setText(mainController.getSubjectNameContact(contact, subject));
+    	//txtF_SubjectDep.setText(mainController.getSubjectDepContact(contact, subject);
+    	*/
     	
     }
     
@@ -206,17 +239,23 @@ public class ContactController implements Initializable{
     //cambia la visibilidad de la ventana y habilita las secciones para editar informacion de contacto
     public void setVisual_EditContact() {
     	
-    	image_CancelEditSubject.setVisible(true);
-    	image_CheckEditSubject.setVisible(true);
+    	image_CancelEditContact.setVisible(true);
+    	image_CheckEditContact.setVisible(true);
     	
-    	image_EditContact.setFitWidth(MainController.ICONE_SIZE);
-    	image_deleteContact.setFitWidth(MainController.ICONE_SIZE);
+    	image_CancelEditContact.setFitWidth(MainController.ICONE_SIZE);
+    	image_CheckEditContact.setFitWidth(MainController.ICONE_SIZE);
     	
     	image_EditContact.setVisible(false);
     	image_deleteContact.setVisible(false);
     	
     	image_EditContact.setFitWidth(0);
     	image_deleteContact.setFitWidth(0);
+    	
+    	image_nextContact.setVisible(false);
+    	image_BackToContact.setVisible(false);
+    	
+    	image_BackToContact.setFitWidth(0);
+    	image_BackToContact.setFitWidth(0);
     	
     	txtF_Name.setEditable(true);
     	txtF_LastName.setEditable(true);
@@ -229,12 +268,42 @@ public class ContactController implements Initializable{
     	txtF_Carrera.setEditable(true);
     }
     
-    public void setVisual_ShowSubject() {
+    //cambia la ventana para el esatdo de mostrar informacion de la materia seleccionada
+    public void setVisual_ShowSubjectSelected() {
     	image_CancelEditSubject.setVisible(false);
     	image_CheckEditSubject.setVisible(false);
     	
     	image_CancelEditSubject.setFitWidth(0);
     	image_CheckEditSubject.setFitWidth(0);
+    	
+    	image_EditSubject.setVisible(true);
+    	image_DeleteSubject.setVisible(true);
+    	
+    	image_EditSubject.setFitWidth(MainController.ICONE_SIZE);
+    	image_DeleteSubject.setFitWidth(MainController.ICONE_SIZE);
+    	
+    	txtF_CredistSubject.setEditable(false);
+    	txtF_SubjectDep.setEditable(false);
+    	txtF_SubjectName.setEditable(false);
+    }
+    
+    
+    //cmabia la ventana para el estado cuando no se ha seleccionado ninguna materia
+    //no mustra infromacion de ninguna materia
+    //deshabilita txtF
+    //no muestra iconos
+    public void setVisual_ShowSubjectNotSelected() {
+    	image_CancelEditSubject.setVisible(false);
+    	image_CheckEditSubject.setVisible(false);
+    	
+    	image_CancelEditSubject.setFitWidth(0);
+    	image_CheckEditSubject.setFitWidth(0);
+    	
+    	image_EditSubject.setVisible(false);
+    	image_DeleteSubject.setVisible(false);
+    	
+    	image_EditSubject.setFitWidth(0);
+    	image_DeleteSubject.setFitWidth(0);
     	
     	txtF_CredistSubject.setEditable(false);
     	txtF_SubjectDep.setEditable(false);
@@ -243,6 +312,12 @@ public class ContactController implements Initializable{
 
     //cambia la vista de la ventana para el esatdo de mostrar contacto
     public void setVisual_ShowContact() {
+    	
+    	image_CancelEditContact.setVisible(false);
+    	image_CheckEditContact.setVisible(false);
+    	
+    	image_CancelEditContact.setFitWidth(0);
+    	image_CheckEditContact.setFitWidth(0);
     	
     	txtF_Name.setEditable(false);
     	txtF_LastName.setEditable(false);

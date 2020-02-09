@@ -134,18 +134,19 @@ public class AgendaController implements Initializable{
     //habilitar signos de check y cancel
     @FXML
     private void newContact(MouseEvent event) {
-    	contactController = loadScene("Contact").getController();
-    	System.out.println("contact");
+    	contactController = loadScene(MainController.ID_CONTACTS).getController();
+    	System.out.println("contacts");
     	contactController.setVisualNewContact();
+    	contactController.setVisual_ShowSubjectNotSelected();
     	
     }
     
     //cambia la ventana del anchorpane y muestra la ventana de contactos con el primer contacto
     private void setVisual_ShowContacts() {
-    	contactController = loadScene("Contact").getController();
-    	System.out.println("contact");
+    	contactController = loadScene(MainController.ID_CONTACTS).getController();
+    	System.out.println("contacts");
     	contactController.setVisual_ShowContact();
-    	contactController.setVisual_ShowSubject();
+    	contactController.setVisual_ShowSubjectNotSelected();
     }
     
   //solo deja visible y habilitado el primer comboBox para busqueda
@@ -191,7 +192,7 @@ public class AgendaController implements Initializable{
 	    //muestra la scena de Summary
 	    @FXML
 	    private void summary(MouseEvent event) {
-	    	summaryController = loadScene("Summary").getController();
+	    	summaryController = loadScene(MainController.ID_SUMMARY).getController();
 	    	System.out.println("summary");
 	    }
 	    
