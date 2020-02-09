@@ -1,9 +1,12 @@
 package model;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -14,6 +17,7 @@ import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.logging.SimpleFormatter;
 
 import javafx.scene.control.ListView;
 
@@ -37,24 +41,24 @@ public class Agenda {
 	//paths to read text files with information required
 	public final static String PATH_SUBJECTS = "Data/subjects.txt";
 	public final static String PATH_STUDENTS = "Data/students.txt";
-	
+
 	//Searching interests
 	public final static String SEARCH_NAME = "Nombre";
 	public final static String SEARCH_BIRTHDAY = "Cumpleaños";
 	public final static String SEARCH_AGE = "Edad";
 	public final static String SEARCH_SUBJECT = "Materia";
-	
+
 	//Date of birth searching criteria
 	public final static String FILTER_BIRTHDAY = "Fecha exacta";
 	public final static String FILTER_BIRTHDAY_BETWEEN_DATES = "Entre dos fechas";
 	public final static String FILTER_BIRTHDAY_BETWEEN_MONTHS = "Entre dos meses";
 	public final static String FILTER_BIRTHDAY_MONTHS = "Mes";
-	
+
 	//Age searching criteria
 	public final static String FILTER_AGE = "Exacta";
 	public final static String FILTER_AGE_OLDER = "Mayor que";
 	public final static String FILTER_AGE_JOUNGER = "Menor que";
-	
+
 	//public final static String ORDER = "Ordenar";
 	//Sorting interests
 	public final static String ORDER_NAME = "Por nombre A-Z";
@@ -70,11 +74,13 @@ public class Agenda {
 
 		contacts = new Hashtable<String, Contact>();
 		subjects = new Hashtable<String, Subject>();
-		/*
+
 		readStudents();
-		readSubjects();*/
+		readSubjects();
+
+		writeContacts();
 	}
-	
+
 	/**
 	 * This method adds a new entry contact 
 	 * <b>Pre:</b> the information of the contact is valid
@@ -101,7 +107,7 @@ public class Agenda {
 
 		return added;
 	}
-	
+
 	/**
 	 * This method deletes a contact by its name
 	 * <b>Pre:</b> the name is valid
@@ -155,7 +161,7 @@ public class Agenda {
 			return list.get(index);
 		}
 	}
-	
+
 	/**
 	 * This method uses binary searching to search inside the contacts list.
 	 * <b>Pre:</b> the key is valid.
@@ -185,7 +191,7 @@ public class Agenda {
 
 		return -1; 
 	}
-	
+
 	/**
 	 * This method searchs a contact by its name.
 	 * <b>Pre:</b> the name is valid.
@@ -205,7 +211,7 @@ public class Agenda {
 
 		return list;
 	}
-	
+
 	/**
 	 * This method searchs a contact by its age.
 	 * <b>Pre:</b> the age is valid.
@@ -265,7 +271,7 @@ public class Agenda {
 
 		return list;
 	}
-	
+
 	/**
 	 * This method adds a new subject to a contact subject's list. 
 	 * <b>Pre:</b> the information of the subject is valid.
@@ -285,7 +291,7 @@ public class Agenda {
 
 		return added;
 	}
-	
+
 	/**
 	 * This method removes a subject from a contact's subject's list.
 	 * <b>Pre:</b> the name is valid.
@@ -308,7 +314,7 @@ public class Agenda {
 		}
 		return removed;
 	}
-	
+
 	/**
 	 * This method calculates which is the more enrolled subject between all the contacts student in the agenda
 	 * @return the more enrolled subject.
@@ -331,14 +337,14 @@ public class Agenda {
 					return -1;
 
 				}else {
-					
+
 					return 0;
 				}
 			}
 		});
 		return list.get(0);
 	}
-	
+
 	/**
 	 * This method calculates which is the less enrolled subject between all the contacts student in the agenda.
 	 * @return the less enrolled subject.
@@ -408,6 +414,7 @@ public class Agenda {
 		}catch(IOException e) {
 			System.err.println(e);
 		}
+
 	}
 
 	private void readStudents(){
@@ -428,7 +435,11 @@ public class Agenda {
 				String email = st.nextToken();
 				String phoneNumber = st.nextToken();
 				String date = st.nextToken();
-				LocalDate date2 = LocalDate.parse(date);
+				String[] parts = date.split("/");
+				int year = Integer.valueOf(parts[2]);
+				int month = Integer.valueOf(parts[1]);
+				int day = Integer.valueOf(parts[0]);
+				LocalDate date2 = LocalDate.of(year, month, day);
 				int age = Integer.valueOf(st.nextToken());
 				int enrolledcreditsnumber = Integer.valueOf(st.nextToken());
 
@@ -440,7 +451,56 @@ public class Agenda {
 			br.close();
 			fr.close();
 		}catch(IOException e) {
-			System.err.println(e);
+
 		}
 	}
+
+	public void writeContacts() {
+
+		String message = "";
+
+		List<Contact> con = new ArrayList<Contact>(contacts.values());
+
+		for (Contact c : con) {
+			
+			int d = c.getDateOfBirth().getDayOfMonth();
+			int m = c.getDateOfBirth().getMonthValue();
+			int y = c.getDateOfBirth().getYear();
+			
+			String date = d + "/" + m + "/" + y;
+			
+			try {
+
+				message += c.getId() + "," + c.getAvatar() + "," + c.getName() + "," + c.getEmail() + "," + c.getPhonenumber()
+				+ "," + date + "," + c.getAge() + "," + c.getEnrolledCredits() + "\n";
+
+				FileWriter fw;
+
+				fw = new FileWriter(PATH_STUDENTS);
+				BufferedWriter bw = new BufferedWriter(fw);
+				PrintWriter out = new PrintWriter(bw);
+
+				out.print(message);
+
+				out.close();
+
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+
+		}
+
+
+
+
+	}
 }
+
+
+
+
+
+
