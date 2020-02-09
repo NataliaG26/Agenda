@@ -7,7 +7,7 @@ public class MainController {
 	
 	private Agenda agenda;
 	
-	public MainController() {
+	public MainController() throws Exception {
 		agenda = new Agenda();
 		
 	}

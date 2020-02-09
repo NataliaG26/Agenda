@@ -1,5 +1,6 @@
 package model;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Hashtable;
 
 public class Contact {
@@ -9,13 +10,15 @@ public class Contact {
 	private String name;
 	private String email;
 	private String phonenumber;
-	private LocalDate dateofbirth;
+	private Date dateofbirth;
 	private int age;
 	private int enrolledcreditsnumber;
 	private Hashtable<String, Subject> mySubjects;
 	
 	
-	public Contact (String id, String avatar, String name, String email, String phonenumber,LocalDate dateofbirth, int age) {
+	public Contact (String id, String avatar, String name, String email, String phonenumber,
+			Date dateofbirth, int age, int enrolledcreditsnumber) {
+		
 		this.id = id;
 		this.avatar = avatar;
 		this.name = name;
@@ -23,7 +26,7 @@ public class Contact {
 		this.phonenumber = phonenumber;
 		this.dateofbirth = dateofbirth;
 		this.age = age;
-		this.enrolledcreditsnumber = 0;
+		this.enrolledcreditsnumber = enrolledcreditsnumber;
 		mySubjects = new Hashtable<String, Subject>();
 	}
 
@@ -63,7 +66,7 @@ public class Contact {
 		this.phonenumber = phonenumber;
 	}
 	
-	public LocalDate getDateOfBirth() {
+	public Date getDateOfBirth() {
 		return dateofbirth;
 	}
 	
