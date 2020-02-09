@@ -1,6 +1,3 @@
-/**
- * 
- */
 package model;
 
 import java.io.BufferedReader;
@@ -21,43 +18,54 @@ import java.util.StringTokenizer;
 import javafx.scene.control.ListView;
 
 /**
- * @author 
+ * This class manage the necessary attributes and methods to create agenda.
+ * @author Natalia Isabel Gonzalez
+ * @author Lina Johanna Salinas
+ * @author Luis Felipe Sanchez
+ * @author Juan José Valencia 
+ * @version 1.0
  *
  */
 public class Agenda {
 
 	private Hashtable<String, Contact> contacts;
 	private Hashtable<String, Subject> subjects;
-	
-	//lista de contactos que sera visible para el usuario
+
+	//contact's list visible for the user
 	private List<Contact> contactsView;
 
+	//paths to read text files with information required
 	public final static String PATH_SUBJECTS = "Data/subjects.txt";
 	public final static String PATH_STUDENTS = "Data/students.txt";
 	
+	//Searching interests
 	public final static String SEARCH_NAME = "Nombre";
 	public final static String SEARCH_BIRTHDAY = "Cumpleaños";
 	public final static String SEARCH_AGE = "Edad";
 	public final static String SEARCH_SUBJECT = "Materia";
 	
+	//Date of birth searching criteria
 	public final static String FILTER_BIRTHDAY = "Fecha exacta";
 	public final static String FILTER_BIRTHDAY_BETWEEN_DATES = "Entre dos fechas";
 	public final static String FILTER_BIRTHDAY_BETWEEN_MONTHS = "Entre dos meses";
 	public final static String FILTER_BIRTHDAY_MONTHS = "Mes";
 	
+	//Age searching criteria
 	public final static String FILTER_AGE = "Exacta";
 	public final static String FILTER_AGE_OLDER = "Mayor que";
 	public final static String FILTER_AGE_JOUNGER = "Menor que";
-
+	
 	//public final static String ORDER = "Ordenar";
+	//Sorting interests
 	public final static String ORDER_NAME = "Por nombre A-Z";
 	public final static String ORDER_BIRTHDAY = "Por fecha de cumpleaños";
 	public final static String ORDER_AGE = "Por edad";
-	
+
 	public final static String[] MONTHS = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
-	
-	
-	
+
+	/**
+	 * <b>Agenda Constructor</b>
+	 */
 	public Agenda() {
 
 		contacts = new Hashtable<String, Contact>();
@@ -65,11 +73,22 @@ public class Agenda {
 		/*
 		readStudents();
 		readSubjects();*/
-
 	}
 	
-
-	public boolean addContact(String id, String avatar, String name, String email, String phonenumber,Date dateofbirth, int age) {
+	/**
+	 * This method adds a new entry contact 
+	 * <b>Pre:</b> the information of the contact is valid
+	 * <b>Pos:</b> the contact has been added as a new entry to the agenda
+	 * @param id the unique identifier
+	 * @param avatar the visual representation
+	 * @param name the complete name
+	 * @param email the contact email
+	 * @param phonenumber the contact number
+	 * @param dateofbirth the date of birth
+	 * @param age the age
+	 * @return a boolean that indicates either if the contact could be added or not.
+	 */
+	public boolean addContact(String id, String avatar, String name, String email, String phonenumber,LocalDate dateofbirth, int age) {
 
 		boolean added = false;
 
@@ -81,9 +100,15 @@ public class Agenda {
 		}
 
 		return added;
-
 	}
-
+	
+	/**
+	 * This method deletes a contact by its name
+	 * <b>Pre:</b> the name is valid
+	 * <b>Pos:</b> the contact is deleted
+	 * @param name the name of the contact to be deleted
+	 * @return a boolean that indicate either if the contact could be deleted or not.
+	 */
 	public boolean deleteContact(String name) {
 
 		boolean deleted = false;
@@ -94,10 +119,15 @@ public class Agenda {
 		}
 
 		return deleted;
-
 	}
 
-
+	/**
+	 * This method searchs a contact by its unique identifier.
+	 * <b>Pre:</b> the unique identifier is valid.
+	 * <b>Pos:</b> the contact searched is returned.
+	 * @param id the unique identifier of the contact to be searched.
+	 * @return the entry with the contact that match with the unique identifier received.
+	 */
 	public Contact searchByID(String id){
 
 		List<Contact> list = (List<Contact>) contacts.values();
@@ -124,9 +154,18 @@ public class Agenda {
 		}else {
 			return list.get(index);
 		}
-
 	}
-
+	
+	/**
+	 * This method uses binary searching to search inside the contacts list.
+	 * <b>Pre:</b> the key is valid.
+	 * <b>Pos:</b> the contact that match with the key is returned.
+	 * @param list the contact´s list with the contacts of interest.
+	 * @param l the first index of the list.
+	 * @param r the last index of the list.
+	 * @param key the attribute to be compare with the rest inside the list to partitionate the list.
+	 * @return the index where is located the contact that match with the key received.
+	 */
 	private int binarySearch(List<Contact> list, int l, int r, String key) {
 
 		if (r >= l) { 
@@ -145,9 +184,15 @@ public class Agenda {
 		} 
 
 		return -1; 
-
 	}
-
+	
+	/**
+	 * This method searchs a contact by its name.
+	 * <b>Pre:</b> the name is valid.
+	 * <b>Pos:</b> the list with the possible matchings is returned.
+	 * @param name the name of the contact(s) to be searched.
+	 * @return the list that contains all the possible entries that match with the received name.
+	 */
 	public List<Contact> searchByName(String name){
 
 		List<Contact> list = (List<Contact>) contacts.values();
@@ -159,9 +204,15 @@ public class Agenda {
 		}
 
 		return list;
-
 	}
-
+	
+	/**
+	 * This method searchs a contact by its age.
+	 * <b>Pre:</b> the age is valid.
+	 * <b>Pos:</b> the list with the possible matchings is returned.
+	 * @param age the age of the contact(s) to be searched.
+	 * @return the list that contains all the possible entries that match with the received age.
+	 */
 	public List<Contact> searchByAge(int age){
 
 		List<Contact> list = (List<Contact>) contacts.values();
@@ -173,9 +224,15 @@ public class Agenda {
 		}
 
 		return list;
-
 	}
 
+	/**
+	 * This method searchs a contact by its date of birth.
+	 * <b>Pre:</b> the date of birth is valid.
+	 * <b>Pos:</b> the list with the possible matchings is returned.
+	 * @param date the date of birth of the contact(s) to be searched.
+	 * @return the list that contains all the possible entries that match with the received date of birth.
+	 */
 	public List<Contact> searchByDateOfBirth(LocalDate date){
 
 		List<Contact> list = (List<Contact>) contacts.values();
@@ -187,9 +244,15 @@ public class Agenda {
 		}
 
 		return list;
-
 	}
 
+	/**
+	 * This method searchs a contact by a subject.
+	 * <b>Pre:</b> the subject name is valid.
+	 * <b>Pos:</b> the list with the possible matchings is returned.
+	 * @param name the name of the subject that the contact(s) would have added to their lists.
+	 * @return the list that contains all the possible entries that match with the received subject's name.
+	 */
 	public List<Contact> searchBySubject(String name){ 
 
 		List<Contact> list = (List<Contact>) contacts.values();
@@ -201,9 +264,16 @@ public class Agenda {
 		}
 
 		return list;
-
 	}
 	
+	/**
+	 * This method adds a new subject to a contact subject's list. 
+	 * <b>Pre:</b> the information of the subject is valid.
+	 * <b>Pos:</b> the subject has been added to a contact in the agenda. 
+	 * @param subjectName the name of the subject
+	 * @param studentId the unique identifier of the student that is going to add this subject.
+	 * @return a boolean that indicates either if the subject could be added or not.
+	 */
 	public boolean addSubject(String subjectName, String studentId) { 
 
 		boolean added = false;
@@ -214,26 +284,35 @@ public class Agenda {
 		}
 
 		return added;
-
 	}
-
+	
+	/**
+	 * This method removes a subject from a contact's subject's list.
+	 * <b>Pre:</b> the name is valid.
+	 * <b>Pos:</b> the subject is removed.
+	 * @param subjectName the name of the subject to be removed.
+	 * @param studentId the unique identifier of the student that is going to remove this subject.
+	 * @return a boolean that indicate either if the contact could be deleted or not.
+	 */
 	public boolean removeSubject(String subjectName, String studentId) {
 
 		boolean removed = false;
 
 		if (contacts.containsKey(studentId)) {
-			
+
 			if (contacts.get(studentId).getMySubjects().containsKey(subjectName)) {
 				contacts.get(studentId).getMySubjects().remove(subjectName);
 				removed = true;
 			}
-			
+
 		}
-
 		return removed;
-
 	}
-
+	
+	/**
+	 * This method calculates which is the more enrolled subject between all the contacts student in the agenda
+	 * @return the more enrolled subject.
+	 */
 	public Subject moreEnrolledSubject() {
 
 		List<Subject> list = new ArrayList<Subject>(subjects.values());
@@ -252,17 +331,18 @@ public class Agenda {
 					return -1;
 
 				}else {
+					
 					return 0;
 				}
-
 			}
-
 		});
-
 		return list.get(0);
-
 	}
-
+	
+	/**
+	 * This method calculates which is the less enrolled subject between all the contacts student in the agenda.
+	 * @return the less enrolled subject.
+	 */
 	public Subject lessEnrolledSubject() {
 
 		List<Subject> list = new ArrayList<Subject>(subjects.values());
@@ -283,123 +363,84 @@ public class Agenda {
 				}else {
 					return 0;
 				}
-
 			}
-
 		});
-
 		return list.get(list.size()-1);
-
 	}
 
 	public Hashtable<String, Contact> getContacts(){
-
 		return contacts;
-
 	}
 
 	public Hashtable<String, Subject> getSubjects(){
-
 		return subjects;
-
 	}
-	
+
 	public List<Contact> getContactsView(){
 		return contactsView;
 	}
 
 	private void readSubjects(){
-		
 		try {
-		FileReader fr = new FileReader(new File(PATH_SUBJECTS));
-		BufferedReader br = new BufferedReader(fr);
-		
-		StringTokenizer st;
-		String line = br.readLine();
-		
-		while(line != null) {
-			
-			st = new StringTokenizer(line, ",");
-			
-			String name = st.nextToken();
-			int credits = Integer.valueOf(st.nextToken());
-			int studentsEnrolled = Integer.valueOf(st.nextToken());
-			
-			Subject sub = new Subject(name, credits, studentsEnrolled);
-			subjects.put(name, sub);
-			
-			line = br.readLine();
-			
-		}
-		
-		br.close();
-		fr.close();
+			FileReader fr = new FileReader(new File(PATH_SUBJECTS));
+			BufferedReader br = new BufferedReader(fr);
+
+			StringTokenizer st;
+			String line = br.readLine();
+
+			while(line != null) {
+
+				st = new StringTokenizer(line, ",");
+
+				String name = st.nextToken();
+				int credits = Integer.valueOf(st.nextToken());
+				int studentsEnrolled = Integer.valueOf(st.nextToken());
+
+				Subject sub = new Subject(name, credits, studentsEnrolled);
+				subjects.put(name, sub);
+
+				line = br.readLine();
+
+			}
+
+			br.close();
+			fr.close();
 		}catch(IOException e) {
 			System.err.println(e);
 		}
-
 	}
 
 	private void readStudents(){
-		
 		try {
-		FileReader fr = new FileReader(new File(PATH_STUDENTS));
-		BufferedReader br = new BufferedReader(fr);
-		
-		StringTokenizer st;
-		String line = br.readLine();
-		
-		while(line != null) {
-			
-			st = new StringTokenizer(line, ",");
-			
-			String id = st.nextToken();
-			String avatar = st.nextToken();
-			String name = st.nextToken();
-			String email = st.nextToken();
-			String phoneNumber = st.nextToken();
-			String date = st.nextToken();
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
-			Date date2 = formatter.parse(date);
-			int age = Integer.valueOf(st.nextToken());
-			int enrolledcreditsnumber = Integer.valueOf(st.nextToken());
-			
-			Contact con = new Contact(id, avatar, name, email, phoneNumber, date2, age, enrolledcreditsnumber);
-			contacts.put(id, con);
-			
-			line = br.readLine();
-			
-		}
-		
-		br.close();
-		fr.close();
+			FileReader fr = new FileReader(new File(PATH_STUDENTS));
+			BufferedReader br = new BufferedReader(fr);
+
+			StringTokenizer st;
+			String line = br.readLine();
+
+			while(line != null) {
+
+				st = new StringTokenizer(line, ",");
+
+				String id = st.nextToken();
+				String avatar = st.nextToken();
+				String name = st.nextToken();
+				String email = st.nextToken();
+				String phoneNumber = st.nextToken();
+				String date = st.nextToken();
+				LocalDate date2 = LocalDate.parse(date);
+				int age = Integer.valueOf(st.nextToken());
+				int enrolledcreditsnumber = Integer.valueOf(st.nextToken());
+
+				Contact con = new Contact(id, avatar, name, email, phoneNumber, date2, age, enrolledcreditsnumber);
+				contacts.put(id, con);
+
+				line = br.readLine();
+			}
+			br.close();
+			fr.close();
 		}catch(IOException e) {
 			System.err.println(e);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-
 	}
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
