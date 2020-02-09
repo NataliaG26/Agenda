@@ -1,9 +1,12 @@
 package model;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -14,6 +17,7 @@ import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.logging.SimpleFormatter;
 
 import javafx.scene.control.ListView;
 
@@ -73,6 +77,8 @@ public class Agenda {
 
 		readStudents();
 		readSubjects();
+
+		writeContacts();
 	}
 
 	/**
@@ -445,14 +451,51 @@ public class Agenda {
 			br.close();
 			fr.close();
 		}catch(IOException e) {
-			System.err.println(e);
+
 		}
 	}
-	
+
 	public void writeContacts() {
-		
-		
-		
+
+		String message = "";
+
+		List<Contact> con = new ArrayList<Contact>(contacts.values());
+
+		for (Contact c : con) {
+			
+			int d = c.getDateOfBirth().getDayOfMonth();
+			int m = c.getDateOfBirth().getMonthValue();
+			int y = c.getDateOfBirth().getYear();
+			
+			String date = d + "/" + m + "/" + y;
+			
+			try {
+
+				message += c.getId() + "," + c.getAvatar() + "," + c.getName() + "," + c.getEmail() + "," + c.getPhonenumber()
+				+ "," + date + "," + c.getAge() + "," + c.getEnrolledCredits() + "\n";
+
+				FileWriter fw;
+
+				fw = new FileWriter(PATH_STUDENTS);
+				BufferedWriter bw = new BufferedWriter(fw);
+				PrintWriter out = new PrintWriter(bw);
+
+				out.print(message);
+
+				out.close();
+
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+
+		}
+
+
+
+
 	}
 }
 
