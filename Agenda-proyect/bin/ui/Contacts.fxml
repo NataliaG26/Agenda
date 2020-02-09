@@ -13,10 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="675.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ContactController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="642.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ContactController">
    <children>
-      <Region prefHeight="49.0" prefWidth="675.0" />
-      <HBox alignment="TOP_RIGHT" prefHeight="54.0" prefWidth="675.0">
+      <HBox alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="600.0">
          <children>
             <ImageView fx:id="image_EditContact" fitHeight="32.0" fitWidth="30.0" onMouseClicked="#editContact" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -39,7 +38,6 @@
                   <Image url="@../../desing/icons/checked-48.png" />
                </image>
             </ImageView>
-            <Region prefHeight="32.0" prefWidth="13.0" />
          </children>
       </HBox>
       <Label alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" minWidth="150.0" style="-fx-background-color: #dcf3f4;" text="Contacto">
@@ -47,18 +45,17 @@
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <Region prefHeight="49.0" prefWidth="675.0" />
       <HBox prefHeight="191.0" prefWidth="640.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="191.0" prefWidth="270.0">
+            <VBox alignment="CENTER" prefHeight="191.0" prefWidth="223.0">
                <children>
                   <ImageView fx:id="image_Contact" fitHeight="141.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true" />
                   <TextField fx:id="txtF_Name" alignment="CENTER" promptText="Nombre" style="-fx-background-color: white;" />
                   <TextField fx:id="txtF_LastName" alignment="CENTER" promptText="Apellido" style="-fx-background-color: white;" />
                </children>
             </VBox>
-            <Region prefHeight="191.0" prefWidth="45.0" />
-            <GridPane prefHeight="191.0" prefWidth="334.0">
+            <Region prefHeight="191.0" prefWidth="38.0" />
+            <GridPane prefHeight="164.0" prefWidth="273.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -66,7 +63,6 @@
               <rowConstraints>
                   <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
@@ -74,28 +70,26 @@
                <children>
                   <Label text="Celular" />
                   <Label text="Correo" GridPane.rowIndex="1" />
-                  <Label text="Edad" GridPane.rowIndex="3" />
-                  <Label text="Cumpleaños" GridPane.rowIndex="4" />
-                  <Label text="Carrera" GridPane.rowIndex="5" />
+                  <Label text="Edad" GridPane.rowIndex="2" />
+                  <Label text="Cumpleaños" GridPane.rowIndex="3" />
+                  <Label text="Semestre" GridPane.rowIndex="4" />
                   <TextField fx:id="txtF_PhoneNumber" promptText="Numero de celular" style="-fx-background-color: white;" GridPane.columnIndex="1" />
-                  <TextField fx:id="txtF_Email" promptText="Correo" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="txtF_age" promptText="Edad" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="txtF_Birthday" maxHeight="0.0" promptText="Cumpleaños" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="txtF_Carrera" promptText="Carrera" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="txtF_Email" promptText="correo" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtF_age" promptText="edad" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="txtF_Birthday" maxHeight="0.0" promptText="cumpleaños" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="txtF_Semester" promptText="semestre" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label layoutX="10.0" layoutY="21.0" />
-                  <Label text="Código" GridPane.rowIndex="2" />
-                  <TextField fx:id="txtF_Email1" promptText="Código" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
-            <HBox alignment="BOTTOM_CENTER" maxHeight="201.0" maxWidth="196.0" minHeight="60.0" minWidth="40.0" prefHeight="191.0" prefWidth="196.0">
+            <HBox alignment="BOTTOM_CENTER" maxHeight="201.0" maxWidth="101.0" minHeight="60.0" minWidth="40.0" prefHeight="191.0" prefWidth="95.0">
                <children>
-                  <ImageView fx:id="imagen_BackToContact" fitHeight="35.0" fitWidth="35.0" onMouseClicked="#backToConact" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="35.0" fitWidth="35.0" onMouseClicked="#backToConact" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../desing/icons/back-to-48.png" />
                      </image>
                   </ImageView>
                   <Region prefHeight="191.0" prefWidth="10.0" />
-                  <ImageView fx:id="image_nextContact" fitHeight="35.0" fitWidth="35.0" onMouseClicked="#nextContact" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="35.0" fitWidth="35.0" onMouseClicked="#nextContact" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../desing/icons/next-page-48.png" />
                      </image>
@@ -104,10 +98,10 @@
             </HBox>
          </children>
       </HBox>
-      <Region prefHeight="41.0" prefWidth="675.0" />
+      <Region prefHeight="65.0" prefWidth="642.0" />
       <HBox alignment="TOP_CENTER" prefHeight="241.0" prefWidth="600.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="186.0" prefWidth="203.0">
+            <VBox alignment="TOP_CENTER" prefHeight="212.0" prefWidth="203.0">
                <children>
                   <HBox minWidth="32.0" prefHeight="26.0" prefWidth="222.0" style="-fx-background-color: #dcf3f4;">
                      <children>
@@ -128,7 +122,7 @@
                </children>
             </VBox>
             <Region prefHeight="241.0" prefWidth="27.0" />
-            <VBox prefHeight="202.0" prefWidth="413.0">
+            <VBox prefHeight="241.0" prefWidth="377.0">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="377.0">
                      <children>
@@ -138,8 +132,8 @@
                         <Label text="Créditos matriculadoss" />
                      </children>
                   </HBox>
-                  <Region prefHeight="11.0" prefWidth="413.0" />
-                  <VBox prefHeight="125.0" prefWidth="407.0" style="-fx-background-color: #dcf3f4;">
+                  <Region prefHeight="17.0" prefWidth="376.0" />
+                  <VBox prefHeight="125.0" prefWidth="359.0" style="-fx-background-color: #dcf3f4;">
                      <children>
                         <HBox prefHeight="42.0" prefWidth="355.0">
                            <children>
