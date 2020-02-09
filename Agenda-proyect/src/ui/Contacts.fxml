@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
@@ -18,7 +19,7 @@
       <Region prefHeight="49.0" prefWidth="675.0" />
       <HBox alignment="TOP_RIGHT" prefHeight="54.0" prefWidth="675.0">
          <children>
-            <ImageView fx:id="image_EditContact" fitHeight="32.0" fitWidth="30.0" onMouseClicked="#editContact" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="image_EditContact" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#editContact" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../desing/icons/pencil-48.png" />
                </image>
@@ -58,10 +59,10 @@
                </children>
             </VBox>
             <Region prefHeight="191.0" prefWidth="45.0" />
-            <GridPane prefHeight="191.0" prefWidth="334.0">
+            <GridPane prefHeight="191.0" prefWidth="295.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.0" minWidth="10.0" prefWidth="93.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="189.0" />
               </columnConstraints>
               <rowConstraints>
                   <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
@@ -80,22 +81,28 @@
                   <TextField fx:id="txtF_PhoneNumber" promptText="Numero de celular" style="-fx-background-color: white;" GridPane.columnIndex="1" />
                   <TextField fx:id="txtF_Email" promptText="Correo" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="txtF_age" promptText="Edad" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="txtF_Birthday" maxHeight="0.0" promptText="Cumpleaños" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <TextField fx:id="txtF_Carrera" promptText="Carrera" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label layoutX="10.0" layoutY="21.0" />
                   <Label text="Código" GridPane.rowIndex="2" />
-                  <TextField fx:id="txtF_Email1" promptText="Código" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="txtF_id" promptText="Código" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <children>
+                        <TextField fx:id="txtF_DayBirthday" maxHeight="25.0" maxWidth="55.0" prefHeight="25.0" prefWidth="84.0" promptText="Día" style="-fx-background-color: white;" />
+                        <Region minWidth="10.0" prefHeight="32.0" prefWidth="0.0" />
+                        <ComboBox fx:id="cBox_MonthBirthday" minWidth="120.0" prefHeight="25.0" prefWidth="99.0" promptText="Mes" style="-fx-background-color: white;" />
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
-            <HBox alignment="BOTTOM_CENTER" maxHeight="201.0" maxWidth="196.0" minHeight="60.0" minWidth="40.0" prefHeight="191.0" prefWidth="196.0">
+            <HBox alignment="BOTTOM_CENTER" maxHeight="201.0" maxWidth="196.0" minHeight="60.0" minWidth="40.0" prefHeight="191.0" prefWidth="136.0">
                <children>
-                  <ImageView fx:id="imagen_BackToContact" fitHeight="35.0" fitWidth="35.0" onMouseClicked="#backToConact" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imagen_BackToContact" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#backToConact" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../desing/icons/back-to-48.png" />
                      </image>
                   </ImageView>
                   <Region prefHeight="191.0" prefWidth="10.0" />
-                  <ImageView fx:id="image_nextContact" fitHeight="35.0" fitWidth="35.0" onMouseClicked="#nextContact" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="image_nextContact" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#nextContact" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../desing/icons/next-page-48.png" />
                      </image>
@@ -109,14 +116,14 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="186.0" prefWidth="203.0">
                <children>
-                  <HBox minWidth="32.0" prefHeight="26.0" prefWidth="222.0" style="-fx-background-color: #dcf3f4;">
+                  <HBox alignment="CENTER" minWidth="32.0" prefHeight="34.0" prefWidth="203.0" style="-fx-background-color: #dcf3f4;">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" minHeight="26.0" minWidth="80.0" prefHeight="26.0" prefWidth="189.0" text="Materias">
+                        <Label alignment="CENTER" contentDisplay="CENTER" minHeight="26.0" minWidth="80.0" prefHeight="26.0" prefWidth="172.0" text="Materias">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="150.0" fitWidth="26.0" onMouseClicked="#addContactSubject" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="32.0" fitWidth="32.0" onMouseClicked="#addContactSubject" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../desing/icons/plus-48.png" />
                            </image>

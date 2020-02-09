@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -30,6 +31,24 @@ public class AgendaController implements Initializable{
 
     @FXML
     private HBox menuContainer2;
+    
+    @FXML
+    private RowConstraints row_cBox_OtherOption;
+
+    @FXML
+    private RowConstraints row_txtF_Search;
+
+    @FXML
+    private RowConstraints row_HBox_FirstDateContainer;
+
+    @FXML
+    private RowConstraints row_HBox_SecondDateContainer;
+
+    @FXML
+    private RowConstraints row_btn_Search;
+
+    @FXML
+    private RowConstraints row_listView_Contacts;
 
     @FXML
     private ComboBox<?> cBox_Principal;
@@ -73,25 +92,40 @@ public class AgendaController implements Initializable{
     
     private SummaryController summaryController;
     
-    
-    @FXML
-    void changeCBoxOtherOption(ActionEvent event) {
-
-    }
-
+    //muestra mas opciones dependiendo de la opcion seleccionada
+    //habilita los nodos correspondientes
     @FXML
     void changeCBoxPrincipal(ActionEvent event) {
-
+    	
     }
-
+    
+    //muestra mas opciones dependiendo de la opcion seleccionada
+    //habilita los nodos correspondientes
+    @FXML
+    void changeCBoxOtherOption(ActionEvent event) {
+    	
+    }
+    
+    //muestra el menu con las opciones de ordenamiento
     @FXML
     void orderPage(MouseEvent event) {
-
+    	
     }
-
+    
+    //realiza el filtro con las espesificaciones dadas por el usuario
+    //realizar verificacion de fechas, numeros y que los txtF contengan algo
     @FXML
-    void search(ActionEvent event) {
+    private void search(ActionEvent event) {
+    	//realizar el filtro 
+    	//lista con la info de los contactos a mostrar
+    }
+    
 
+    //muestra en el menau las opciones de busqueda y filtrado
+    @FXML
+    private void searchPage(MouseEvent event) {
+    	setVisual_InitialSearchPage();
+    	setVisual_ShowContacts();
     }
     
     //muestra vista de contacto
@@ -99,18 +133,59 @@ public class AgendaController implements Initializable{
     //esconder simbolos de borrar y editar
     //habilitar signos de check y cancel
     @FXML
-    void newContact(MouseEvent event) {
+    private void newContact(MouseEvent event) {
     	contactController = loadScene("Contact").getController();
-    	System.out.println("summary");
+    	System.out.println("contact");
     	contactController.setVisualNewContact();
     	
     }
-
-    //muestra en el menau las opciones de busqueda y filtrado
-    @FXML
-    void searchPage(MouseEvent event) {
-    	
+    
+    //cambia la ventana del anchorpane y muestra la ventana de contactos con el primer contacto
+    private void setVisual_ShowContacts() {
+    	contactController = loadScene("Contact").getController();
+    	System.out.println("contact");
+    	contactController.setVisual_ShowContact();
+    	contactController.setVisual_ShowSubject();
     }
+    
+  //solo deja visible y habilitado el primer comboBox para busqueda
+    private void setVisual_InitialSearchPage() {
+    	setVisual_InitialPage();
+    	cBox_Principal.setPromptText("Buscar...");
+    	//cargar las opcines de cBox para busqueda
+    }
+    
+    private void setVisual_InitialOrderPage() {
+    	setVisual_InitialPage();
+    	cBox_Principal.setPromptText("Ordenar...");
+    	//cargar las opcines de cBox para ordenar
+    }
+    
+    //solo deja visible y habilitado el primer comboBox 
+    private void setVisual_InitialPage() {
+    	cBox_OtherOption.setVisible(false);
+		txtF_Search.setVisible(false);
+		HBox_FirstDateContainer.setVisible(false);
+		HBox_SecondDateContainer.setVisible(false);
+		btnSearch.setVisible(false);
+		listView_Contacts.setVisible(false);
+		
+		cBox_OtherOption.setMaxHeight(0);
+		txtF_Search.setMaxHeight(0);
+		HBox_FirstDateContainer.setMaxHeight(0);
+		HBox_SecondDateContainer.setMaxHeight(0);
+		btnSearch.setMaxHeight(0);
+		listView_Contacts.setMaxHeight(0);
+		
+		row_cBox_OtherOption.setMaxHeight(0);
+		row_txtF_Search.setMaxHeight(0);
+		row_HBox_FirstDateContainer.setMaxHeight(0);
+		row_HBox_SecondDateContainer.setMaxHeight(0);
+		row_btn_Search.setMaxHeight(0);
+		row_listView_Contacts.setMaxHeight(0);
+    }
+    
+    
 
 	    
 	    //muestra la scena de Summary
@@ -155,16 +230,16 @@ public class AgendaController implements Initializable{
 	    public void setMainController(MainController mainController) {
 			this.mainController = mainController;
 		}
-	  
-
+	    
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
 			// TODO Auto-generated method stub
 			menu.setMinWidth(40);
+			setVisual_InitialSearchPage();
 			menuContainer2.setVisible(false);
 			mainController = null;
 			contactController = null;
-			summaryController = null;
+			summaryController = loadScene("Summary").getController();
 		}
 	
 

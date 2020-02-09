@@ -58,21 +58,21 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="255.0" prefWidth="203.0">
                <children>
-                  <HBox minWidth="32.0" prefHeight="26.0" prefWidth="222.0" style="-fx-background-color: #dcf3f4;">
+                  <HBox alignment="CENTER" minWidth="32.0" prefHeight="41.0" prefWidth="203.0" style="-fx-background-color: #dcf3f4;">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" minHeight="26.0" minWidth="80.0" prefHeight="39.0" prefWidth="177.0" text="Materias">
+                        <Label alignment="CENTER" contentDisplay="CENTER" minHeight="26.0" minWidth="80.0" prefHeight="39.0" prefWidth="168.0" text="Materias">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="150.0" fitWidth="26.0" onMouseClicked="#addSubject" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="32.0" fitWidth="32.0" onMouseClicked="#addSubject" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../desing/icons/plus-48.png" />
                            </image>
                         </ImageView>
                      </children>
                   </HBox>
-                  <Region prefHeight="28.0" prefWidth="203.0" />
+                  <Region prefHeight="18.0" prefWidth="203.0" />
                   <ListView fx:id="listView_Subject" prefHeight="195.0" prefWidth="203.0" style="-fx-background-color: #54a4a6;" />
                </children>
             </VBox>
@@ -100,43 +100,43 @@
                         <Font name="Arial" size="12.0" />
                      </font></Label>
                   <Region prefHeight="14.0" prefWidth="355.0" />
-                  <VBox prefHeight="125.0" prefWidth="359.0" style="-fx-background-color: #dcf3f4;">
+                  <VBox minHeight="125.0" minWidth="407.0" prefHeight="125.0" prefWidth="407.0" style="-fx-background-color: #dcf3f4;">
                      <children>
                         <HBox prefHeight="42.0" prefWidth="355.0">
                            <children>
-                              <HBox alignment="CENTER" minWidth="32.0" prefHeight="42.0" prefWidth="390.0" style="-fx-background-color: #dcf3f4;">
+                              <HBox alignment="CENTER" minWidth="32.0" prefHeight="38.0" prefWidth="413.0" style="-fx-background-color: #dcf3f4;">
                                  <children>
-                                    <TextField alignment="CENTER" prefHeight="26.0" prefWidth="253.0" promptText="Nombre de la materia" style="-fx-background-color: #dcf3f4;">
+                                    <TextField alignment="CENTER" prefHeight="26.0" prefWidth="265.0" promptText="Nombre de la materia" style="-fx-background-color: #dcf3f4;">
                                        <font>
                                           <Font name="Arial Bold" size="13.0" />
                                        </font>
                                     </TextField>
                                     <HBox fx:id="HBox_imagesOptionsSubjects" alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="120.0">
                                        <children>
-                                          <ImageView fx:id="image_EditSubject" fitHeight="150.0" fitWidth="26.0" onMouseClicked="#editSubject" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="image_EditSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#editSubject" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../../desing/icons/pencil-48.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fx:id="image_CancelEditSubject" fitHeight="150.0" fitWidth="26.0" onMouseClicked="#cancelEditSubject" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="image_CancelEditSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#cancelEditSubject" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../../desing/icons/xbox-x-60.png" />
                                              </image>
                                           </ImageView>
-                                          <Region prefHeight="38.0" prefWidth="14.0" />
-                                          <ImageView fx:id="image_DeleteSubject" fitHeight="150.0" fitWidth="26.0" onMouseClicked="#delateSubject" pickOnBounds="true" preserveRatio="true">
+                                          <Region minWidth="10.0" prefHeight="38.0" prefWidth="16.0" />
+                                          <ImageView fx:id="image_DeleteSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#delateSubject" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../../desing/icons/trash-52.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fx:id="image_CheckEditSubject" fitHeight="150.0" fitWidth="26.0" onMouseClicked="#checkEditSubject" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="image_CheckEditSubject" fitHeight="32.0" fitWidth="28.0" onMouseClicked="#checkEditSubject" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../../desing/icons/checked-48.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                     </HBox>
-                                    <Region minHeight="15.0" prefHeight="25.0" prefWidth="14.0" />
+                                    <Region minHeight="15.0" prefHeight="38.0" prefWidth="12.0" />
                                  </children>
                               </HBox>
                            </children></HBox>
