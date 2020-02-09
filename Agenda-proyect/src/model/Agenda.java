@@ -39,8 +39,8 @@ public class Agenda {
 	private List<Contact> contactsView;
 
 	//paths to read text files with information required
-	public final static String PATH_SUBJECTS = "Data/subjects.txt";
-	public final static String PATH_STUDENTS = "Data/students.txt";
+	public final static String PATH_SUBJECTS = "data/subjects.txt";
+	public final static String PATH_STUDENTS = "data/students.txt";
 
 	//Searching interests
 	public final static String SEARCH_NAME = "Nombre";
@@ -316,7 +316,7 @@ public class Agenda {
 	}
 
 	/**
-	 * This method calculates which is the more enrolled subject between all the contacts student in the agenda
+	 * This method calculates which is the more enrolled subject between all the contacts students in the agenda.
 	 * @return the more enrolled subject.
 	 */
 	public Subject moreEnrolledSubject() {
@@ -346,7 +346,7 @@ public class Agenda {
 	}
 
 	/**
-	 * This method calculates which is the less enrolled subject between all the contacts student in the agenda.
+	 * This method calculates which is the less enrolled subject between all the contacts students in the agenda.
 	 * @return the less enrolled subject.
 	 */
 	public Subject lessEnrolledSubject() {
@@ -374,18 +374,38 @@ public class Agenda {
 		return list.get(list.size()-1);
 	}
 
+	/**
+	 * This method returns the contacts list saved on this agenda.
+	 * <b>Pre:</b> the agenda exists.
+	 * @return the contacts list.
+	 */
 	public Hashtable<String, Contact> getContacts(){
 		return contacts;
 	}
 
+	/**
+	 * This method returns the available subjects list saved on this agenda.
+	 * <b>Pre:</b> the agenda exists.
+	 * @return the subjects list.
+	 */
 	public Hashtable<String, Subject> getSubjects(){
 		return subjects;
 	}
 
+	/**
+	 * This method returns the contacts list used for the visibility for the user.
+	 * <b>Pre:</b> the agenda exists.
+	 * @return the contacts list.
+	 */
 	public List<Contact> getContactsView(){
 		return contactsView;
 	}
-
+	
+	/**
+	 * This method reads the information from a database to create the subjects available for contacts
+	 * <b>Pre:</b> the file exists.
+	 * <b>Pos:</b> the information of the subjects is read and the subjects are created.
+	 */
 	private void readSubjects(){
 		try {
 			FileReader fr = new FileReader(new File(PATH_SUBJECTS));
@@ -416,7 +436,12 @@ public class Agenda {
 		}
 
 	}
-
+	
+	/**
+	 * This method reads the information from a databse to create the contacts available for the first time the program launchs.
+	 * <b>Pre:</b> the file exists.
+	 * <b>Pos:</b> the information of the contacts is read and the contacts are created.
+	 */
 	private void readStudents(){
 		try {
 			FileReader fr = new FileReader(new File(PATH_STUDENTS));
@@ -454,9 +479,13 @@ public class Agenda {
 
 		}
 	}
-
+	
+	/**
+	 * This method overrides the contacts database everytime information is edited or a new contact entry is added.
+	 * <b>Pre:</b> the contacts exists.
+	 * <b>Pos:</b> the information of the contacts is overrided.
+	 */
 	public void writeContacts() {
-
 		String message = "";
 
 		List<Contact> con = new ArrayList<Contact>(contacts.values());
@@ -470,7 +499,6 @@ public class Agenda {
 			String date = d + "/" + m + "/" + y;
 			
 			try {
-
 				message += c.getId() + "," + c.getAvatar() + "," + c.getName() + "," + c.getEmail() + "," + c.getPhonenumber()
 				+ "," + date + "," + c.getAge() + "," + c.getEnrolledCredits() + "\n";
 
@@ -481,26 +509,10 @@ public class Agenda {
 				PrintWriter out = new PrintWriter(bw);
 
 				out.print(message);
-
 				out.close();
-
-
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-
 		}
-
-
-
-
 	}
 }
-
-
-
-
-
-
