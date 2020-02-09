@@ -132,13 +132,37 @@ Una agenda electrónica es una aplicación que permite la gestión de la informa
 
 **REQUERIMIENTO FUNCIONAL #15**
 
+| Nombre    | Ordenar los contactos alfabéticamente por su nombre          |
+| --------- | ------------------------------------------------------------ |
+| Resumen   | Permite al usuario ordenar las entradas de contacto por un criterio lexicográfico de su nombre. |
+| Entradas  | Criterio de ordenamiento (criterio lexicográfico).           |
+| Resultado | Las entradas de contacto en la agenda han sido ordenadas por su nombre con un criterio lexicográfico, permitiendo su visualización en la interfaz. |
+
+**REQUERIMIENTO FUNCIONAL #16**
+
+| Nombre    | Ordenar los contactos ascendentemente por su edad            |
+| --------- | ------------------------------------------------------------ |
+| Resumen   | Permite al usuario ordenar las entradas de contacto por su edad de forma ascendente. |
+| Entradas  | Criterio de ordenamiento (criterio ascendente)               |
+| Resultado | Las entradas de contacto en la agenda han sido ordenadas por su edad de forma ascendente, permitiendo su visualización en la interfaz. |
+
+**REQUERIMIENTO FUNCIONAL #17**
+
+| Nombre    | Ordenar los contactos ascendentemente por la fecha de su cumpleaños |
+| --------- | ------------------------------------------------------------ |
+| Resumen   | Permite al usuario ordenar las entradas de contacto por su fecha de cumpleaños de forma ascendente |
+| Entradas  | Criterio de ordenamiento (criterio ascendente)               |
+| Resultado | Las entradas de contacto en la agenda han sido ordenadas por su fecha de cumpleaños de forma ascendente, permitiendo su visualización en la interfaz. |
+
+**REQUERIMIENTO FUNCIONAL #18**
+
 | Nombre    | Calcular el promedio de materias registradas por los contactos. |
 | --------- | ------------------------------------------------------------ |
 | Resumen   | Permite calcular el promedio de materias registradas por todos los contactos cada vez que el usuario lo requiera, dando a conocer el valor aproximado de materias que cada contacto tiene en su lista de materias. |
 | Entradas  |                                                              |
 | Resultado | El valor promedio de materias que cada contacto tiene registrado es calculado y mostrado al usuario en la pestaña de resumen. |
 
-**REQUERIMIENTO FUNCIONAL #16**
+**REQUERIMIENTO FUNCIONAL #19**
 
 | Nombre    | Calcular cual es la materia más registrada por los contactos |
 | --------- | ------------------------------------------------------------ |
@@ -146,7 +170,7 @@ Una agenda electrónica es una aplicación que permite la gestión de la informa
 | Entradas  |                                                              |
 | Resultado | La materia más registrada y cuantos estudiantes la tienen en su lista de materias es calculada y mostrada al usuario en la pestaña de resumen. |
 
-**REQUERIMIENTO FUNCIONAL #17**
+**REQUERIMIENTO FUNCIONAL #20**
 
 | Nombre    | Calcular cual es la materia menos registrada por los contactos |
 | --------- | ------------------------------------------------------------ |
