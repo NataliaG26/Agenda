@@ -2,10 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,88 +13,37 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AgendaController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="863.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AgendaController">
    <left>
-      <VBox fx:id="menu" prefHeight="479.0" prefWidth="40.0" style="-fx-background-color: #54a4a6;" BorderPane.alignment="CENTER_LEFT">
+      <VBox fx:id="menu" alignment="TOP_CENTER" prefHeight="479.0" prefWidth="169.0" style="-fx-background-color: #54a4a6;" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="TOP_RIGHT" prefHeight="71.0" prefWidth="210.0">
+            <HBox alignment="TOP_RIGHT" prefHeight="43.0" prefWidth="42.0">
                <children>
-                  <ImageView fitHeight="40.0" fitWidth="36.0" onMouseClicked="#menu" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="40.0" fitWidth="41.0" onMouseClicked="#menu" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../desing/icons/menu-60.png" />
                      </image>
                   </ImageView>
                </children>
             </HBox>
-            <HBox fx:id="menuContainer2" prefHeight="449.0" prefWidth="210.0">
-               <children>
-                  <VBox alignment="TOP_CENTER" maxWidth="191.0" minWidth="-Infinity" prefHeight="429.0" prefWidth="191.0" style="-fx-background-color: white;">
-                     <children>
-                        <Region prefHeight="20.0" prefWidth="177.0" />
-                        <ComboBox fx:id="cBox_Principal" onAction="#changeCBoxPrincipal" prefHeight="34.0" prefWidth="147.0" promptText="Buscar..." style="-fx-background-color: #dcf3f4;" />
-                        <Region prefHeight="20.0" prefWidth="177.0" />
-                        <ComboBox fx:id="cBox_OtherOption" onAction="#changeCBoxOtherOption" prefWidth="150.0" />
-                        <TextField fx:id="txtF_Search" maxWidth="147.0" prefHeight="25.0" prefWidth="150.0" style="-fx-border-color: #54a4a6; -fx-border-width: 0px 0px 2px 0px; -fx-background-color: white;" />
-                        <HBox fx:id="HBox_FirstDateContainer" prefHeight="32.0" prefWidth="191.0">
-                           <children>
-                              <Region prefHeight="31.0" prefWidth="46.0" />
-                              <ChoiceBox prefWidth="150.0" />
-                              <Region prefHeight="31.0" prefWidth="46.0" />
-                              <TextField prefHeight="25.0" prefWidth="68.0" />
-                              <Region prefHeight="31.0" prefWidth="46.0" />
-                           </children>
-                        </HBox>
-                        <Region prefHeight="20.0" prefWidth="177.0" />
-                        <HBox fx:id="HBox_SecondDateContainer" prefHeight="43.0" prefWidth="191.0">
-                           <children>
-                              <Region prefHeight="31.0" prefWidth="46.0" />
-                              <ChoiceBox prefWidth="150.0" />
-                              <Region prefHeight="31.0" prefWidth="46.0" />
-                              <TextField prefHeight="25.0" prefWidth="68.0" />
-                              <Region prefHeight="31.0" prefWidth="46.0" />
-                           </children>
-                        </HBox>
-                        <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#search" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #54a4a6;" text="Buscar" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </Button>
-                        <Region prefHeight="19.0" prefWidth="191.0" />
-                        <ListView fx:id="listView_Contacts" maxHeight="200.0" maxWidth="168.0" prefWidth="168.0" style="-fx-background-color: #54a4a6;" />
-                        <Region prefHeight="20.0" prefWidth="177.0" />
-                        <Region prefHeight="20.0" prefWidth="177.0" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <Region prefHeight="16.0" prefWidth="33.0" />
-                        <ImageView fx:id="imagen_search" fitHeight="26.0" fitWidth="27.0" onMouseClicked="#searchPage" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../desing/icons/search-52.png" />
-                           </image>
-                        </ImageView>
-                        <Region prefHeight="16.0" prefWidth="33.0" />
-                        <ImageView fx:id="image_Order" fitHeight="26.0" fitWidth="27.0" onMouseClicked="#orderPage" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../desing/icons/save-search-48.png" />
-                           </image>
-                        </ImageView>
-                        <Region prefHeight="16.0" prefWidth="33.0" />
-                        <ImageView fx:id="image_AddContact" fitHeight="26.0" fitWidth="27.0" onMouseClicked="#newContact" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../desing/icons/plus-math-60.png" />
-                           </image>
-                        </ImageView>
-                        <Region prefHeight="16.0" prefWidth="33.0" />
-                        <ImageView fx:id="image_Summary" fitHeight="26.0" fitWidth="27.0" onMouseClicked="#summary" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../desing/icons/total-sales-48.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
+            <Button fx:id="btnSummary" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#summary" prefHeight="41.0" prefWidth="144.0" style="-fx-background-color: #54a4a6; -fx-border-color: white; -fx-border-width: 0px 0px 2xp 0px;" text="Resumen" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnContacts" alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="10.0" mnemonicParsing="false" onAction="#contacts" prefHeight="41.0" prefWidth="144.0" style="-fx-background-color: #54a4a6; -fx-border-color: white; -fx-border-width: 0px 0px 2xp 0px;" text="Contactos" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Button>
+            <Region fx:id="region1" prefHeight="38.0" prefWidth="156.0" />
+            <ComboBox fx:id="cBox_Filter" prefHeight="34.0" prefWidth="147.0" style="-fx-background-color: #dcf3f4;" />
+            <ListView fx:id="listView_Contacts" prefHeight="181.0" prefWidth="184.0" style="-fx-background-color: #54a4a6;" />
+            <Button fx:id="btnNewContact" alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="65.0" mnemonicParsing="false" onAction="#newContact" prefHeight="41.0" prefWidth="144.0" style="-fx-background-color: #54a4a6; -fx-border-color: white; -fx-border-width: 0px 0px 2xp 0px;" text="Nuevo" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Button>
          </children>
          <opaqueInsets>
             <Insets />
@@ -104,6 +51,6 @@
       </VBox>
    </left>
    <center>
-      <AnchorPane fx:id="anchorPane" prefHeight="480.0" prefWidth="675.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" />
+      <AnchorPane fx:id="anchorPane" prefHeight="507.0" prefWidth="807.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

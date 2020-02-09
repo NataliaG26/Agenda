@@ -5,6 +5,7 @@ package model;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -25,32 +26,14 @@ public class Agenda {
 
 	public final static String PATH_SUBJECTS = "Data/subjects.txt";
 	public final static String PATH_STUDENTS = "Data/students.txt";
-	
-	public final static String SEARCH_NAME = "Nombre";
-	public final static String SEARCH_LAST_NAME = "Apellido";
-	public final static String SEARCH_BIRTHDAY = "Cumpleaños";
-	public final static String SEARCH_AGE = "Edad";
-	
-	public final static String FILTER_BIRTHDAY = "Fecha exacta";
-	public final static String FILTER_BIRTHDAY_BETWEEN_DATES = "Entre dos meses";
-	public final static String FILTER_BIRTHDAY_DATE = "Entre dos meses";
-	public final static String FILTER_BIRTHDAY_BETWEEN_MONTHS = "Entre dos meses";
-	public final static String FILTER_BIRTHDAY_MONTHS = "Entre dos meses";
-	public final static String FILTER_AGE_OLDER = "Mayor que";
-	public final static String FILTER_AGE_JOUNGER = "Mayor que";
 
-	public final static String ORDER = "Ordenar";
-	public final static String ORDER_NAME = "Por nombre";
-	public final static String ORDER_LAST_NAME = "Por apellido";
-
-	
-	public Agenda() {
+	public Agenda() throws IOException {
 
 		contacts = new Hashtable<String, Contact>();
 		subjects = new Hashtable<String, Subject>();
-		/*
+		
 		readStudents();
-		readSubjects();*/
+		readSubjects();
 
 	}
 
@@ -285,9 +268,8 @@ public class Agenda {
 
 	}
 
-	private void readSubjects() {
-		
-		try {
+	private void readSubjects() throws IOException {
+
 		FileReader fr = new FileReader(new File(PATH_SUBJECTS));
 		BufferedReader br = new BufferedReader(fr);
 
@@ -312,14 +294,11 @@ public class Agenda {
 
 		br.close();
 		fr.close();
-		}catch(IOException e) {
-			System.err.println(e);
-		}
 
 	}
 
-	private void readStudents(){
-		try {
+	private void readStudents() throws IOException {
+
 		FileReader fr = new FileReader(new File(PATH_STUDENTS));
 		BufferedReader br = new BufferedReader(fr);
 
@@ -327,7 +306,7 @@ public class Agenda {
 		String[] parts = line.split(",");
 		while(line != null){
 
-			//read
+
 
 
 			line = br.readLine();
@@ -338,9 +317,6 @@ public class Agenda {
 
 		br.close();
 		fr.close();
-		}catch(IOException e) {
-			System.err.println(e);
-		}
 
 	}
 

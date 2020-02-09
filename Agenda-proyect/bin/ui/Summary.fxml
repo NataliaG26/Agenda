@@ -10,15 +10,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="675.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SummaryController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="626.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SummaryController">
    <children>
-      <Region prefHeight="21.0" prefWidth="600.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" minWidth="150.0" style="-fx-background-color: #dcf3f4;" text="Resumen">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <Region prefHeight="43.0" prefWidth="675.0" />
+      <Region prefHeight="21.0" prefWidth="600.0" />
       <VBox prefHeight="60.0" prefWidth="600.0">
          <children>
             <HBox alignment="CENTER" prefHeight="29.0" prefWidth="600.0">
@@ -53,14 +52,14 @@
             </HBox>
          </children>
       </VBox>
-      <Region prefHeight="48.0" prefWidth="675.0" />
-      <HBox alignment="TOP_CENTER" prefHeight="275.0" prefWidth="675.0">
+      <Region prefHeight="43.0" prefWidth="600.0" />
+      <HBox prefHeight="241.0" prefWidth="600.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="255.0" prefWidth="203.0">
+            <VBox alignment="TOP_CENTER" prefHeight="212.0" prefWidth="203.0">
                <children>
                   <HBox minWidth="32.0" prefHeight="26.0" prefWidth="222.0" style="-fx-background-color: #dcf3f4;">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" minHeight="26.0" minWidth="80.0" prefHeight="39.0" prefWidth="177.0" text="Materias">
+                        <Label alignment="CENTER" contentDisplay="CENTER" minHeight="26.0" minWidth="80.0" prefHeight="26.0" prefWidth="189.0" text="Materias">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
@@ -72,11 +71,11 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <Region prefHeight="28.0" prefWidth="203.0" />
-                  <ListView fx:id="listView_Subject" prefHeight="195.0" prefWidth="203.0" style="-fx-background-color: #54a4a6;" />
+                  <Region prefHeight="13.0" prefWidth="206.0" />
+                  <ListView fx:id="listView_Subject" prefHeight="183.0" prefWidth="203.0" style="-fx-background-color: #54a4a6;" />
                </children>
             </VBox>
-            <Region prefHeight="241.0" prefWidth="32.0" />
+            <Region prefHeight="241.0" prefWidth="27.0" />
             <VBox prefHeight="241.0" prefWidth="377.0">
                <children>
                   <Label text="Materia mas matriculada:">
@@ -106,37 +105,32 @@
                            <children>
                               <HBox alignment="CENTER" minWidth="32.0" prefHeight="42.0" prefWidth="390.0" style="-fx-background-color: #dcf3f4;">
                                  <children>
-                                    <TextField alignment="CENTER" prefHeight="26.0" prefWidth="253.0" promptText="Nombre de la materia" style="-fx-background-color: #dcf3f4;">
+                                    <TextField alignment="CENTER" prefHeight="26.0" prefWidth="286.0" promptText="Nombre de la materia" style="-fx-background-color: #dcf3f4;">
                                        <font>
                                           <Font name="Arial Bold" size="13.0" />
                                        </font>
                                     </TextField>
-                                    <HBox fx:id="HBox_imagesOptionsSubjects" alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="120.0">
-                                       <children>
-                                          <ImageView fx:id="image_EditSubject" fitHeight="150.0" fitWidth="26.0" onMouseClicked="#editSubject" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../desing/icons/pencil-48.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fx:id="image_CancelEditSubject" fitHeight="150.0" fitWidth="26.0" onMouseClicked="#cancelEditSubject" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../desing/icons/xbox-x-60.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Region prefHeight="38.0" prefWidth="14.0" />
-                                          <ImageView fx:id="image_DeleteSubject" fitHeight="150.0" fitWidth="26.0" onMouseClicked="#delateSubject" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../desing/icons/trash-52.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fx:id="image_CheckEditSubject" fitHeight="150.0" fitWidth="26.0" onMouseClicked="#checkEditSubject" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../desing/icons/checked-48.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </HBox>
+                                    <ImageView fitHeight="150.0" fitWidth="26.0" onMouseClicked="#editSubject" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../desing/icons/pencil-48.png" />
+                                       </image>
+                                    </ImageView>
                                     <Region minHeight="15.0" prefHeight="25.0" prefWidth="14.0" />
+                                    <ImageView fx:id="image_CancelEditSubject" fitHeight="150.0" fitWidth="26.0" onMouseClicked="#cancelEditSubject" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../desing/icons/xbox-x-60.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="image_DeleteSubject" fitHeight="150.0" fitWidth="26.0" onMouseClicked="#delateSubject" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../desing/icons/trash-52.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="image_CheckEditSubject" fitHeight="150.0" fitWidth="26.0" onMouseClicked="#editSubject" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../desing/icons/pencil-48.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </HBox>
                            </children></HBox>
