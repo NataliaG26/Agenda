@@ -1,0 +1,15 @@
+Ingeniería economica,4,0
+Proyecto integrador I,3,0
+Modelado de sistemas de información,2,0
+Electricidad y magnetismo,4,0
+Matemáticas Discretas,3,0
+Inferencia estadística,3,0
+"Electiva de humanidades: "Cali pachanguero",3,0
+Cálculo de una variable,4,0
+Liderazgo,3,0
+Cálculo de varias variables,4,0
+Francés I,0,0
+Alemán II,0,0
+Fisica y laboratorio,4,0
+Informática Teórica,3,0
+"Electiva en problemas colombianos: ""Ensayos para la habana""",3,0

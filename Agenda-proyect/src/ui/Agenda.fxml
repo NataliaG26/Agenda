@@ -26,7 +26,7 @@
                <children>
                   <ImageView fitHeight="40.0" fitWidth="36.0" onMouseClicked="#menu" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../desing/icons/menu-60.png" />
+                        <Image url="@../../design/icons/menu-60.png" />
                      </image>
                   </ImageView>
                </children>
@@ -88,25 +88,25 @@
                         <Region prefHeight="16.0" prefWidth="33.0" />
                         <ImageView fx:id="imagen_search" fitHeight="26.0" fitWidth="27.0" onMouseClicked="#searchPage" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../desing/icons/search-52.png" />
+                              <Image url="@../../design/icons/search-52.png" />
                            </image>
                         </ImageView>
                         <Region prefHeight="16.0" prefWidth="33.0" />
                         <ImageView fx:id="image_Order" fitHeight="26.0" fitWidth="27.0" onMouseClicked="#orderPage" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../desing/icons/save-search-48.png" />
+                              <Image url="@../../design/icons/save-search-48.png" />
                            </image>
                         </ImageView>
                         <Region prefHeight="16.0" prefWidth="33.0" />
                         <ImageView fx:id="image_AddContact" fitHeight="26.0" fitWidth="27.0" onMouseClicked="#newContact" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../desing/icons/plus-math-60.png" />
+                              <Image url="@../../design/icons/plus-math-60.png" />
                            </image>
                         </ImageView>
                         <Region prefHeight="16.0" prefWidth="33.0" />
                         <ImageView fx:id="image_Summary" fitHeight="26.0" fitWidth="27.0" onMouseClicked="#summary" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../desing/icons/total-sales-48.png" />
+                              <Image url="@../../design/icons/total-sales-48.png" />
                            </image>
                         </ImageView>
                      </children>

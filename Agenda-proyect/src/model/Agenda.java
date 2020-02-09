@@ -453,7 +453,7 @@ public class Agenda {
 			while(line != null) {
 
 				st = new StringTokenizer(line, ",");
-
+			
 				String id = st.nextToken();
 				String avatar = st.nextToken();
 				String name = st.nextToken();
