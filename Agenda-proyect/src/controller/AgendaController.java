@@ -2,6 +2,9 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
+import model.Agenda;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
@@ -51,10 +55,10 @@ public class AgendaController implements Initializable{
     private RowConstraints row_listView_Contacts;
 
     @FXML
-    private ComboBox<?> cBox_Principal;
+    private ComboBox<String> cBox_Principal;
 
     @FXML
-    private ComboBox<?> cBox_OtherOption;
+    private ComboBox<String> cBox_OtherOption;
 
     @FXML
     private TextField txtF_Search;
@@ -69,7 +73,7 @@ public class AgendaController implements Initializable{
     private Button btnSearch;
 
     @FXML
-    private ListView<?> listView_Contacts;
+    private ListView<String> listView_Contacts;
 
     @FXML
     private ImageView imagen_search;
@@ -92,11 +96,42 @@ public class AgendaController implements Initializable{
     
     private SummaryController summaryController;
     
+    private final static double HEIGHT_ROW = 35;
+    
+    //private 
+    
+    /*
+     * 
+     */
+    
     //muestra mas opciones dependiendo de la opcion seleccionada
     //habilita los nodos correspondientes
     @FXML
     void changeCBoxPrincipal(ActionEvent event) {
-    	
+    	String selected = cBox_Principal.getValue();
+    	switch (selected){
+    	case Agenda.SEARCH_NAME:
+    		setVisual_SearchName();
+    		break;
+    	case Agenda.SEARCH_AGE:
+    		setVisual_SearchAge();
+    		break;
+    	case Agenda.SEARCH_BIRTHDAY:
+    		setVisual_SearchBirthday();
+    		break;
+    	case Agenda.SEARCH_SUBJECT:
+    		setVisual_SearchSubject();
+    		break;
+    	case Agenda.ORDER_NAME:
+    		setVisual_OrderName();
+    		break;
+    	case Agenda.ORDER_AGE:
+    		setVisual_OrderAge();
+    		break;
+    	case Agenda.ORDER_BIRTHDAY:
+    		setVisual_OrderBirthday();
+    		break;
+    	}
     }
     
     //muestra mas opciones dependiendo de la opcion seleccionada
@@ -109,7 +144,9 @@ public class AgendaController implements Initializable{
     //muestra el menu con las opciones de ordenamiento
     @FXML
     void orderPage(MouseEvent event) {
-    	
+    	setVisual_InitialOrderPage();
+    	//ordenar todos por nombre y mostrar todos
+    	setVisual_ShowContacts();
     }
     
     //realiza el filtro con las espesificaciones dadas por el usuario
@@ -118,6 +155,8 @@ public class AgendaController implements Initializable{
     private void search(ActionEvent event) {
     	//realizar el filtro 
     	//lista con la info de los contactos a mostrar
+    	actualizeListView_Contacts();
+    	
     }
     
 
@@ -141,6 +180,72 @@ public class AgendaController implements Initializable{
     	
     }
     
+    /////////////////actualize visible lists//////////////////////////
+    
+    /*
+     * Actualize the listView_Contacts for to show contacts
+     */
+    private void actualizeListView_Contacts() {
+    	ObservableList<String> list = FXCollections.observableArrayList(mainController.getContactsName());
+    	listView_Contacts.setItems(list);
+    }
+    
+    /*
+     * Actualize the 
+     */
+    private void actualizeCBox_Principal_ForSearch() {
+    	ObservableList<String> list = FXCollections.observableArrayList(mainController.getSearchOptions());
+    	cBox_Principal.setItems(list);
+    }
+    
+    /*
+     * Actualize the 
+     */
+    private void actualizeCBox_Principal_ForOrder() {
+    	ObservableList<String> list = FXCollections.observableArrayList(mainController.getOrderOptions());
+    	cBox_Principal.setItems(list);
+    }
+    
+    
+    
+    ///////////////////////////////////////////////////////////////////////
+    
+    /////////////////////SET VISUAL ////////////////////////////////
+    
+    
+    private void setVisual_SearchName() {
+    	row_txtF_Search.setMinHeight(HEIGHT_ROW);
+    	txtF_Search.setVisible(true);
+    	txtF_Search.setEditable(true);
+    }
+    
+    private void setVisual_SearchAge() {
+    	row_txtF_Search.setMinHeight(HEIGHT_ROW);
+    	txtF_Search.setVisible(true);
+    	txtF_Search.setEditable(true);
+    	
+    }
+    
+    private void setVisual_SearchBirthday() {
+    	
+    }
+    
+    private void setVisual_SearchSubject() {
+    	
+    }
+    
+    private void setVisual_OrderName() {
+    	
+    }
+    
+    private void setVisual_OrderAge() {
+    	
+    }
+
+	private void setVisual_OrderBirthday() {
+	
+	}
+    
     //cambia la ventana del anchorpane y muestra la ventana de contactos con el primer contacto
     private void setVisual_ShowContacts() {
     	contactController = loadScene(MainController.ID_CONTACTS).getController();
@@ -153,12 +258,14 @@ public class AgendaController implements Initializable{
     private void setVisual_InitialSearchPage() {
     	setVisual_InitialPage();
     	cBox_Principal.setPromptText("Buscar...");
+    	actualizeCBox_Principal_ForSearch();
     	//cargar las opcines de cBox para busqueda
     }
     
     private void setVisual_InitialOrderPage() {
     	setVisual_InitialPage();
     	cBox_Principal.setPromptText("Ordenar...");
+    	actualizeCBox_Principal_ForOrder();
     	//cargar las opcines de cBox para ordenar
     }
     
@@ -187,7 +294,7 @@ public class AgendaController implements Initializable{
     }
     
     
-
+    /////////////////////////////////////////////////////////////////////////////////
 	    
 	    //muestra la scena de Summary
 	    @FXML

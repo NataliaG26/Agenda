@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.fxml.FXMLLoader;
 import model.Agenda;
 
@@ -110,6 +113,33 @@ public class MainController {
 	}
 	
 	*/
+	
+	public List<String> getContactsName(){
+		return new ArrayList<String>();
+	}
+	
+	/*
+	 * return a list with option searching
+	 */
+	public List<String> getSearchOptions(){
+		List<String> searchOptions = new ArrayList<String>();
+		searchOptions.add(Agenda.SEARCH_NAME);
+		searchOptions.add(Agenda.SEARCH_AGE);
+		searchOptions.add(Agenda.SEARCH_BIRTHDAY);
+		searchOptions.add(Agenda.SEARCH_SUBJECT);
+		return searchOptions;
+	}
+	
+	/*
+	 * return a list with order options
+	 */
+	public List<String> getOrderOptions(){
+		List<String> searchOptions = new ArrayList<String>();
+		searchOptions.add(Agenda.ORDER_NAME);
+		searchOptions.add(Agenda.ORDER_AGE);
+		searchOptions.add(Agenda.ORDER_BIRTHDAY);
+		return searchOptions;
+	}
 	
 	/*
 	 * 

@@ -122,6 +122,7 @@ public class ContactController implements Initializable{
     @FXML
     void cancelEditContact(MouseEvent event) {
     	setVisual_ShowContact();
+    	showSubject();
     	//con el contacto actual
     	//no hacer ningun cambio
     }
@@ -200,6 +201,9 @@ public class ContactController implements Initializable{
     	
     }
     
+    /**
+     * shows the contact´s information in contacts window
+     */
     private void showContact() {
     	//conectar modelo, lista con la info de los contactos
     	//info por parametro correo, codigo, edad, cumplaños, carrera, creditos, avatar, materias,
@@ -216,7 +220,9 @@ public class ContactController implements Initializable{
     	//image_Avatar.mainController.getContactId(contact));
     }
     
-    //cambia la visibilidad de la ventana y habilita las secciones para editar informacion de la materia
+    /**
+     * change the contact window view for to edit subject, able editing, and shows only the options that are allowed
+     */
     public void setVisual_EditSubject() {
     	
     	image_CancelEditSubject.setVisible(true);
@@ -236,7 +242,9 @@ public class ContactController implements Initializable{
     	txtF_SubjectName.setEditable(true);
     }
     
-    //cambia la visibilidad de la ventana y habilita las secciones para editar informacion de contacto
+    /**
+     * change the contact window view for to edit contact, able editing, and shows only the options that are allowed
+     */
     public void setVisual_EditContact() {
     	
     	image_CancelEditContact.setVisible(true);
@@ -267,8 +275,10 @@ public class ContactController implements Initializable{
     	cBox_MonthBirthday.setEditable(true);
     	txtF_Carrera.setEditable(true);
     }
-    
-    //cambia la ventana para el esatdo de mostrar informacion de la materia seleccionada
+   
+    /**
+     * change the contact window view for show the contact when subject has been selected, disable editing, and shows only the options that are allowed
+     */
     public void setVisual_ShowSubjectSelected() {
     	image_CancelEditSubject.setVisible(false);
     	image_CheckEditSubject.setVisible(false);
@@ -287,11 +297,9 @@ public class ContactController implements Initializable{
     	txtF_SubjectName.setEditable(false);
     }
     
-    
-    //cmabia la ventana para el estado cuando no se ha seleccionado ninguna materia
-    //no mustra infromacion de ninguna materia
-    //deshabilita txtF
-    //no muestra iconos
+    /**
+     * change the contact window view for show the contact when no subject has been selected, disable editing, and shows only the options that are allowed
+     */
     public void setVisual_ShowSubjectNotSelected() {
     	image_CancelEditSubject.setVisible(false);
     	image_CheckEditSubject.setVisible(false);
@@ -310,7 +318,9 @@ public class ContactController implements Initializable{
     	txtF_SubjectName.setEditable(false);
     }
 
-    //cambia la vista de la ventana para el esatdo de mostrar contacto
+    /**
+     * change the contact window view for show the contact, disable editing, and shows only the options that are allowed
+     */
     public void setVisual_ShowContact() {
     	
     	image_CancelEditContact.setVisible(false);
@@ -318,6 +328,12 @@ public class ContactController implements Initializable{
     	
     	image_CancelEditContact.setFitWidth(0);
     	image_CheckEditContact.setFitWidth(0);
+    	
+    	image_EditSubject.setVisible(true);
+    	image_DeleteSubject.setVisible(true);
+    	
+    	image_EditSubject.setFitWidth(MainController.ICONE_SIZE);
+    	image_DeleteSubject.setFitWidth(MainController.ICONE_SIZE);
     	
     	txtF_Name.setEditable(false);
     	txtF_LastName.setEditable(false);
@@ -336,11 +352,13 @@ public class ContactController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		contact = 0;
 		mainController = null;
-		
 	}
 	
-	//cambia el objeto main controller para realizar la coneccion con la clase controladora principal de
-    public void setMainController(MainController mainController) {
+	/**
+	 * change the object mainController for to do the conection with the main controller class
+	 * @param mainController
+	 */
+	public void setMainController(MainController mainController) {
 		this.mainController = mainController;
 	}
 
