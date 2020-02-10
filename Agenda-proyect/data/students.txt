@@ -1,6 +1,4 @@
-A00355727,https://pbs.twimg.com/media/C_A9sjWXoAEmAUQ.jpg,Luis Felipe Sanchez Vega,vegafelipe015@gmail.com,3176737525,27/9/2000,19,84,Liderazgo,Cálculo de varias variables
-A00355727,https://pbs.twimg.com/media/C_A9sjWXoAEmAUQ.jpg,Luis Felipe Sanchez Vega,vegafelipe015@gmail.com,3176737525,27/9/2000,19,273,Liderazgo,Cálculo de varias variables
->>>>>>> f7b77547afec8f89f222a12d1b2bd4926ff1a836
+A00355727,https://pbs.twimg.com/media/C_A9sjWXoAEmAUQ.jpg,Luis Felipe Sanchez Vega,vegafelipe015@gmail.com,3176737525,27/9/2000,19,112
 A00354849,     ,Natalia Isabel Gonzalez Murillo,natalia.gonzalez3@correo.icesi.edu.co,3217335600,26/11/1999,20,0
 A00056020,   ,Gabriel Cruz Libreros,gabrielcl45@gmail.com,3113165736,26/2/1994,25,0
 A00295744,https://vignette.wikia.nocookie.net/jojo/images/3/35/Jotarokujo_anime.png/revision/latest?cb=20170302000829&path-prefix=es,Johann Andrei Ocampo Torres,johann0117@live.com,3156352435,20/6/2000,19,0
