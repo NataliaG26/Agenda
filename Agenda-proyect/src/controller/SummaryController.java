@@ -57,6 +57,25 @@ public class SummaryController implements Initializable{
 	@FXML
 	private Label label_StudentsEnrolledSubject;
 	
+    @FXML
+    private ImageView image_AddSubject;
+
+    @FXML
+    private ImageView image_EditSubject;
+
+    @FXML
+    private ImageView image_CancelEditSubject;
+
+    @FXML
+    private ImageView image_DeleteSubject;
+
+    @FXML
+    private ImageView image_CheckEditSubject;
+
+
+    @FXML
+    private Label label_Dep;
+	
 	private MainController main;
 	
 	private int subject;
@@ -109,4 +128,29 @@ public class SummaryController implements Initializable{
 	public void setVisual_ShowSummary() {
 		setVisual_ShowSubject();
 	}
+
+	    @FXML
+	    void addSubject(MouseEvent event) {
+
+	    }
+
+	    @FXML
+	    void cancelEditSubject(MouseEvent event) {
+
+	    }
+
+	    @FXML
+	    void checkEditSubject(MouseEvent event) {
+
+	    }
+
+	    @FXML
+	    void delateSubject(MouseEvent event) {
+
+	    }
+
+	    @FXML
+	    void editSubject(MouseEvent event) {
+
+	    }
 }
