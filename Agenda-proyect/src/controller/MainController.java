@@ -209,6 +209,10 @@ public class MainController {
 		//nueva materia, parametros 
 
 	}
+	
+	public void newContact(String id, String avatar, String name, String email, String phonenumber, String dateofbirth, int age) {
+		//agenda.addContact(id, avatar, name, email, phonenumber, dateofbirth, age)
+	}
 
 	/**
 	 * This method allows to connect between the different controllers and fxml files.

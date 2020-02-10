@@ -309,8 +309,20 @@ public class AgendaController implements Initializable{
 	private void search(ActionEvent event) {//********************************boton para buscar
 		//realizar el filtro 
 		//lista con la info de los contactos a mostrar
-		updateListView_Contacts();
+		String otherOption = cBox_OtherOption.getValue();
 		
+		if(cBox_Principal.getValue().equals(Agenda.SEARCH_NAME)) {
+			mainController.masterSearch(cBox_Principal.getValue(), txtF_Search.getText(), "", 0, "", 0, "");
+		}else {
+			int day1 = Integer.parseInt(txtF_DayFirstDate.getText());
+			int day2 = Integer.parseInt(txtF_DaySecondDate.getText());
+			mainController.masterSearch(cBox_Principal.getValue(), cBox_OtherOption.getValue(), txtF_Search.getText(), day1, cBox_MonthsFirstDate.getValue(), day2, cBox_MonthsSecondDate.getValue());
+		}
+		updateListView_Contacts();
+		showContacts();
+		row_listView_Contacts.setMinHeight(200);
+		listView_Contacts.setVisible(true);
+		listView_Contacts.setMinHeight(200);
 	}
 	
 	/////////////////UPDATES VISIBLE LISTS//////////////////////////
@@ -318,6 +330,7 @@ public class AgendaController implements Initializable{
 	private void updateListView_Contacts() {
 		ObservableList<String> list = FXCollections.observableArrayList(mainController.getContactsName());
 		listView_Contacts.setItems(list);
+		
 	}
 
 	private void updateCBox_Principal_ForSearch() {

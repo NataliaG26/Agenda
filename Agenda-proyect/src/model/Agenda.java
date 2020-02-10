@@ -221,13 +221,16 @@ public class Agenda {
 	 */
 	public void searchByName(String name){
 
-		contactsView = (List<Contact>) contacts.values();
+		contactsView = new ArrayList<Contact>(contacts.values());
 
 		for (int i = 0; i < contactsView.size(); i++) {
 			if (!contactsView.get(i).getName().contains(name)) {
 				contactsView.remove(i);
+
+				System.out.println(contactsView.size()+" iff");
 			}
 		}
+		System.out.println(contactsView.size()+" cc");
 
 
 	}
