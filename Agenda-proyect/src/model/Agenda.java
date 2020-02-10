@@ -564,9 +564,11 @@ public class Agenda {
 
 			StringTokenizer st;
 			String line = br.readLine();
+			String[] p;
 
 			while(line != null) {
-
+				
+				p = line.split(",");
 				st = new StringTokenizer(line, ",");
 
 				String id = st.nextToken();
@@ -583,10 +585,14 @@ public class Agenda {
 				int age = Integer.valueOf(st.nextToken());
 				int enrolledcreditsnumber = Integer.valueOf(st.nextToken());
 				
-				
-				
 				Contact con = new Contact(id, avatar, name, email, phoneNumber, date2, age, enrolledcreditsnumber);
 				contacts.put(id, con);
+				
+				for (int i = 8; i < p.length; i++) {
+					addSubject(p[i], id);
+				}
+				
+				
 
 				line = br.readLine();
 			}

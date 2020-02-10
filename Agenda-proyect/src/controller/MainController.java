@@ -32,7 +32,9 @@ public class MainController {
 	 */
 	public MainController() {
 		agenda = new Agenda();
-
+		agenda.addSubject("Liderazgo", "A00355727");
+		agenda.addSubject("Cálculo de varias variables", "A00355727");
+		agenda.writeContacts();
 	}
 
 	/**
