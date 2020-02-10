@@ -148,7 +148,6 @@ public class Agenda {
 	 * <b>Pre:</b> the name is valid.
 	 * <b>Pos:</b> the list with the possible matchings is returned.
 	 * @param name the name of the contact(s) to be searched.
-	 * @return the list that contains all the possible entries that match with the received name.
 	 */
 	public void searchByName(String name){
 
@@ -167,10 +166,10 @@ public class Agenda {
 	 * This method searchs a contact by its age.
 	 * <b>Pre:</b> the age is valid.
 	 * <b>Pos:</b> the list with the possible matchings is returned.
-	 * @param age the age of the contact(s) to be searched.
-	 * @return the list that contains all the possible entries that match with the received age.
+	 * @param age1 the age of the contact(s) to be searched.
+	 * @param operation indicates if we are looking for an age equal, after or before the given age
 	 */
-	public void searchByAge(int age1, int age2, int operation){
+	public void searchByAge(int age1, int operation){
 
 		contactsView = (List<Contact>) contacts.values();
 		
@@ -198,30 +197,20 @@ public class Agenda {
 				}
 			}
 			
-		}else {
-			searchBetweenTwoAges(age1, age2);
-		}
-		
-	
-	}
-	
-	private void searchBetweenTwoAges(int age1, int age2){
-		
-		
-		for (int i = 0; i < contactsView.size(); i++) {
-			if (contactsView.get(i).getAge() <= age1 || contactsView.get(i).getAge() >= age2) {
-				contactsView.remove(i);
-			}
 		}
 		
 	}
+	
 
 	/**
 	 * This method searchs a contact by its date of birth.
 	 * <b>Pre:</b> the date of birth is valid.
 	 * <b>Pos:</b> the list with the possible matchings is returned.
-	 * @param date the date of birth of the contact(s) to be searched.
-	 * @return the list that contains all the possible entries that match with the received date of birth.
+	 * @param day1 the day of birth of the contact(s) to be searched.
+	 * @param month1 the month of birth of the contact(s) to be searched.
+	 * @param day2 the second day used to search on an interval.
+	 * @param month2 the second month used to search on an interval.
+	 * @param operation indicates if we are looking for a date equal, after or before the given date
 	 */
 	public void searchByDateOfBirth(int day1, int month1, int day2, int month2, int operation){
 
@@ -273,6 +262,15 @@ public class Agenda {
 
 	}
 	
+	/**
+	 * This method searchs a contact between two dates.
+	 * <b>Pre:</b> the date of birth is valid.
+	 * <b>Pos:</b> the list with the possible matchings is returned.
+	 * @param day1 the first day used to search on an interval.
+	 * @param month1 the first month used to search on an interval.
+	 * @param day2 the second day used to search on an interval.
+	 * @param month2 the second month used to search on an interval.
+	 */
 	private void searchBetweenTwoDates(int day1, int month1, int day2, int month2) {
 		
 		for (int i = 0; i < contactsView.size(); i++) {
