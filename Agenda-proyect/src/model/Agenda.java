@@ -80,6 +80,7 @@ public class Agenda {
 		readSubjects();
 
 		//writeContacts();
+		//writeSubjects();
 	}
 
 	/**
@@ -138,10 +139,10 @@ public class Agenda {
 	public Contact searchByID(String id){
 
 		return contacts.get(id);
-		
+
 	}
 
-	
+
 
 	/**
 	 * This method searchs a contact by its name.
@@ -159,7 +160,7 @@ public class Agenda {
 			}
 		}
 
-		
+
 	}
 
 	/**
@@ -172,35 +173,35 @@ public class Agenda {
 	public void searchByAge(int age1, int operation){
 
 		contactsView = (List<Contact>) contacts.values();
-		
+
 		if (operation == 0) {
-			
+
 			for (int i = 0; i < contactsView.size(); i++) {
 				if (contactsView.get(i).getAge() != age1) {
 					contactsView.remove(i);
 				}
 			}
-			
+
 		}else if (operation == 1) { //buscar menores a age1
-			
+
 			for (int i = 0; i < contactsView.size(); i++) {
 				if (contactsView.get(i).getAge() >= age1) {
 					contactsView.remove(i);
 				}
 			}
-			
+
 		}else if (operation == 2) { //buscar mayores a age1
-		
+
 			for (int i = 0; i < contactsView.size(); i++) {
 				if (contactsView.get(i).getAge() <= age1) {
 					contactsView.remove(i);
 				}
 			}
-			
+
 		}
-		
+
 	}
-	
+
 
 	/**
 	 * This method searchs a contact by its date of birth.
@@ -217,51 +218,51 @@ public class Agenda {
 		contactsView  = (List<Contact>) contacts.values();
 
 		if (operation == 0) { // fechas iguales a day1/month1
-			
+
 			for (int i = 0; i < contactsView.size(); i++) {
 				if(contactsView.get(i).getDateOfBirth().getDayOfMonth() != day1 || 
 						contactsView.get(i).getDateOfBirth().getMonthValue() != month1) {
-					
+
 					contactsView.remove(i);
 				}
 			}
-			
+
 		}else if (operation == 1) { // fechas anteriores a day1/month1
-			
+
 			for (int i = 0; i < contactsView.size(); i++) {
-				
+
 				if (contactsView.get(i).getDateOfBirth().getMonthValue() > month1) {
 					contactsView.remove(i);
 				}else if (contactsView.get(i).getDateOfBirth().getMonthValue() == month1) {
-					
+
 					if (contactsView.get(i).getDateOfBirth().getDayOfMonth() >= day1) {
 						contactsView.remove(i);
 					}
 				}
-				
+
 			}
-			
+
 		}else if (operation == 2) { // fechas posteriores a day1/month1
-			
+
 			for (int i = 0; i < contactsView.size(); i++) {
-				
+
 				if (contactsView.get(i).getDateOfBirth().getMonthValue() < month1) {
 					contactsView.remove(i);
 				}else if (contactsView.get(i).getDateOfBirth().getMonthValue() == month1) {
-					
+
 					if (contactsView.get(i).getDateOfBirth().getDayOfMonth() <= day1) {
 						contactsView.remove(i);
 					}
 				}
-				
+
 			}
-			
+
 		}else {
 			searchBetweenTwoDates(day1, month1, day2, month2);
 		}
 
 	}
-	
+
 	/**
 	 * This method searchs a contact between two dates.
 	 * <b>Pre:</b> the date of birth is valid.
@@ -272,29 +273,29 @@ public class Agenda {
 	 * @param month2 the second month used to search on an interval.
 	 */
 	private void searchBetweenTwoDates(int day1, int month1, int day2, int month2) {
-		
+
 		for (int i = 0; i < contactsView.size(); i++) {
-			
+
 			if (contactsView.get(i).getDateOfBirth().getMonthValue() < month1 
 					|| contactsView.get(i).getDateOfBirth().getMonthValue() > month2) {
-				
+
 				contactsView.remove(i);
-				
+
 			}else if ((contactsView.get(i).getDateOfBirth().getDayOfMonth() < day1 && contactsView.get(i).getDateOfBirth().getMonthValue() == month1) 
 					|| (contactsView.get(i).getDateOfBirth().getDayOfMonth() > day2 && contactsView.get(i).getDateOfBirth().getMonthValue() == month2)) {
-				
+
 				contactsView.remove(i);
-				
+
 			}
-			
+
 		}
-		
+
 	}
-	
+
 	public void listOfSubjects() {
-		
+
 		subjectView = new ArrayList<Subject>(subjects.values());
-		
+
 	}
 
 	/**
@@ -315,6 +316,20 @@ public class Agenda {
 
 	}
 
+	public boolean createSubject(String name, int numberOfCredits) {
+
+		boolean created = false;
+
+		if (!subjects.containsKey(name)) {
+			Subject sub  = new Subject(name, numberOfCredits, 0);
+			subjects.put(name, sub);
+			created = true;
+		}
+
+		return created;
+
+	}
+
 	/**
 	 * This method adds a new subject to a contact subject's list. 
 	 * <b>Pre:</b> the information of the subject is valid.
@@ -329,6 +344,8 @@ public class Agenda {
 
 		if (subjects.containsKey(subjectName) && contacts.containsKey(studentId)) {
 			contacts.get(studentId).getMySubjects().put(subjectName, subjects.get(subjectName));
+			int x = subjects.get(subjectName).getStudentsEnrolled();
+			subjects.get(subjectName).setStudentsEnrolled(x+1);
 			added = true;
 		}
 
@@ -351,6 +368,8 @@ public class Agenda {
 
 			if (contacts.get(studentId).getMySubjects().containsKey(subjectName)) {
 				contacts.get(studentId).getMySubjects().remove(subjectName);
+				int x = subjects.get(subjectName).getStudentsEnrolled();
+				subjects.get(subjectName).setStudentsEnrolled(x-1);
 				removed = true;
 			}
 
@@ -443,7 +462,7 @@ public class Agenda {
 	public List<Contact> getContactsView(){
 		return contactsView;
 	}
-	
+
 	/**
 	 * This method returns the subject list used for the visibility for the user.
 	 * <b>Pre:</b> the agenda exists.
@@ -452,7 +471,7 @@ public class Agenda {
 	public List<Subject> getSubjectView(){
 		return subjectView;
 	}
-	
+
 	/**
 	 * This method reads the information from a database to create the subjects available for contacts
 	 * <b>Pre:</b> the file exists.
@@ -488,7 +507,7 @@ public class Agenda {
 		}
 
 	}
-	
+
 	/**
 	 * This method reads the information from a databse to create the contacts available for the first time the program launchs.
 	 * <b>Pre:</b> the file exists.
@@ -505,7 +524,7 @@ public class Agenda {
 			while(line != null) {
 
 				st = new StringTokenizer(line, ",");
-			
+
 				String id = st.nextToken();
 				String avatar = st.nextToken();
 				String name = st.nextToken();
@@ -531,7 +550,7 @@ public class Agenda {
 
 		}
 	}
-	
+
 	/**
 	 * This method overrides the contacts database everytime information is edited or a new contact entry is added.
 	 * <b>Pre:</b> the contacts exists.
@@ -543,13 +562,13 @@ public class Agenda {
 		List<Contact> con = new ArrayList<Contact>(contacts.values());
 
 		for (Contact c : con) {
-			
+
 			int d = c.getDateOfBirth().getDayOfMonth();
 			int m = c.getDateOfBirth().getMonthValue();
 			int y = c.getDateOfBirth().getYear();
-			
+
 			String date = d + "/" + m + "/" + y;
-			
+
 			try {
 				message += c.getId() + "," + c.getAvatar() + "," + c.getName() + "," + c.getEmail() + "," + c.getPhonenumber()
 				+ "," + date + "," + c.getAge() + "," + c.getEnrolledCredits() + "\n";
@@ -567,4 +586,37 @@ public class Agenda {
 			}
 		}
 	}
+
+	public void writeSubjects() {
+		String message = "";
+
+		List<Subject> sub = new ArrayList<Subject>(subjects.values());
+
+		for (Subject c : sub) {
+
+			
+
+			try {
+				message += c.getName() + "," + c.getNumberCredits() + "," + c.getStudentsEnrolled() + "\n";
+
+				FileWriter fw;
+
+				fw = new FileWriter(PATH_SUBJECTS);
+				BufferedWriter bw = new BufferedWriter(fw);
+				PrintWriter out = new PrintWriter(bw);
+
+				out.print(message);
+				out.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 }
+
+
+
+
+
+
