@@ -567,9 +567,11 @@ public class Agenda {
 
 			StringTokenizer st;
 			String line = br.readLine();
+			String[] p;
 
 			while(line != null) {
-
+				
+				p = line.split(",");
 				st = new StringTokenizer(line, ",");
 
 				String id = st.nextToken();
@@ -579,15 +581,21 @@ public class Agenda {
 				String phoneNumber = st.nextToken();
 				String date = st.nextToken();
 				String[] parts = date.split("/");
-				int year = Integer.valueOf(parts[2]);
-				int month = Integer.valueOf(parts[1]);
-				int day = Integer.valueOf(parts[0]);
+					int year = Integer.valueOf(parts[2]);
+					int month = Integer.valueOf(parts[1]);
+					int day = Integer.valueOf(parts[0]);
 				LocalDate date2 = LocalDate.of(year, month, day);
 				int age = Integer.valueOf(st.nextToken());
 				int enrolledcreditsnumber = Integer.valueOf(st.nextToken());
-
+				
 				Contact con = new Contact(id, avatar, name, email, phoneNumber, date2, age, enrolledcreditsnumber);
 				contacts.put(id, con);
+				
+				for (int i = 8; i < p.length; i++) {
+					addSubject(p[i], id);
+				}
+				
+				
 
 				line = br.readLine();
 			}
@@ -617,8 +625,15 @@ public class Agenda {
 			String date = d + "/" + m + "/" + y;
 
 			try {
+				
+				List<Subject> sub = new ArrayList<Subject>(c.getMySubjects().values());
+				String materias = "";
+				for (int i = 0; i < sub.size(); i++) {
+					materias += "," + sub.get(i).getName();
+				}
+				
 				message += c.getId() + "," + c.getAvatar() + "," + c.getName() + "," + c.getEmail() + "," + c.getPhonenumber()
-				+ "," + date + "," + c.getAge() + "," + c.getEnrolledCredits() + "\n";
+				+ "," + date + "," + c.getAge() + "," + c.getEnrolledCredits() + materias + "\n";
 
 				FileWriter fw;
 

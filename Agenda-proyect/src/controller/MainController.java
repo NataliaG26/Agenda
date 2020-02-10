@@ -32,7 +32,9 @@ public class MainController {
 	 */
 	public MainController() {
 		agenda = new Agenda();
-
+		agenda.addSubject("Liderazgo", "A00355727");
+		agenda.addSubject("Cálculo de varias variables", "A00355727");
+		agenda.writeContacts();
 	}
 
 	/**
@@ -234,25 +236,9 @@ public class MainController {
 		}
 	}
 	
-	public void masterSort(String sorter, String criterio) {
+	public void masterSort(String sorter) {
 		
-		switch (sorter) {
-		
-		case Agenda.ORDER_NAME:
-			
-			break;
-			
-		case Agenda.ORDER_AGE:
-			
-			break;
-			
-		case Agenda.ORDER_BIRTHDAY:
-			
-			break;
-
-		default:
-			break;
-		}
+		agenda.sort(sorter);
 		
 	}
 	
