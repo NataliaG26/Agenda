@@ -32,20 +32,21 @@ public class AddSubjectController implements Initializable{
 	}
     
     @FXML
-    void cancel(MouseEvent event) {
+    public void cancel(MouseEvent event) {
     	Stage stage = (Stage) cBox_Subject.getScene().getWindow();
     	stage.close();
     }
 
     @FXML
-    void check(MouseEvent event) {
+    public void check(MouseEvent event) {
     	String value = cBox_Subject.getValue();
     	if(value.equals("Nueva materia")) {
     		contact.newSubject();
     	}else {
     		contact.addSubject(value);
     	}
-    	
+    	Stage stage = (Stage) cBox_Subject.getScene().getWindow();
+    	stage.close();
     }
     
     public void setContact(ContactController contactC) {

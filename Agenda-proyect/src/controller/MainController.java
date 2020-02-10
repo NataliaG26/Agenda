@@ -212,8 +212,9 @@ public class MainController {
 
 	}
 	
-	public void newContact(String id, String avatar, String name, String email, String phonenumber, String dateofbirth, int age) {
-		//agenda.addContact(id, avatar, name, email, phonenumber, dateofbirth, age)
+	public void newContact(String id, String avatar, String name, String email, String phonenumber, LocalDate dateofbirth, int age) {
+		agenda.addContact(id, avatar, name, email, phonenumber, dateofbirth, age);
+		agenda.writeContacts();
 	}
 
 	/**
@@ -364,17 +365,3 @@ public class MainController {
 
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

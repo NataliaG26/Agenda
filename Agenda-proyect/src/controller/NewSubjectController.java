@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 
 public class NewSubjectController implements Initializable{
 	
-
 	ContactController contact;
 	
     @FXML
@@ -35,6 +34,8 @@ public class NewSubjectController implements Initializable{
     @FXML
     void check(MouseEvent event) {
     	contact.newSubject(txtF_Name.getText(), txtF_Credits.getText());
+    	Stage stage = (Stage) txtF_Name.getScene().getWindow();
+    	stage.close();
     }
     public void setContact(ContactController contactC) {
     	contact = contactC;

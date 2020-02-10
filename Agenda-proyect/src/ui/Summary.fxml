@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
@@ -65,7 +66,7 @@
                               <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Label>
-                        <ImageView fx:id="image_AddSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#addSubject" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="image_AddSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#addNewSubject" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../design/icons/plus-48.png" />
                            </image>
@@ -79,97 +80,59 @@
             <Region prefHeight="241.0" prefWidth="32.0" />
             <VBox prefHeight="241.0" prefWidth="377.0">
                <children>
-                  <Label text="Materia mas matriculada:">
-                     <font>
-                        <Font name="Arial Bold" size="13.0" />
-                     </font>
-                  </Label>
                   <Label fx:id="label_MoreEnrolledSubject">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
                   <Region prefHeight="14.0" prefWidth="355.0" />
-                  <Label text="Materia menos matriculada:">
-                     <font>
-                        <Font name="Arial Bold" size="13.0" />
-                     </font>
-                  </Label>
                   <Label fx:id="label_LessEnrolledSubject">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font></Label>
                   <Region prefHeight="14.0" prefWidth="355.0" />
-                  <VBox minHeight="125.0" minWidth="407.0" prefHeight="125.0" prefWidth="407.0" style="-fx-background-color: #dcf3f4;">
+                  <VBox minHeight="92.0" minWidth="407.0" prefHeight="92.0" prefWidth="407.0" style="-fx-background-color: #dcf3f4;">
                      <children>
-                        <HBox prefHeight="42.0" prefWidth="355.0">
-                           <children>
-                              <HBox alignment="CENTER" minWidth="32.0" prefHeight="38.0" prefWidth="413.0" style="-fx-background-color: #dcf3f4;">
-                                 <children>
-                                    <TextField fx:id="txtF_SubjectName" alignment="CENTER" prefHeight="26.0" prefWidth="265.0" promptText="Nombre de la materia" style="-fx-background-color: #dcf3f4;">
-                                       <font>
-                                          <Font name="Arial Bold" size="13.0" />
-                                       </font>
-                                    </TextField>
-                                    <HBox fx:id="HBox_imagesOptionsSubjects" alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="120.0">
-                                       <children>
-                                          <ImageView fx:id="image_EditSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#editSubject" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../design/icons/pencil-48.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fx:id="image_CancelEditSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#cancelEditSubject" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../design/icons/xbox-x-60.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Region minWidth="10.0" prefHeight="38.0" prefWidth="16.0" />
-                                          <ImageView fx:id="image_DeleteSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#delateSubject" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../design/icons/trash-52.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fx:id="image_CheckEditSubject" fitHeight="32.0" fitWidth="28.0" onMouseClicked="#checkEditSubject" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../design/icons/checked-48.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </HBox>
-                                    <Region minHeight="15.0" prefHeight="38.0" prefWidth="12.0" />
-                                 </children>
-                              </HBox>
-                           </children></HBox>
+                        <Label text="Materia mas matriculada:">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
+                        </Label>
                         <Region prefHeight="15.0" prefWidth="377.0" />
                         <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="377.0">
                            <children>
                               <Region prefHeight="29.0" prefWidth="11.0" />
-                              <Label text="Créditos" />
                               <Region prefHeight="33.0" prefWidth="18.0" />
-                              <TextField fx:id="txtF_CredistSubject" prefHeight="25.0" prefWidth="29.0" style="-fx-background-color: #dcf3f4;" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="377.0">
-                           <children>
-                              <Region prefHeight="29.0" prefWidth="11.0" />
-                              <Label fx:id="label_Dep" text="Departamento">
+                              <Label prefHeight="15.0" prefWidth="229.0" text="estudiantes han matriculado esta materia">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </HBox.margin>
                               </Label>
-                              <Region prefHeight="33.0" prefWidth="18.0" />
+                              <Label fx:id="label_StudentsEnrolledSubject" prefHeight="17.0" prefWidth="24.0" text="XX">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="20.0" />
+                                 </HBox.margin>
+                              </Label>
                               <TextField fx:id="txtF_SubjectDep" style="-fx-background-color: #dcf3f4;" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="377.0">
                            <children>
                               <Region prefHeight="29.0" prefWidth="11.0" />
-                              <Label fx:id="label_StudentsEnrolledSubject" text="XX" />
                               <Region prefHeight="33.0" prefWidth="18.0" />
-                              <Label text="estudiantes han matriculado esta materia">
+                              <Label text="Materia menos matriculada:">
                                  <font>
-                                    <Font name="Arial" size="12.0" />
+                                    <Font name="Arial Bold" size="13.0" />
                                  </font>
+                                 <HBox.margin>
+                                    <Insets left="-20.0" />
+                                 </HBox.margin>
                               </Label>
                            </children>
                         </HBox>
