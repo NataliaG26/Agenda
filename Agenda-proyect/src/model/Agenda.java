@@ -38,7 +38,7 @@ public class Agenda {
 	//contact's list visible for the user
 	private List<Contact> contactsView;
 	private List<Subject> subjectView; 
-	
+
 	private List<String> contactsName;
 
 	//paths to read text files with information required
@@ -66,7 +66,7 @@ public class Agenda {
 	public final static String ORDER_NAME = "Por nombre A-Z";
 	public final static String ORDER_BIRTHDAY = "Por fecha de cumpleaños";
 	public final static String ORDER_AGE = "Por edad";
-	
+
 	//Months of the year
 	public final static String[] MONTHS = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
 
@@ -75,7 +75,7 @@ public class Agenda {
 	 * This method allows to build agendas.
 	 */
 	public Agenda() {
-		
+
 		contacts = new Hashtable<String, Contact>();
 		subjects = new Hashtable<String, Subject>();
 
@@ -84,7 +84,7 @@ public class Agenda {
 		listOfContacts();
 		listOfSubjects();
 	}
-	
+
 	/**
 	 * This method returns the contacts list saved on this agenda.
 	 * <b>Pre:</b> the agenda exists.
@@ -120,7 +120,7 @@ public class Agenda {
 	public List<Subject> getSubjectView(){
 		return subjectView;
 	}
-	
+
 	/**
 	 * This method lists all the subjects stored on the agenda until now.
 	 * <b>Pos:</b> the subjects are stored on a list.
@@ -128,21 +128,21 @@ public class Agenda {
 	public void listOfSubjects() {
 		subjectView = new ArrayList<Subject>(subjects.values());
 	}
-	
+
 	/**
 	 * This method lists all the contacts stored on the agenda until now.
 	 * (on alphabetical order using lexicographic order).
 	 * <b>Pos:</b> the contacts are stored in alphabetical order inside a list. 
 	 */
 	public void listOfContacts() {
-		
+
 		contactsView = new ArrayList<Contact>(contacts.values());
-		
+
 		Collections.sort(contactsView, new Comparator<Contact>() {
 
 			@Override
 			public int compare(Contact o1, Contact o2) {
-				
+
 				if (o1.getName().compareTo(o2.getName()) > 0) {
 					return 1;
 				}else if (o1.getName().compareTo(o2.getName()) < 0) {
@@ -153,7 +153,7 @@ public class Agenda {
 			}
 		});	
 	}
-	
+
 	/**
 	 * This method adds a new entry contact 
 	 * <b>Pre:</b> the information of the contact is valid
@@ -360,7 +360,7 @@ public class Agenda {
 		}
 
 	}
-	
+
 	public List<String> getContactsName(){
 		contactsName=new ArrayList<String>();
 		for (int i = 0; i < contactsView.size(); i++) {
@@ -386,7 +386,7 @@ public class Agenda {
 		}
 
 	}
-	
+
 	/**
 	 * This method created a new subject that later will be available to be add to a contact subject's list.
 	 * <b>Pre:</b> the given data is valid.
@@ -420,14 +420,14 @@ public class Agenda {
 		boolean added = false;
 
 		if (subjects.containsKey(subjectName) && contacts.containsKey(studentId)) {
-			
+
 			contacts.get(studentId).getMySubjects().put(subjectName, subjects.get(subjectName));
 			int x = subjects.get(subjectName).getStudentsEnrolled();
 			subjects.get(subjectName).setStudentsEnrolled(x+1);
-			
+
 			int y = contacts.get(studentId).getEnrolledCredits();
 			int c = subjects.get(subjectName).getNumberCredits();
-			
+
 			contacts.get(studentId).setEnrolledCredits(y+c);
 			added = true;
 		}
@@ -453,12 +453,12 @@ public class Agenda {
 				contacts.get(studentId).getMySubjects().remove(subjectName);
 				int x = subjects.get(subjectName).getStudentsEnrolled();
 				subjects.get(subjectName).setStudentsEnrolled(x-1);
-				
+
 				int y = contacts.get(studentId).getEnrolledCredits();
 				int c = subjects.get(subjectName).getNumberCredits();
-				
+
 				contacts.get(studentId).setEnrolledCredits(y-c);
-				
+
 				removed = true;
 			}
 
@@ -639,7 +639,7 @@ public class Agenda {
 			}
 		}
 	}
-	
+
 	/**
 	 * This method overrides the subjects database everytime information is edited.
 	 * <b>Pre:</b> the subjects exists.
@@ -667,4 +667,70 @@ public class Agenda {
 			}
 		}
 	}
+
+	public void sort(String criterio) {
+
+		switch (criterio) {
+
+		case ORDER_NAME:
+
+			listOfContacts();
+
+			break;
+
+		case ORDER_AGE:
+
+			contactsView = new ArrayList<Contact>(contacts.values());
+
+			Collections.sort(contactsView, new Comparator<Contact>() {
+
+				@Override
+				public int compare(Contact o1, Contact o2) {
+
+					if (o1.getAge() > o2.getAge()) {
+						return 1;
+					}else if (o1.getAge() < o2.getAge()) {
+						return -1;
+					}else {
+						return 0;
+					}	
+				}
+			});	
+
+			break;
+
+		case ORDER_BIRTHDAY:
+
+			contactsView = new ArrayList<Contact>(contacts.values());
+
+			Collections.sort(contactsView, new Comparator<Contact>() {
+
+				@Override
+				public int compare(Contact o1, Contact o2) {
+
+					if (o1.getDateOfBirth().compareTo(o2.getDateOfBirth()) > 1) {
+						return 1;
+					}else if (o1.getDateOfBirth().compareTo(o2.getDateOfBirth()) < 1) {
+						return -1;
+					}else {
+						return 0;
+					}	
+				}
+			});	
+
+			break;
+
+		default:
+			break;
+		}
+
+	}
 }
+
+
+
+
+
+
+
+
