@@ -297,6 +297,28 @@ public class Agenda {
 		subjectView = new ArrayList<Subject>(subjects.values());
 
 	}
+	
+	public void listOfContacts() {
+		
+		contactsView = new ArrayList<Contact>(contacts.values());
+		
+		Collections.sort(contactsView, new Comparator<Contact>() {
+
+			@Override
+			public int compare(Contact o1, Contact o2) {
+				
+				if (o1.getName().compareTo(o2.getName()) > 0) {
+					return 1;
+				}else if (o1.getName().compareTo(o2.getName()) < 0) {
+					return -1;
+				}else {
+					return 0;
+				}
+				
+			}
+		});
+		
+	}
 
 	/**
 	 * This method searchs a contact by a subject.
@@ -343,9 +365,15 @@ public class Agenda {
 		boolean added = false;
 
 		if (subjects.containsKey(subjectName) && contacts.containsKey(studentId)) {
+			
 			contacts.get(studentId).getMySubjects().put(subjectName, subjects.get(subjectName));
 			int x = subjects.get(subjectName).getStudentsEnrolled();
 			subjects.get(subjectName).setStudentsEnrolled(x+1);
+			
+			int y = contacts.get(studentId).getEnrolledCredits();
+			int c = subjects.get(subjectName).getNumberCredits();
+			
+			contacts.get(studentId).setEnrolledCredits(y+c);
 			added = true;
 		}
 

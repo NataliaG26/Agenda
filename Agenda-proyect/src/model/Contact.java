@@ -1,8 +1,10 @@
 package model;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
+import java.util.List;
 
 /**
  * This class manage the necessary attributes and methods to create Contacts entries.
@@ -202,4 +204,15 @@ public class Contact {
 	public Hashtable<String, Subject> getMySubjects(){
 		return mySubjects;
 	}
+	
+	public List<Subject> getListOfSubjects(){
+		
+		List<Subject> l = new ArrayList<Subject>(mySubjects.values());
+		
+		return l;
+		
+	}
 }
+
+
+
