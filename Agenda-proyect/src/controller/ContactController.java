@@ -123,7 +123,7 @@ public class ContactController implements Initializable{
 	 * This method initializes the current controller for the current stage.
 	 */
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		contact = 0;
+		contact = -1;
 		mainController = null;
 	}
 	
@@ -273,8 +273,20 @@ public class ContactController implements Initializable{
 	void checkEditContact(MouseEvent event) {
 		//tomar la info de los txtF y cBox, para actualizar la info del contact
 		//mostrar contacto
+		if(contact == -1) {
+			String id = txtF_id.getText();
+			String avatar = "";
+			String name = txtF_Name.getText();
+			String email = txtF_Email.getText();
+			String phonenumber = txtF_PhoneNumber.getText();
+			int age = Integer.parseInt(txtF_age.getText());
+			String dateofbirth = txtF_DayBirthday.getText()+","+cBox_MonthBirthday.getValue();
+			mainController.newContact(id, avatar, name, email, phonenumber, dateofbirth, age);
+		}
+		
 		setVisual_ShowContact();
 		showContact();
+		
 	}
 
 	@FXML
