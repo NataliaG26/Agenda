@@ -173,7 +173,7 @@ public class ContactController implements Initializable{
 			e.printStackTrace();
 		}
 		NewSubjectController newSubject = loader.getController();
-		
+		newSubject.setContact(this);
 	}
 	
 	public void newSubject(String name, String credits) {

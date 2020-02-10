@@ -109,14 +109,14 @@ public class MainController {
 	 * retorna el nombre de la materia en la posicion subject de la lista de las materias del contacto en la posicion contact de la lista contactsView
 	 *
 	public String getSubjectNameContact(int contact, int subject) {
-		return agenda.getContactsView().get(contact).getMySubjects().get(subject).getName();
+		return agenda.getContactsView().get(contact).getMySubjectsList().get(subject).getName();
 	}
 
 	/*
 	 * retorna el numero de creditos de la materia en la posicion subject de la lista de las materias del contacto en la posicion contact de la lista contactsView
 	 *
-	public String getSubjectNameContact(int contact, int subject) {
-		return agenda.getContactsView().get(contact).getMySubjects().get(subject).getNumberCredits()+"";
+	public String getSubjectCreditsContact(int contact, int subject) {
+		return agenda.getContactsView().get(contact).getMySubjectsList().get(subject).getNumberCredits()+"";
 	}
 
 	/*
