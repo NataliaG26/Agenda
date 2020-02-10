@@ -220,17 +220,16 @@ public class Agenda {
 	 * @param name the name of the contact(s) to be searched.
 	 */
 	public void searchByName(String name){
+		
+		contactsView = new ArrayList<Contact>();
+		List<Contact> contactss = new ArrayList<Contact>(contacts.values());
 
-		contactsView = new ArrayList<Contact>(contacts.values());
 
-		for (int i = 0; i < contactsView.size(); i++) {
-			if (!contactsView.get(i).getName().contains(name)) {
-				contactsView.remove(i);
-
-				System.out.println(contactsView.size()+" iff");
+		for (int i = 0; i < contactss.size(); i++) {
+			if (contactss.get(i).getName().contains(name)) {
+				contactsView.add(contactss.get(i));
 			}
 		}
-		System.out.println(contactsView.size()+" cc");
 
 
 	}
@@ -243,30 +242,30 @@ public class Agenda {
 	 * @param operation indicates if we are looking for an age equal, after or before the given age
 	 */
 	public void searchByAge(int age1, int operation){
-
-		contactsView = (List<Contact>) contacts.values();
-
+		contactsView = new ArrayList<Contact>();
+		List<Contact> contactss = new ArrayList<Contact>(contacts.values());
+		
 		if (operation == 0) {
 
-			for (int i = 0; i < contactsView.size(); i++) {
-				if (contactsView.get(i).getAge() != age1) {
-					contactsView.remove(i);
+			for (int i = 0; i < contactss.size(); i++) {
+				if (contactss.get(i).getAge() == age1) {
+					contactsView.add(contactss.get(i));
 				}
 			}
 
 		}else if (operation == 1) { //buscar menores a age1
 
-			for (int i = 0; i < contactsView.size(); i++) {
-				if (contactsView.get(i).getAge() >= age1) {
-					contactsView.remove(i);
+			for (int i = 0; i < contactss.size(); i++) {
+				if (contactss.get(i).getAge() <= age1) {
+					contactsView.add(contactss.get(i));
 				}
 			}
 
 		}else if (operation == 2) { //buscar mayores a age1
 
-			for (int i = 0; i < contactsView.size(); i++) {
-				if (contactsView.get(i).getAge() <= age1) {
-					contactsView.remove(i);
+			for (int i = 0; i < contactss.size(); i++) {
+				if (contactss.get(i).getAge() >= age1) {
+					contactsView.add(contactss.get(i));
 				}
 			}
 
@@ -336,6 +335,10 @@ public class Agenda {
 	 * @param month2 the second month used to search on an interval.
 	 */
 	private void searchBetweenTwoDates(int day1, int month1, int day2, int month2) {
+		
+		contactsView = new ArrayList<Contact>();
+		List<Contact> contactss = new ArrayList<Contact>(contacts.values());
+
 
 		for (int i = 0; i < contactsView.size(); i++) {
 
@@ -356,7 +359,7 @@ public class Agenda {
 	}
 
 	public List<String> getContactsName(){
-		contactsName=new ArrayList<String>();
+		contactsName = new ArrayList<String>();
 		for (int i = 0; i < contactsView.size(); i++) {
 			contactsName.add(contactsView.get(i).getName());
 		}
