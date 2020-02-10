@@ -195,6 +195,7 @@ public class ContactController implements Initializable{
 	
 	public void addSubject(String subject) {
 		mainController.addSubject(contact, subject);
+		setVisual_ListViewSubject();
 	}
 	
 	public void newSubject() {
@@ -246,7 +247,7 @@ public class ContactController implements Initializable{
 	 */
 	void cancelEditContact(MouseEvent event) {
 		setVisual_ShowContact();
-		showSubject();
+		//showSubject();
 		//con el contacto actual
 		//no hacer ningun cambio
 	}
@@ -366,7 +367,7 @@ public class ContactController implements Initializable{
 	private void showSubject() {
 		//modificar info subject
     	txtF_SubjectName.setText(mainController.getSubjectNameContact(contact, subject));
-    	txtF_CredistSubject.setText(mainController.getSubjectNameContact(contact, subject));		
+    	txtF_CredistSubject.setText(mainController.getSubjectNameContact(contact, subject));
 	}
 	
 	private void loadCBoxMonths() {
@@ -471,6 +472,12 @@ public class ContactController implements Initializable{
 		txtF_CredistSubject.setEditable(false);
 		txtF_SubjectDep.setEditable(false);
 		txtF_SubjectName.setEditable(false);
+		
+	}
+	
+	public void setVisual_ListViewSubject() {
+		ObservableList<String> list = FXCollections.observableArrayList(mainController.getSubjectsNameContact(contact));
+		listView_ContactSubject.setItems(list);
 	}
 
 	/**
@@ -484,11 +491,16 @@ public class ContactController implements Initializable{
 		image_CancelEditContact.setFitWidth(0);
 		image_CheckEditContact.setFitWidth(0);
 
-		image_EditSubject.setVisible(true);
-		image_DeleteSubject.setVisible(true);
+		image_EditContact.setVisible(true);
+		image_deleteContact.setVisible(true);
 
-		image_EditSubject.setFitWidth(MainController.ICONE_SIZE);
-		image_DeleteSubject.setFitWidth(MainController.ICONE_SIZE);
+		image_EditContact.setFitWidth(MainController.ICONE_SIZE);
+		image_deleteContact.setFitWidth(MainController.ICONE_SIZE);
+		
+		image_BackToContact.setVisible(true);
+		image_BackToContact.setFitWidth(MainController.ICONE_SIZE);
+		image_nextContact.setVisible(true);
+		image_nextContact.setFitWidth(MainController.ICONE_SIZE);
 
 		txtF_Name.setEditable(false);
 		txtF_LastName.setEditable(false);

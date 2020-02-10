@@ -167,6 +167,7 @@ public class AgendaController implements Initializable{
 	private void changeCBoxPrincipal(ActionEvent event) {
 		setVisual_InitialPage();
 		String selected = cBox_Principal.getValue();
+		if(selected!=null) {
 		switch (selected){
 		case Agenda.SEARCH_NAME:
 			setVisual_SearchName();
@@ -189,6 +190,7 @@ public class AgendaController implements Initializable{
 		case Agenda.ORDER_BIRTHDAY:
 			setVisual_Order();
 			break;
+		}
 		}
 	}
 	
