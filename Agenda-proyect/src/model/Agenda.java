@@ -290,6 +290,12 @@ public class Agenda {
 		}
 		
 	}
+	
+	public void subjectsOfAStudent(String studentId) {
+		
+		subjectView = new ArrayList<Subject>(contacts.get(studentId).getMySubjects().values());
+		
+	}
 
 	/**
 	 * This method searchs a contact by a subject.
