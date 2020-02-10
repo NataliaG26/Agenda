@@ -296,6 +296,12 @@ public class AgendaController implements Initializable{
 	}
 
 	/////////////////////SET VISUAL////////////////////////////////
+	
+	private void showList() {
+		listView_Contacts.setVisible(true);
+		ObservableList<String> list = FXCollections.observableArrayList(mainController.getContactsName());
+		listView_Contacts.setItems(list);
+	}
 
 	private void setVisual_SearchName() {
 		row_txtF_Search.setMinHeight(HEIGHT_ROW);

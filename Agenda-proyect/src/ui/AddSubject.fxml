@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="298.0" prefWidth="418.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddSubjectController">
+   <children>
+      <Region prefHeight="73.0" prefWidth="418.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="131.0" text="Agregar Materia" />
+      <Region prefHeight="0.0" prefWidth="418.0" />
+      <ComboBox fx:id="cBox_Subject" prefWidth="150.0" promptText="Seleccionar Materia" />
+      <Region prefHeight="94.0" prefWidth="418.0" />
+      <HBox alignment="TOP_CENTER" prefHeight="60.0" prefWidth="418.0">
+         <children>
+            <ImageView fx:id="image_Cancel" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#cancel" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../design/icons/xbox-x-60.png" />
+               </image>
+            </ImageView>
+            <Region prefHeight="60.0" prefWidth="63.0" />
+            <ImageView fx:id="image_Check" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#check" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../design/icons/checked-48.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+   </children>
+</VBox>

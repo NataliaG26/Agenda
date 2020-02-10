@@ -188,6 +188,15 @@ public class MainController {
 		}
 		return subjectOptions;
 	}
+	
+	public void addSubject(int contact, String nameSubject) {
+		agenda.addSubject(nameSubject, agenda.getContactsView().get(contact).getId());
+	}
+	
+	public void newSubject(String subjectName, int credits) {//**********************
+		//nueva materia, parametros 
+		
+	}
 
 	/*
 	 * 

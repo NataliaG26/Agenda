@@ -1,14 +1,19 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import model.Agenda;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -131,8 +136,51 @@ public class ContactController implements Initializable{
 		//nueva pantalla para seleccionar la materi que quiere agregar al contacto
 		//relacionar maeteria con el contacto / model
 		//contacto con la materia /model
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\ui\\AddSubject.fxml"));
+		Parent root;
+		try {
+			root = loader.load();
+			Scene scene = new Scene(root);
+			Stage stage = new Stage();
+			stage.setTitle("Agregar materia");
+			stage.setScene(scene);
+			stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		AddSubjectController addSubject = loader.getController();
+		addSubject.setContact(this);
+		addSubject.loadCBox(mainController.getSearchSubjectOptions());
 	}
-
+	
+	public void addSubject(String subject) {
+		mainController.addSubject(contact, subject);
+	}
+	
+	public void newSubject() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\ui\\NewSubject.fxml"));
+		Parent root;
+		try {
+			root = loader.load();
+			Scene scene = new Scene(root);
+			Stage stage = new Stage();
+			stage.setTitle("Nueva materia");
+			stage.setScene(scene);
+			stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		NewSubjectController newSubject = loader.getController();
+		
+	}
+	
+	public void newSubject(String name, String credits) {
+		int c= Integer.parseInt(credits);
+		mainController.newSubject(name, c);
+	}
+	
 	@FXML
 	/**
 	 * This method allows to return for an specific view of an specific contact to a general view of all contacts
@@ -216,6 +264,7 @@ public class ContactController implements Initializable{
 		//si: borrar contacto seleccionado
 		//no: no hacer nada
 	}
+	
 
 	@FXML
 	/**
@@ -445,5 +494,9 @@ public class ContactController implements Initializable{
 	public void setMainController(MainController mainController) {
 		this.mainController = mainController;
 	}
+
+
+   
+
     
 }

@@ -168,7 +168,7 @@
                                           <Image url="@../../design/icons/xbox-x-60.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fx:id="image_DeleteSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#delteSubjectContact" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="image_DeleteSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#removeSubjectContact" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../design/icons/trash-52.png" />
                                        </image>

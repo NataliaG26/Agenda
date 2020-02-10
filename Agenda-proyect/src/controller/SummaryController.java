@@ -29,7 +29,7 @@ public class SummaryController implements Initializable{
 	private Label labelCreditsForStudent;
 
 	@FXML
-	private ListView<?> listView_Subject;
+	private ListView<String> listView_Subject;
 
 	@FXML
 	private Label label_MoreEnrolledSubject;
@@ -39,6 +39,9 @@ public class SummaryController implements Initializable{
 
 	@FXML
 	private HBox HBox_imagesOptionsSubjects;
+	
+	@FXML
+	private ImageView image_AddSubject;
 
 	@FXML
 	private ImageView image_EditSubject;
@@ -118,6 +121,7 @@ public class SummaryController implements Initializable{
 	void removeSubject(MouseEvent event) {
 
 	}
+	//String name = listView.getSelectionModel().getSelectedItem();
 
 	@FXML
 	/**
@@ -157,7 +161,10 @@ public class SummaryController implements Initializable{
 	public void setVisual_ShowSummary() {
 		
 		setVisual_ShowSubject();
-		
+		image_DeleteSubject.setVisible(false);
+		image_DeleteSubject.setFitWidth(0);
+		image_AddSubject.setVisible(false);
+		image_AddSubject.setFitWidth(0);
 	}
 
 	/**
