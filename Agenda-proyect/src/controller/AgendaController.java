@@ -1,6 +1,7 @@
 package controller;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -43,9 +44,21 @@ public class AgendaController implements Initializable{
 
 	@FXML
 	private RowConstraints row_HBox_FirstDateContainer;
+	
+	@FXML
+    private ComboBox<String> cBox_MonthsFirstDate;
+
+    @FXML
+    private TextField txtF_DayFirstDate;
 
 	@FXML
 	private RowConstraints row_HBox_SecondDateContainer;
+	
+	@FXML
+	private ComboBox<String> cBox_MonthsSecondDate;
+
+	@FXML
+	private TextField txtF_DaySecondDate;
 
 	@FXML
 	private RowConstraints row_btn_Search;
@@ -122,7 +135,8 @@ public class AgendaController implements Initializable{
 	 * (it shows another options depending on the selected option.)
 	 * @param event the event triggered by the user.
 	 */
-	void changeCBoxPrincipal(ActionEvent event) {
+	private void changeCBoxPrincipal(ActionEvent event) {
+		setVisual_InitialPage();
 		String selected = cBox_Principal.getValue();
 		switch (selected){
 		case Agenda.SEARCH_NAME:
@@ -138,13 +152,13 @@ public class AgendaController implements Initializable{
 			setVisual_SearchSubject();
 			break;
 		case Agenda.ORDER_NAME:
-			setVisual_OrderName();
+			setVisual_Order();
 			break;
 		case Agenda.ORDER_AGE:
-			setVisual_OrderAge();
+			setVisual_Order();
 			break;
 		case Agenda.ORDER_BIRTHDAY:
-			setVisual_OrderBirthday();
+			setVisual_Order();
 			break;
 		}
 	}
@@ -152,10 +166,43 @@ public class AgendaController implements Initializable{
 	//muestra mas opciones dependiendo de la opcion seleccionada
 	//habilita los nodos correspondientes
 	@FXML
-	void changeCBoxOtherOption(ActionEvent event) {
-
+	private void changeCBoxOtherOption(ActionEvent event) {
+		//setVisual_OtherOption();
+		String selected = cBox_OtherOption.getValue();
+		switch (selected){
+		case Agenda.FILTER_BIRTHDAY:
+			setVisual_FilterBirthay();
+			break;
+		case Agenda.FILTER_BIRTHDAY_BETWEEN_DATES:
+			setVisual_FilterBirthdayBetweenDates();
+			break;
+		case Agenda.FILTER_BIRTHDAY_BETWEEN_MONTHS:
+			setVisual_FilterBirthdayBetweenMonths();
+			break;
+		case Agenda.FILTER_BIRTHDAY_MONTHS:
+			setVisual_FilterBirthdayMonth();
+			break;
+		case Agenda.FILTER_AGE:
+			break;
+		case Agenda.FILTER_AGE_OLDER:
+			break;
+		case Agenda.FILTER_AGE_JOUNGER:
+			break;
+		case Agenda.ORDER_NAME:
+			break;
+		case Agenda.ORDER_BIRTHDAY:
+			break;
+		case Agenda.ORDER_AGE:
+			break;
+		}
+		
 	}
-
+	
+	@FXML
+    private void monthSelected(ActionEvent event) {
+		
+    }
+	
 	@FXML
 	/**
 	 * This method shows the menu with the sorting options.
@@ -176,11 +223,11 @@ public class AgendaController implements Initializable{
 	 * <b>Pos:</b> the searching entries are updated on screen.
 	 * @param event the event triggered by the user.
 	 */
-	private void search(ActionEvent event) {
+	private void search(ActionEvent event) {//********************************boton para buscar
 		//realizar el filtro 
 		//lista con la info de los contactos a mostrar
 		updateListView_Contacts();
-
+		
 	}
 
 	//muestra en el menau las opciones de busqueda y filtrado
@@ -222,6 +269,31 @@ public class AgendaController implements Initializable{
 		ObservableList<String> list = FXCollections.observableArrayList(mainController.getOrderOptions());
 		cBox_Principal.setItems(list);
 	}
+	
+	private void updateCBox_OtherOption_Birthday() {
+		ObservableList<String> list = FXCollections.observableArrayList(mainController.getSearchBirthdayOptions());
+		cBox_OtherOption.setItems(list);
+	}
+	
+	private void updateCBox_OtherOption_Subject() {
+		ObservableList<String> list = FXCollections.observableArrayList(mainController.getSearchSubjectOptions());
+		cBox_OtherOption.setItems(list);
+	}
+	
+	private void updateCBox_OtherOption_Age() {
+		ObservableList<String> list = FXCollections.observableArrayList(mainController.getSearchAgeOptions());
+		cBox_OtherOption.setItems(list);
+	}
+	
+	private void updateCBox(ComboBox<String> comboBox, List<String> options) {
+		ObservableList<String> list = FXCollections.observableArrayList(options);
+		comboBox.setItems(list);
+	}
+	
+	private void updateCBox_Months(ComboBox<String> comboBox) {
+		ObservableList<String> list = FXCollections.observableArrayList(Agenda.MONTHS);
+		comboBox.setItems(list);
+	}
 
 	/////////////////////SET VISUAL////////////////////////////////
 
@@ -229,33 +301,125 @@ public class AgendaController implements Initializable{
 		row_txtF_Search.setMinHeight(HEIGHT_ROW);
 		txtF_Search.setVisible(true);
 		txtF_Search.setEditable(true);
+		row_btn_Search.setMinHeight(HEIGHT_ROW);
+		btnSearch.setVisible(true);
+		btnSearch.setText("Buscar");
 	}
 
 	private void setVisual_SearchAge() {
 		row_txtF_Search.setMinHeight(HEIGHT_ROW);
+		row_cBox_OtherOption.setMinHeight(HEIGHT_ROW);
+		row_btn_Search.setMinHeight(HEIGHT_ROW);
+		btnSearch.setVisible(true);
+		cBox_OtherOption.setVisible(true);
+		cBox_OtherOption.setEditable(true);
 		txtF_Search.setVisible(true);
 		txtF_Search.setEditable(true);
-
+		updateCBox_OtherOption_Age();
 	}
 
 	private void setVisual_SearchBirthday() {
-
+		row_cBox_OtherOption.setMinHeight(HEIGHT_ROW);
+		cBox_OtherOption.setVisible(true);
+		cBox_OtherOption.setEditable(true);
+		txtF_Search.setVisible(false);
+		txtF_Search.setEditable(false);
+		row_txtF_Search.setMaxHeight(0);
+		row_btn_Search.setMinHeight(HEIGHT_ROW);
+		btnSearch.setVisible(true);
+		btnSearch.setText("Buscar");
+		
+		updateCBox_OtherOption_Birthday();
+	}
+	
+	private void setVisual_FilterBirthdayBetweenMonths() {
+		setVisual_FilterBirthdayBetweenDates();
+		txtF_DayFirstDate.setVisible(false);
+		txtF_DayFirstDate.setEditable(false);
+		txtF_DaySecondDate.setVisible(false);
+		txtF_DaySecondDate.setEditable(false);
+		updateCBox_Months(cBox_MonthsFirstDate);
+		updateCBox_Months(cBox_MonthsSecondDate);
+	}
+	
+	private void setVisual_FilterBirthdayMonth() {
+		setVisual_FilterBirthdayBetweenDates();
+		txtF_DayFirstDate.setVisible(false);
+		txtF_DayFirstDate.setEditable(false);
+		setVisual_disableSecondDate();
+		updateCBox_Months(cBox_MonthsFirstDate);
 	}
 
 	private void setVisual_SearchSubject() {
-
+		row_cBox_OtherOption.setMinHeight(HEIGHT_ROW);
+		cBox_OtherOption.setVisible(true);
+		cBox_OtherOption.setEditable(true);
+		row_btn_Search.setMinHeight(HEIGHT_ROW);
+		txtF_Search.setVisible(false);
+		txtF_Search.setEditable(false);
+		row_txtF_Search.setMaxHeight(0);
+		btnSearch.setVisible(true);
+		btnSearch.setText("Buscar");
+		//updateCBox_OtherOption_Subject();
 	}
 
-	private void setVisual_OrderName() {
-
+	private void setVisual_Order() {
+		row_btn_Search.setMinHeight(HEIGHT_ROW);
+		btnSearch.setVisible(true);
+		btnSearch.setText("Ordenar");
 	}
 
-	private void setVisual_OrderAge() {
-
+	
+	private void setVisual_FilterBirthay() {
+		row_HBox_FirstDateContainer.setMinHeight(HEIGHT_ROW);
+		HBox_FirstDateContainer.setVisible(true);
+		row_HBox_SecondDateContainer.setMaxHeight(0);
+		row_btn_Search.setMinHeight(HEIGHT_ROW);
+		setVisual_disableSecondDate();
+		txtF_DayFirstDate.setVisible(true);
+		txtF_DayFirstDate.setEditable(true);
+		btnSearch.setVisible(true);
+		btnSearch.setText("Buscar");
 	}
-
-	private void setVisual_OrderBirthday() {
-
+	
+	
+	private void setVisual_disableSecondDate() {
+		row_HBox_SecondDateContainer.setMaxHeight(0);
+		HBox_SecondDateContainer.setMaxHeight(0);
+		//txtF_DaySecondDate.setMaxHeight(0);
+		//cBox_MonthsSecondDate.setMaxHeight(0);
+		txtF_DaySecondDate.setVisible(false);
+		txtF_DaySecondDate.setEditable(false);
+		cBox_MonthsSecondDate.setVisible(false);
+		cBox_MonthsSecondDate.setEditable(false);
+		
+	}
+	
+	private void setVisual_ableSecondDate() {
+		row_HBox_SecondDateContainer.setMaxHeight(HEIGHT_ROW);
+		HBox_SecondDateContainer.setMaxHeight(HEIGHT_ROW);
+		//txtF_DaySecondDate.setMinHeight();
+		//cBox_MonthsSecondDate.setMaxHeight(HEIGHT_ROW);
+		txtF_DaySecondDate.setVisible(true);
+		txtF_DaySecondDate.setEditable(true);
+		cBox_MonthsSecondDate.setVisible(true);
+		
+	}
+	
+	private void setVisual_FilterBirthdayBetweenDates() {
+		setVisual_FilterBirthay();
+		setVisual_ableSecondDate();
+		row_HBox_SecondDateContainer.setMinHeight(HEIGHT_ROW);
+		HBox_SecondDateContainer.setVisible(true);
+		row_btn_Search.setMinHeight(HEIGHT_ROW);
+		txtF_DayFirstDate.setVisible(true);
+		txtF_DayFirstDate.setEditable(true);
+		txtF_DaySecondDate.setVisible(true);
+		txtF_DaySecondDate.setEditable(true);
+		btnSearch.setVisible(true);
+		btnSearch.setText("Buscar");
+		updateCBox_Months(cBox_MonthsFirstDate);
+		updateCBox_Months(cBox_MonthsSecondDate);
 	}
 
 	//cambia la ventana del anchorpane y muestra la ventana de contactos con el primer contacto
@@ -304,7 +468,24 @@ public class AgendaController implements Initializable{
 		row_btn_Search.setMaxHeight(0);
 		row_listView_Contacts.setMaxHeight(0);
 	}
+	
+	
+	private void setVisual_OtherOption() {
+		txtF_Search.setVisible(false);
+		HBox_FirstDateContainer.setVisible(false);
+		HBox_SecondDateContainer.setVisible(false);
+		listView_Contacts.setVisible(false);
 
+		txtF_Search.setMaxHeight(0);
+		HBox_FirstDateContainer.setMaxHeight(0);
+		HBox_SecondDateContainer.setMaxHeight(0);
+		listView_Contacts.setMaxHeight(0);
+
+		row_txtF_Search.setMaxHeight(0);
+		row_HBox_FirstDateContainer.setMaxHeight(0);
+		row_HBox_SecondDateContainer.setMaxHeight(0);
+		row_listView_Contacts.setMaxHeight(0);
+	}
 
 	/////////////////////////////////////////////////////////////////////////////////
 
@@ -313,6 +494,7 @@ public class AgendaController implements Initializable{
 	private void summary(MouseEvent event) {
 		summaryController = loadScene(MainController.ID_SUMMARY).getController();
 		System.out.println("summary");
+		summaryController.setVisual_ShowSummary();
 	}
 
 	//carga la scene en el anchor pane

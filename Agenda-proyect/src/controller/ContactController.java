@@ -5,6 +5,9 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
+import model.Agenda;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -63,7 +66,7 @@ public class ContactController implements Initializable{
 	private TextField txtF_DayBirthday;
 
 	@FXML
-	private ComboBox<?> cBox_MonthBirthday;
+	private ComboBox<String> cBox_MonthBirthday;
 
 	@FXML
 	private ImageView image_BackToContact;
@@ -72,7 +75,7 @@ public class ContactController implements Initializable{
 	private ImageView image_nextContact;
 
 	@FXML
-	private ListView<?> listView_ContactSubject;
+	private ListView<String> listView_ContactSubject;
 
 	@FXML
 	private Label label_TotalCredits;
@@ -97,6 +100,9 @@ public class ContactController implements Initializable{
 
 	@FXML
 	private TextField txtF_SubjectDep;
+	
+	@FXML
+	private Label label_Dep;
 
 	private MainController mainController;
 
@@ -132,7 +138,7 @@ public class ContactController implements Initializable{
 	 * This method allows to return for an specific view of an specific contact to a general view of all contacts
 	 * @param event the event triggered by the user.
 	 */
-	void backToContact(MouseEvent event) {
+	public void backToContact(MouseEvent event) {
 		//lista con la info de los contactos que va a mostrar
 		//showContact(info del contact actual/anterior);
 		if(contact-1<0) {
@@ -142,6 +148,7 @@ public class ContactController implements Initializable{
 		}
 		showContact();
 		setVisual_ShowSubjectNotSelected();
+		System.out.println("back To Contact");
 	}
 
 	@FXML
@@ -155,6 +162,7 @@ public class ContactController implements Initializable{
 		showSubject();
 		//con el contacto actual
 		//no hacer ningun cambio
+		System.out.println("cancel edit contact");
 	}
 
 	@FXML
@@ -167,6 +175,7 @@ public class ContactController implements Initializable{
 		setVisual_ShowSubjectSelected();
 		//con el contacto actual
 		//no hacer ningun cambio
+		System.out.println("cancel edit subject");
 	}
 
 	@FXML
@@ -177,6 +186,9 @@ public class ContactController implements Initializable{
 	 */
 	void checkEditContact(MouseEvent event) {
 		//tomar la info de los txtF y cBox, para actualizar la info del contact
+		//mostrar contacto
+		setVisual_ShowContact();
+		showContact();
 	}
 
 	@FXML
@@ -187,6 +199,10 @@ public class ContactController implements Initializable{
 	 */
 	void checkEditSubject(MouseEvent event) {
 		//tomar la info de los txtF y actualizar la info de la materia
+		//mostar materia
+		setVisual_ShowSubjectSelected();
+		showSubject();
+		
 	}
 
 	@FXML
@@ -195,7 +211,7 @@ public class ContactController implements Initializable{
 	 * </b>Pos:</b> the contact is deleted.
 	 * @param event the event triggered by the user.
 	 */
-	void deleteContact(MouseEvent event) {
+	void deleteContact(MouseEvent event) {//*******************************
 		//mensaje de confirmacion
 		//si: borrar contacto seleccionado
 		//no: no hacer nada
@@ -207,7 +223,7 @@ public class ContactController implements Initializable{
 	 * <b>Pos:</b> the subject is removed.
 	 * @param event the event triggered by the user.
 	 */
-	void removeSubjectContact(MouseEvent event) {
+	void removeSubjectContact(MouseEvent event) {//*********************************
 		//mensaje de confirmacion
 		//si: borrar relacion del contacto con la materia selecionada
 		//no: no hacer nada
@@ -248,6 +264,7 @@ public class ContactController implements Initializable{
 		setVisual_ShowSubjectNotSelected();
 	}
 
+
 	//cambia la vista de la ventana para el estado de agregar contacto
 	public void setVisualNewContact() {
 		setVisual_EditContact();
@@ -285,6 +302,12 @@ public class ContactController implements Initializable{
 		label_TotalCredits.setText(mainController.getContactEnrolledCreditsNumber(contact));
 		//image_Avatar.mainController.getContactId(contact));
 	}
+	
+	private void loadCBoxMonths() {
+		ObservableList<String> list = FXCollections.observableArrayList(Agenda.MONTHS);
+		cBox_MonthBirthday.setItems(list);
+	}
+	
 
 	/**
 	 * change the contact window view for to edit subject, able editing, and shows only the options that are allowed
@@ -304,7 +327,7 @@ public class ContactController implements Initializable{
 		image_EditSubject.setFitWidth(0);
 
 		txtF_CredistSubject.setEditable(true);
-		txtF_SubjectDep.setEditable(true);
+		//txtF_SubjectDep.setEditable(true);
 		txtF_SubjectName.setEditable(true);
 	}
 
@@ -340,6 +363,8 @@ public class ContactController implements Initializable{
 		txtF_DayBirthday.setEditable(true);
 		cBox_MonthBirthday.setEditable(true);
 		txtF_Carrera.setEditable(true);
+		
+		loadCBoxMonths();
 	}
 
 	/**
@@ -420,4 +445,5 @@ public class ContactController implements Initializable{
 	public void setMainController(MainController mainController) {
 		this.mainController = mainController;
 	}
+    
 }

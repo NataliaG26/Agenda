@@ -132,7 +132,7 @@ public class MainController {
 		return new ArrayList<String>();
 	}
 
-	/*
+	/**
 	 * return a list with option searching
 	 */
 	public List<String> getSearchOptions(){
@@ -144,7 +144,7 @@ public class MainController {
 		return searchOptions;
 	}
 
-	/*
+	/**
 	 * return a list with order options
 	 */
 	public List<String> getOrderOptions(){
@@ -153,6 +153,40 @@ public class MainController {
 		searchOptions.add(Agenda.ORDER_AGE);
 		searchOptions.add(Agenda.ORDER_BIRTHDAY);
 		return searchOptions;
+	}
+	
+	/**
+	 * return a list with birthday option searching
+	 */
+	public List<String> getSearchBirthdayOptions(){
+		List<String> searchOptions = new ArrayList<String>();
+		searchOptions.add(Agenda.FILTER_BIRTHDAY);
+		searchOptions.add(Agenda.FILTER_BIRTHDAY_BETWEEN_DATES);
+		searchOptions.add(Agenda.FILTER_BIRTHDAY_BETWEEN_MONTHS);
+		searchOptions.add(Agenda.FILTER_BIRTHDAY_MONTHS);
+		return searchOptions;
+	}
+	
+	/**
+	 * return a list with order options
+	 */
+	public List<String> getSearchAgeOptions(){
+		List<String> searchOptions = new ArrayList<String>();
+		searchOptions.add(Agenda.FILTER_AGE);
+		searchOptions.add(Agenda.FILTER_AGE_JOUNGER);
+		searchOptions.add(Agenda.FILTER_AGE_OLDER);
+		return searchOptions;
+	}
+	
+	/**
+	 * return a list with birthday option searching
+	 */
+	public List<String> getSearchSubjectOptions(){
+		List<String> subjectOptions = new ArrayList<String>();
+		for (int i = 0; i < agenda.getSubjectView().size(); i++) {
+			subjectOptions.add(agenda.getSubjectView().get(i).getName());
+		}
+		return subjectOptions;
 	}
 
 	/*

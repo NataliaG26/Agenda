@@ -38,8 +38,8 @@ public class Main extends Application{
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		stage.setTitle("Lazy Agenda - it's never been so easy");
-		Image image = new Image("https://cdn.onlinewebfonts.com/svg/img_500827.png");
-		stage.getIcons().add(image);
+		//Image image = new Image("https://cdn.onlinewebfonts.com/svg/img_500827.png");
+		//stage.getIcons().add(image);
 		stage.setScene(scene);
 		stage.show();
 		main = new MainController();

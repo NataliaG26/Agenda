@@ -51,6 +51,9 @@ public class SummaryController implements Initializable{
 
 	@FXML
 	private ImageView image_CheckEditSubject;
+	
+	@FXML
+	private TextField txtF_SubjectName;
 
 	@FXML
 	private TextField txtF_CredistSubject;
@@ -60,8 +63,13 @@ public class SummaryController implements Initializable{
 
 	@FXML
 	private Label label_StudentsEnrolledSubject;
+	
+	@FXML
+	private Label label_Dep;
 
 	private MainController main;
+	
+	private int subject;
 
 	@Override
 	/**
@@ -120,6 +128,37 @@ public class SummaryController implements Initializable{
 	void editSubject(MouseEvent event) {
 
 	}
+	
+	@FXML
+    void delateSubject(MouseEvent event) {
+		
+    }
+	
+	private void showSubject() {
+		//pedir info
+	}
+	
+	private void setVisual_EditSubject() {
+		txtF_CredistSubject.setEditable(false);
+		txtF_SubjectName.setEditable(false);
+		
+		txtF_SubjectDep.setEditable(false);
+		txtF_SubjectDep.setVisible(false);
+	}
+	
+	private void setVisual_ShowSubject() {
+		txtF_CredistSubject.setEditable(false);
+		txtF_SubjectName.setEditable(false);
+		
+		txtF_SubjectDep.setEditable(false);
+		txtF_SubjectDep.setVisible(false);
+	}
+	
+	public void setVisual_ShowSummary() {
+		
+		setVisual_ShowSubject();
+		
+	}
 
 	/**
 	 * this method sets the main controller.
@@ -129,4 +168,5 @@ public class SummaryController implements Initializable{
 	public void setMainController(MainController mainController) {
 		this.main = mainController;
 	}
+
 }

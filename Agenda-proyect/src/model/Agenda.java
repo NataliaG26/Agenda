@@ -37,6 +37,7 @@ public class Agenda {
 
 	//contact's list visible for the user
 	private List<Contact> contactsView;
+	private List<Subject> subjectView; ///all subjects******************
 
 	//paths to read text files with information required
 	public final static String PATH_SUBJECTS = "data/subjects.txt";
@@ -399,6 +400,15 @@ public class Agenda {
 	 */
 	public List<Contact> getContactsView(){
 		return contactsView;
+	}
+	
+	/**
+	 * This method returns the subject list used for the visibility for the user.
+	 * <b>Pre:</b> the agenda exists.
+	 * @return the contacts list.
+	 */
+	public List<Subject> getSubjectView(){
+		return subjectView;
 	}
 	
 	/**

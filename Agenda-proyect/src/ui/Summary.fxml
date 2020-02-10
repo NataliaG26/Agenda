@@ -67,7 +67,7 @@
                         </Label>
                         <ImageView fitHeight="32.0" fitWidth="32.0" onMouseClicked="#addSubject" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../desing/icons/plus-48.png" />
+                              <Image url="@../../design/icons/plus-48.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -106,7 +106,7 @@
                            <children>
                               <HBox alignment="CENTER" minWidth="32.0" prefHeight="38.0" prefWidth="413.0" style="-fx-background-color: #dcf3f4;">
                                  <children>
-                                    <TextField alignment="CENTER" prefHeight="26.0" prefWidth="265.0" promptText="Nombre de la materia" style="-fx-background-color: #dcf3f4;">
+                                    <TextField fx:id="txtF_SubjectName" alignment="CENTER" prefHeight="26.0" prefWidth="265.0" promptText="Nombre de la materia" style="-fx-background-color: #dcf3f4;">
                                        <font>
                                           <Font name="Arial Bold" size="13.0" />
                                        </font>
@@ -115,23 +115,23 @@
                                        <children>
                                           <ImageView fx:id="image_EditSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#editSubject" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../desing/icons/pencil-48.png" />
+                                                <Image url="@../../design/icons/pencil-48.png" />
                                              </image>
                                           </ImageView>
                                           <ImageView fx:id="image_CancelEditSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#cancelEditSubject" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../desing/icons/xbox-x-60.png" />
+                                                <Image url="@../../design/icons/xbox-x-60.png" />
                                              </image>
                                           </ImageView>
                                           <Region minWidth="10.0" prefHeight="38.0" prefWidth="16.0" />
                                           <ImageView fx:id="image_DeleteSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#delateSubject" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../desing/icons/trash-52.png" />
+                                                <Image url="@../../design/icons/trash-52.png" />
                                              </image>
                                           </ImageView>
                                           <ImageView fx:id="image_CheckEditSubject" fitHeight="32.0" fitWidth="28.0" onMouseClicked="#checkEditSubject" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../desing/icons/checked-48.png" />
+                                                <Image url="@../../design/icons/checked-48.png" />
                                              </image>
                                           </ImageView>
                                        </children>
@@ -152,7 +152,7 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="377.0">
                            <children>
                               <Region prefHeight="29.0" prefWidth="11.0" />
-                              <Label text="Departamento">
+                              <Label fx:id="label_Dep" text="Departamento">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>

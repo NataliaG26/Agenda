@@ -21,23 +21,23 @@
          <children>
             <ImageView fx:id="image_EditContact" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#editContact" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../desing/icons/pencil-48.png" />
+                  <Image url="@../../design/icons/pencil-48.png" />
                </image>
             </ImageView>
             <ImageView fx:id="image_CancelEditContact" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#cancelEditContact" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../desing/icons/xbox-x-60.png" />
+                  <Image url="@../../design/icons/xbox-x-60.png" />
                </image>
             </ImageView>
             <Region prefHeight="40.0" prefWidth="17.0" />
-            <ImageView fx:id="image_deleteContact" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#delateContact" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="image_deleteContact" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#deleteContact" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../desing/icons/trash-52.png" />
+                  <Image url="@../../design/icons/trash-52.png" />
                </image>
             </ImageView>
             <ImageView fx:id="image_CheckEditContact" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#checkEditContact" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../desing/icons/checked-48.png" />
+                  <Image url="@../../design/icons/checked-48.png" />
                </image>
             </ImageView>
             <Region prefHeight="32.0" prefWidth="13.0" />
@@ -96,15 +96,15 @@
             </GridPane>
             <HBox alignment="BOTTOM_CENTER" maxHeight="201.0" maxWidth="196.0" minHeight="60.0" minWidth="40.0" prefHeight="191.0" prefWidth="136.0">
                <children>
-                  <ImageView fx:id="imagen_BackToContact" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#backToConact" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="image_BackToContact" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#backToContact" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../desing/icons/back-to-48.png" />
+                        <Image url="@../../design/icons/back-to-48.png" />
                      </image>
                   </ImageView>
                   <Region prefHeight="191.0" prefWidth="10.0" />
-                  <ImageView fx:id="imagenextContact" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#nextContact" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="image_nextContact" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#nextContact" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../desing/icons/next-page-48.png" />
+                        <Image url="@../../design/icons/next-page-48.png" />
                      </image>
                   </ImageView>
                </children>
@@ -125,7 +125,7 @@
                         </Label>
                         <ImageView fitHeight="32.0" fitWidth="32.0" onMouseClicked="#addContactSubject" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../desing/icons/plus-48.png" />
+                              <Image url="@../../design/icons/plus-48.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -159,23 +159,23 @@
                                     </TextField>
                                     <ImageView fx:id="image_EditSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#editSubject" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../desing/icons/pencil-48.png" />
+                                          <Image url="@../../design/icons/pencil-48.png" />
                                        </image>
                                     </ImageView>
                                     <Region minHeight="15.0" prefHeight="25.0" prefWidth="14.0" />
                                     <ImageView fx:id="image_CancelEditSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#cancelEditSubject" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../desing/icons/xbox-x-60.png" />
+                                          <Image url="@../../design/icons/xbox-x-60.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fx:id="image_DeleteSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#delateSubjectContact" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="image_DeleteSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#delteSubjectContact" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../desing/icons/trash-52.png" />
+                                          <Image url="@../../design/icons/trash-52.png" />
                                        </image>
                                     </ImageView>
                                     <ImageView fx:id="image_CheckEditSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#checkEditSubject" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../desing/icons/checked-48.png" />
+                                          <Image url="@../../design/icons/checked-48.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -194,7 +194,7 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="377.0">
                            <children>
                               <Region prefHeight="29.0" prefWidth="11.0" />
-                              <Label text="Departamento">
+                              <Label fx:id="label_Dep" text="Departamento">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
