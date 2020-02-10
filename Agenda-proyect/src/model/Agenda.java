@@ -79,7 +79,8 @@ public class Agenda {
 		readStudents();
 		readSubjects();
 
-		writeContacts();
+		//writeContacts();
+		//writeSubjects();
 	}
 
 	/**
@@ -101,8 +102,8 @@ public class Agenda {
 
 		Contact newContact = new Contact(id, avatar, name, email, phonenumber, dateofbirth, age, 0);
 
-		if (!contacts.containsKey(name)) {
-			contacts.put(name, newContact);
+		if (!contacts.containsKey(id)) {
+			contacts.put(id, newContact);
 			added = true;
 		}
 
@@ -116,12 +117,12 @@ public class Agenda {
 	 * @param name the name of the contact to be deleted
 	 * @return a boolean that indicate either if the contact could be deleted or not.
 	 */
-	public boolean deleteContact(String name) {
+	public boolean deleteContact(String id) {
 
 		boolean deleted = false;
 
-		if (!contacts.containsKey(name)) {
-			contacts.remove(name);
+		if (contacts.containsKey(id)) {
+			contacts.remove(id);
 			deleted = true;
 		}
 
@@ -137,120 +138,164 @@ public class Agenda {
 	 */
 	public Contact searchByID(String id){
 
-		List<Contact> list = (List<Contact>) contacts.values();
+		return contacts.get(id);
 
-		list.sort(new Comparator<Contact>() {
-
-			@Override
-			public int compare(Contact o1, Contact o2) {
-
-				if(o1.getId().compareTo(o2.getId()) > 0)
-					return 1;
-				else if(o1.getId().compareTo(o2.getId()) < 0)
-					return -1;
-				else 
-					return 0;
-			}
-
-		});
-
-		int index = binarySearch(list, 0, list.size()-1, id);
-
-		if (index == -1) {
-			return null;
-		}else {
-			return list.get(index);
-		}
 	}
 
-	/**
-	 * This method uses binary searching to search inside the contacts list.
-	 * <b>Pre:</b> the key is valid.
-	 * <b>Pos:</b> the contact that match with the key is returned.
-	 * @param list the contact´s list with the contacts of interest.
-	 * @param l the first index of the list.
-	 * @param r the last index of the list.
-	 * @param key the attribute to be compare with the rest inside the list to partitionate the list.
-	 * @return the index where is located the contact that match with the key received.
-	 */
-	private int binarySearch(List<Contact> list, int l, int r, String key) {
 
-		if (r >= l) { 
-			int mid = l + (r - l) / 2; 
-
-
-			if (list.get(mid).getId().compareToIgnoreCase(key) == 0) 
-				return mid; 
-
-
-			if (list.get(mid).getId().compareToIgnoreCase(key) > 0) 
-				return binarySearch(list, l, mid - 1, key); 
-
-
-			return binarySearch(list, mid + 1, r, key); 
-		} 
-
-		return -1; 
-	}
 
 	/**
 	 * This method searchs a contact by its name.
 	 * <b>Pre:</b> the name is valid.
 	 * <b>Pos:</b> the list with the possible matchings is returned.
 	 * @param name the name of the contact(s) to be searched.
-	 * @return the list that contains all the possible entries that match with the received name.
 	 */
-	public List<Contact> searchByName(String name){
+	public void searchByName(String name){
 
-		List<Contact> list = (List<Contact>) contacts.values();
+		contactsView = (List<Contact>) contacts.values();
 
-		for (int i = 0; i < list.size(); i++) {
-			if (!list.get(i).getName().equalsIgnoreCase(name)) {
-				list.remove(i);
+		for (int i = 0; i < contactsView.size(); i++) {
+			if (!contactsView.get(i).getName().contains(name)) {
+				contactsView.remove(i);
 			}
 		}
 
-		return list;
+
 	}
 
 	/**
 	 * This method searchs a contact by its age.
 	 * <b>Pre:</b> the age is valid.
 	 * <b>Pos:</b> the list with the possible matchings is returned.
-	 * @param age the age of the contact(s) to be searched.
-	 * @return the list that contains all the possible entries that match with the received age.
+	 * @param age1 the age of the contact(s) to be searched.
+	 * @param operation indicates if we are looking for an age equal, after or before the given age
 	 */
-	public List<Contact> searchByAge(int age){
+	public void searchByAge(int age1, int operation){
 
-		List<Contact> list = (List<Contact>) contacts.values();
+		contactsView = (List<Contact>) contacts.values();
 
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getAge() != age) {
-				list.remove(i);
+		if (operation == 0) {
+
+			for (int i = 0; i < contactsView.size(); i++) {
+				if (contactsView.get(i).getAge() != age1) {
+					contactsView.remove(i);
+				}
 			}
+
+		}else if (operation == 1) { //buscar menores a age1
+
+			for (int i = 0; i < contactsView.size(); i++) {
+				if (contactsView.get(i).getAge() >= age1) {
+					contactsView.remove(i);
+				}
+			}
+
+		}else if (operation == 2) { //buscar mayores a age1
+
+			for (int i = 0; i < contactsView.size(); i++) {
+				if (contactsView.get(i).getAge() <= age1) {
+					contactsView.remove(i);
+				}
+			}
+
 		}
 
-		return list;
 	}
+
 
 	/**
 	 * This method searchs a contact by its date of birth.
 	 * <b>Pre:</b> the date of birth is valid.
 	 * <b>Pos:</b> the list with the possible matchings is returned.
-	 * @param date the date of birth of the contact(s) to be searched.
-	 * @return the list that contains all the possible entries that match with the received date of birth.
+	 * @param day1 the day of birth of the contact(s) to be searched.
+	 * @param month1 the month of birth of the contact(s) to be searched.
+	 * @param day2 the second day used to search on an interval.
+	 * @param month2 the second month used to search on an interval.
+	 * @param operation indicates if we are looking for a date equal, after or before the given date
 	 */
-	public List<Contact> searchByDateOfBirth(LocalDate date){
+	public void searchByDateOfBirth(int day1, int month1, int day2, int month2, int operation){
 
-		List<Contact> list = (List<Contact>) contacts.values();
+		contactsView  = (List<Contact>) contacts.values();
 
-		for (int i = 0; i < list.size(); i++) {
-			if (!list.get(i).getDateOfBirth().equals(date)) {
-				list.remove(i);
+		if (operation == 0) { // fechas iguales a day1/month1
+
+			for (int i = 0; i < contactsView.size(); i++) {
+				if(contactsView.get(i).getDateOfBirth().getDayOfMonth() != day1 || 
+						contactsView.get(i).getDateOfBirth().getMonthValue() != month1) {
+
+					contactsView.remove(i);
+				}
 			}
+
+		}else if (operation == 1) { // fechas anteriores a day1/month1
+
+			for (int i = 0; i < contactsView.size(); i++) {
+
+				if (contactsView.get(i).getDateOfBirth().getMonthValue() > month1) {
+					contactsView.remove(i);
+				}else if (contactsView.get(i).getDateOfBirth().getMonthValue() == month1) {
+
+					if (contactsView.get(i).getDateOfBirth().getDayOfMonth() >= day1) {
+						contactsView.remove(i);
+					}
+				}
+
+			}
+
+		}else if (operation == 2) { // fechas posteriores a day1/month1
+
+			for (int i = 0; i < contactsView.size(); i++) {
+
+				if (contactsView.get(i).getDateOfBirth().getMonthValue() < month1) {
+					contactsView.remove(i);
+				}else if (contactsView.get(i).getDateOfBirth().getMonthValue() == month1) {
+
+					if (contactsView.get(i).getDateOfBirth().getDayOfMonth() <= day1) {
+						contactsView.remove(i);
+					}
+				}
+
+			}
+
+		}else {
+			searchBetweenTwoDates(day1, month1, day2, month2);
 		}
 
-		return list;
+	}
+
+	/**
+	 * This method searchs a contact between two dates.
+	 * <b>Pre:</b> the date of birth is valid.
+	 * <b>Pos:</b> the list with the possible matchings is returned.
+	 * @param day1 the first day used to search on an interval.
+	 * @param month1 the first month used to search on an interval.
+	 * @param day2 the second day used to search on an interval.
+	 * @param month2 the second month used to search on an interval.
+	 */
+	private void searchBetweenTwoDates(int day1, int month1, int day2, int month2) {
+
+		for (int i = 0; i < contactsView.size(); i++) {
+
+			if (contactsView.get(i).getDateOfBirth().getMonthValue() < month1 
+					|| contactsView.get(i).getDateOfBirth().getMonthValue() > month2) {
+
+				contactsView.remove(i);
+
+			}else if ((contactsView.get(i).getDateOfBirth().getDayOfMonth() < day1 && contactsView.get(i).getDateOfBirth().getMonthValue() == month1) 
+					|| (contactsView.get(i).getDateOfBirth().getDayOfMonth() > day2 && contactsView.get(i).getDateOfBirth().getMonthValue() == month2)) {
+
+				contactsView.remove(i);
+
+			}
+
+		}
+
+	}
+
+	public void listOfSubjects() {
+
+		subjectView = new ArrayList<Subject>(subjects.values());
+
 	}
 
 	/**
@@ -258,19 +303,31 @@ public class Agenda {
 	 * <b>Pre:</b> the subject name is valid.
 	 * <b>Pos:</b> the list with the possible matchings is returned.
 	 * @param name the name of the subject that the contact(s) would have added to their lists.
-	 * @return the list that contains all the possible entries that match with the received subject's name.
 	 */
-	public List<Contact> searchBySubject(String name){ 
+	public void searchBySubject(String name){ 
 
-		List<Contact> list = (List<Contact>) contacts.values();
+		contactsView = (List<Contact>) contacts.values();
 
-		for (int i = 0; i < list.size(); i++) {
-			if (!list.get(i).getMySubjects().containsKey(name)) {
-				list.remove(i);
+		for (int i = 0; i < contactsView.size(); i++) {
+			if (!contactsView.get(i).getMySubjects().containsKey(name)) {
+				contactsView.remove(i);
 			}
 		}
 
-		return list;
+	}
+
+	public boolean createSubject(String name, int numberOfCredits) {
+
+		boolean created = false;
+
+		if (!subjects.containsKey(name)) {
+			Subject sub  = new Subject(name, numberOfCredits, 0);
+			subjects.put(name, sub);
+			created = true;
+		}
+
+		return created;
+
 	}
 
 	/**
@@ -287,6 +344,8 @@ public class Agenda {
 
 		if (subjects.containsKey(subjectName) && contacts.containsKey(studentId)) {
 			contacts.get(studentId).getMySubjects().put(subjectName, subjects.get(subjectName));
+			int x = subjects.get(subjectName).getStudentsEnrolled();
+			subjects.get(subjectName).setStudentsEnrolled(x+1);
 			added = true;
 		}
 
@@ -309,6 +368,8 @@ public class Agenda {
 
 			if (contacts.get(studentId).getMySubjects().containsKey(subjectName)) {
 				contacts.get(studentId).getMySubjects().remove(subjectName);
+				int x = subjects.get(subjectName).getStudentsEnrolled();
+				subjects.get(subjectName).setStudentsEnrolled(x-1);
 				removed = true;
 			}
 
@@ -401,7 +462,7 @@ public class Agenda {
 	public List<Contact> getContactsView(){
 		return contactsView;
 	}
-	
+
 	/**
 	 * This method returns the subject list used for the visibility for the user.
 	 * <b>Pre:</b> the agenda exists.
@@ -410,7 +471,7 @@ public class Agenda {
 	public List<Subject> getSubjectView(){
 		return subjectView;
 	}
-	
+
 	/**
 	 * This method reads the information from a database to create the subjects available for contacts
 	 * <b>Pre:</b> the file exists.
@@ -446,7 +507,7 @@ public class Agenda {
 		}
 
 	}
-	
+
 	/**
 	 * This method reads the information from a databse to create the contacts available for the first time the program launchs.
 	 * <b>Pre:</b> the file exists.
@@ -463,7 +524,7 @@ public class Agenda {
 			while(line != null) {
 
 				st = new StringTokenizer(line, ",");
-			
+
 				String id = st.nextToken();
 				String avatar = st.nextToken();
 				String name = st.nextToken();
@@ -489,7 +550,7 @@ public class Agenda {
 
 		}
 	}
-	
+
 	/**
 	 * This method overrides the contacts database everytime information is edited or a new contact entry is added.
 	 * <b>Pre:</b> the contacts exists.
@@ -501,13 +562,13 @@ public class Agenda {
 		List<Contact> con = new ArrayList<Contact>(contacts.values());
 
 		for (Contact c : con) {
-			
+
 			int d = c.getDateOfBirth().getDayOfMonth();
 			int m = c.getDateOfBirth().getMonthValue();
 			int y = c.getDateOfBirth().getYear();
-			
+
 			String date = d + "/" + m + "/" + y;
-			
+
 			try {
 				message += c.getId() + "," + c.getAvatar() + "," + c.getName() + "," + c.getEmail() + "," + c.getPhonenumber()
 				+ "," + date + "," + c.getAge() + "," + c.getEnrolledCredits() + "\n";
@@ -525,4 +586,37 @@ public class Agenda {
 			}
 		}
 	}
+
+	public void writeSubjects() {
+		String message = "";
+
+		List<Subject> sub = new ArrayList<Subject>(subjects.values());
+
+		for (Subject c : sub) {
+
+			
+
+			try {
+				message += c.getName() + "," + c.getNumberCredits() + "," + c.getStudentsEnrolled() + "\n";
+
+				FileWriter fw;
+
+				fw = new FileWriter(PATH_SUBJECTS);
+				BufferedWriter bw = new BufferedWriter(fw);
+				PrintWriter out = new PrintWriter(bw);
+
+				out.print(message);
+				out.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 }
+
+
+
+
+
+
