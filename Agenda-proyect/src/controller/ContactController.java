@@ -346,10 +346,13 @@ public class ContactController implements Initializable{
 		txtF_age.setText(mainController.getContactAge(contact));
 		String[] birthday = mainController.getContactBirthday(contact).split(" ");
 		txtF_DayBirthday.setText(birthday[0]);
-		cBox_MonthBirthday.setPromptText(birthday[1]);
+		//cBox_MonthBirthday.setPromptText(birthday[1]);
 		//txtF_Carrera.setText(mainController.getContactCarrera(contact));
 		label_TotalCredits.setText(mainController.getContactEnrolledCreditsNumber(contact));
 		//image_Avatar.mainController.getContactId(contact));
+		ObservableList<String> list = FXCollections.observableArrayList(mainController.getSubjectsNameContact(contact));
+		listView_ContactSubject.setItems(list);
+		
 	}
 	
 	private void loadCBoxMonths() {
@@ -484,7 +487,7 @@ public class ContactController implements Initializable{
 		txtF_DayBirthday.setEditable(false);
 		cBox_MonthBirthday.setEditable(false);
 		txtF_Carrera.setEditable(false);
-
+		showContact();
 	}
 
 	/**
@@ -493,6 +496,8 @@ public class ContactController implements Initializable{
 	 */
 	public void setMainController(MainController mainController) {
 		this.mainController = mainController;
+		subject = 0;
+		contact =0;
 	}
 
 

@@ -38,6 +38,8 @@ public class Agenda {
 	//contact's list visible for the user
 	private List<Contact> contactsView;
 	private List<Subject> subjectView; ///all subjects******************
+	
+	private List<String> contactsName;
 
 	//paths to read text files with information required
 	public final static String PATH_SUBJECTS = "data/subjects.txt";
@@ -78,7 +80,7 @@ public class Agenda {
 
 		readStudents();
 		readSubjects();
-
+		listOfContacts();
 		//writeContacts();
 		//writeSubjects();
 	}
@@ -318,6 +320,15 @@ public class Agenda {
 			}
 		});
 		
+		
+	}
+	
+	public List<String> getContactsName(){
+		contactsName=new ArrayList<String>();
+		for (int i = 0; i < contactsView.size(); i++) {
+			contactsName.add(contactsView.get(i).getName());
+		}
+		return contactsName;
 	}
 
 	/**

@@ -228,6 +228,7 @@ public class AgendaController implements Initializable{
 		//lista con la info de los contactos a mostrar
 		updateListView_Contacts();
 		
+		
 	}
 
 	//muestra en el menau las opciones de busqueda y filtrado
@@ -239,6 +240,8 @@ public class AgendaController implements Initializable{
 	private void searchPage(MouseEvent event) {
 		setVisual_InitialSearchPage();
 		setVisual_ShowContacts();
+		showList();
+		//contactController.setVisual_ShowContact();
 	}
 
 	//muestra vista de contacto
@@ -301,6 +304,8 @@ public class AgendaController implements Initializable{
 		listView_Contacts.setVisible(true);
 		ObservableList<String> list = FXCollections.observableArrayList(mainController.getContactsName());
 		listView_Contacts.setItems(list);
+		row_listView_Contacts.setMinHeight(200);
+		listView_Contacts.setMinHeight(200);
 	}
 
 	private void setVisual_SearchName() {

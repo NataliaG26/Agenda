@@ -208,7 +208,7 @@ public class Contact {
 	public List<Subject> getListOfSubjects(){
 		
 		List<Subject> l = new ArrayList<Subject>(mySubjects.values());
-		
+		System.out.println(l.size());
 		return l;
 		
 	}

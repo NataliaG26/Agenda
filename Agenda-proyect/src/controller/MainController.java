@@ -107,16 +107,16 @@ public class MainController {
 
 	/*
 	 * retorna el nombre de la materia en la posicion subject de la lista de las materias del contacto en la posicion contact de la lista contactsView
-	 *
+	 */
 	public String getSubjectNameContact(int contact, int subject) {
-		return agenda.getContactsView().get(contact).getMySubjectsList().get(subject).getName();
+		return agenda.getContactsView().get(contact).getListOfSubjects().get(subject).getName();
 	}
 
 	/*
 	 * retorna el numero de creditos de la materia en la posicion subject de la lista de las materias del contacto en la posicion contact de la lista contactsView
-	 *
+	 */
 	public String getSubjectCreditsContact(int contact, int subject) {
-		return agenda.getContactsView().get(contact).getMySubjectsList().get(subject).getNumberCredits()+"";
+		return agenda.getContactsView().get(contact).getListOfSubjects().get(subject).getNumberCredits()+"";
 	}
 
 	/*
@@ -127,9 +127,29 @@ public class MainController {
 	}
 
 	 */
+	
+	public void masterFilter(String type1, String type2, String type3, String type4, String type5, String type6) {
+		
+	}
 
 	public List<String> getContactsName(){
-		return new ArrayList<String>();
+		return agenda.getContactsName();
+	}
+	
+	public List<String> getSubjectsName(){
+		List<String> names = new ArrayList<String>();
+		for (int i = 0; i < agenda.getSubjectView().size(); i++) {
+			names.add(agenda.getSubjectView().get(i).getName());
+		}
+		return names;
+	}
+	
+	public List<String> getSubjectsNameContact(int contact){
+		List<String> names = new ArrayList<String>();
+		for (int i = 0; i < agenda.getContactsView().get(contact).getListOfSubjects().size(); i++) {
+			names.add(agenda.getContactsView().get(contact).getListOfSubjects().get(i).getName());
+		}
+		return names;
 	}
 
 	/**
