@@ -10,11 +10,8 @@ import javafx.scene.input.MouseEvent;
 
 public class NewSubjectController implements Initializable{
 	
-<<<<<<< Updated upstream
-	//ContactController
-=======
+
 	ContactController contact;
->>>>>>> Stashed changes
 	
     @FXML
     private TextField txtF_Name;
