@@ -1,4 +1,5 @@
-A00355727,https://pbs.twimg.com/media/C_A9sjWXoAEmAUQ.jpg,Luis Felipe Sanchez Vega,vegafelipe015@gmail.com,3176737525,27/9/2000,19,112
+A00355727,https://pbs.twimg.com/media/C_A9sjWXoAEmAUQ.jpg,Luis Felipe Sanchez Vega,vegafelipe015@gmail.com,3176737525,27/9/2000,19,0
+>>>>>>> f75aba8d2bc5bf1c3bae6ef28c18a1beb6677c73
 A00354849,     ,Natalia Isabel Gonzalez Murillo,natalia.gonzalez3@correo.icesi.edu.co,3217335600,26/11/1999,20,0
 A00056020,   ,Gabriel Cruz Libreros,gabrielcl45@gmail.com,3113165736,26/2/1994,25,0
 A00295744,https://vignette.wikia.nocookie.net/jojo/images/3/35/Jotarokujo_anime.png/revision/latest?cb=20170302000829&path-prefix=es,Johann Andrei Ocampo Torres,johann0117@live.com,3156352435,20/6/2000,19,0
@@ -15,13 +16,13 @@ A00049184,https://drive.google.com/file/d/0B-3IR2yxjXOseHpVQnRhTFlfREU/view?usp=
 A00049152,https://drive.google.com/open?id=1eniDi-vy6PwBfg4z8W6wb5jvZInrSOoD,Elías Estupinan,simply753@gmail.com,3225921114,12/12/1996,23,0
 A00354577,https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/S.Martini.jpg/220px-S.Martini.jpg,Cabrera Nieto Sergio Alejandro,sergiocabreranieto@gmail.com,3214286125,11/10/1999,20,0
 A00355624,    ,Christian Flor Astudillo,christian.flor43@gmail.com,3006780898,7/5/2001,18,0
-A00354573,https://www.lanetanoticias.com/wp-content/uploads/2018/04/2-75.jpg,Juan David Lectamo,l3c74m0@gmail.com,3134567865,12/10/1999,19,0
 A00345026,    ,Cesar Canales,sleepata6@gmail.com,3128854847,8/9/1999,20,0
+A00354573,https://www.lanetanoticias.com/wp-content/uploads/2018/04/2-75.jpg,Juan David Lectamo,l3c74m0@gmail.com,3134567865,12/10/1999,19,0
 A00348435,https://drive.google.com/file/d/1O0swckdWAJLrMx-1ivVJg1r2sUpqJ6Hr/view?usp=sharing,Oscar Ivan Riascos Guevara,osvan202@gmail.com,3152363380,17/2/2000,19,0
 A00348047,   ,Lina Salinas Delgado,linasalinasd7@gmail.com,3182614334,31/5/1999,20,0
-A00354217,   ,Jairo Emilio Rodriguez Viveros,jairitox2000@gmail.com,3101234452,29/3/2000,19,0
 A00354694,https://s3.eestatic.com/2018/05/25/espana/tribunales/Audiencia_Nacional-Estado_Islamico-GAL-Tribunales_309980854_79280221_1024x576.jpg,Daniel Fernández,alejo.dafr@gmail.com,3122199411,3/4/2001,18,0
-A00354350,    ,Alejandro Martinez Martinez,alejomam2011@gmail.com,3112345674,27/3/2000,19,0
+A00354217,   ,Jairo Emilio Rodriguez Viveros,jairitox2000@gmail.com,3101234452,29/3/2000,19,0
 A00355710,https://avatars2.githubusercontent.com/u/47871531?s=460&v=4,Mora Mora Jhon Edward,jhonedmora@gmail.com,3166360553,13/12/2000,19,0
+A00354350,    ,Alejandro Martinez Martinez,alejomam2011@gmail.com,3112345674,27/3/2000,19,0
 A00351422,  ,Ramirez Ramirez Mateo,mateoboom@hotmail.com,3174149631,10/11/2000,19,0
 A00355275,   ,Critian Camilo Lasso Hernandez,crisca_25@hotmail.com,3165301157,25/6/2000,19,0

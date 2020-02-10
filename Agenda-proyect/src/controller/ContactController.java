@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
@@ -106,7 +107,7 @@ public class ContactController implements Initializable{
 
 	@FXML
 	private TextField txtF_SubjectDep;
-	
+
 	@FXML
 	private Label label_Dep;
 
@@ -126,7 +127,7 @@ public class ContactController implements Initializable{
 		contact = 0;
 		mainController = null;
 	}
-	
+
 	/**
 	 * change the object mainController for to do the conection with the main controller class
 	 * @param mainController
@@ -136,7 +137,7 @@ public class ContactController implements Initializable{
 		subject = 0;
 		contact = 0;
 	}
-	
+
 	/**
 	 * shows the contact´s information in contacts window
 	 */
@@ -163,9 +164,9 @@ public class ContactController implements Initializable{
 		}
 		ObservableList<String> list = FXCollections.observableArrayList(mainController.getSubjectsNameContact(contact));
 		listView_ContactSubject.setItems(list);
-		
+
 	}
-	
+
 	@FXML
 	/**
 	 * This method adds a new subject into the current student subject list.
@@ -192,12 +193,12 @@ public class ContactController implements Initializable{
 		addSubject.setContact(this);
 		addSubject.loadCBox(mainController.getSearchSubjectOptions());
 	}
-	
+
 	public void addSubject(String subject) {
 		mainController.addSubject(contact, subject);
 		setVisual_ListViewSubject();
 	}
-	
+
 	public void newSubject() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\ui\\NewSubject.fxml"));
 		Parent root;
@@ -216,12 +217,12 @@ public class ContactController implements Initializable{
 		NewSubjectController newSubject = loader.getController();
 		newSubject.setContact(this);
 	}
-	
+
 	public void newSubject(String name, String credits) {
 		int c= Integer.parseInt(credits);
 		mainController.newSubject(name, c);
 	}
-	
+
 	@FXML
 	/**
 	 * This method allows to return for an specific view of an specific contact to a general view of all contacts
@@ -280,13 +281,14 @@ public class ContactController implements Initializable{
 			String email = txtF_Email.getText();
 			String phonenumber = txtF_PhoneNumber.getText();
 			int age = Integer.parseInt(txtF_age.getText());
-			String dateofbirth = txtF_DayBirthday.getText()+","+cBox_MonthBirthday.getValue();
+			String date = txtF_DayBirthday.getText()+","+cBox_MonthBirthday.getValue();
+			LocalDate dateofbirth = LocalDate.parse(date);
 			mainController.newContact(id, avatar, name, email, phonenumber, dateofbirth, age);
 		}
-		
+
 		setVisual_ShowContact();
 		showContact();
-		
+
 	}
 
 	@FXML
@@ -300,7 +302,7 @@ public class ContactController implements Initializable{
 		//mostar materia
 		setVisual_ShowSubjectSelected();
 		showSubject();
-		
+
 	}
 
 	@FXML
@@ -314,7 +316,7 @@ public class ContactController implements Initializable{
 		//si: borrar contacto seleccionado
 		//no: no hacer nada
 	}
-	
+
 
 	@FXML
 	/**
@@ -367,8 +369,8 @@ public class ContactController implements Initializable{
 	//cambia la vista de la ventana para el estado de agregar contacto
 	public void setVisualNewContact() {
 		setVisual_EditContact();
-		
-		
+
+
 		//create a contact conect with model
 
 	}
@@ -378,15 +380,15 @@ public class ContactController implements Initializable{
 	 */
 	private void showSubject() {
 		//modificar info subject
-    	txtF_SubjectName.setText(mainController.getSubjectNameContact(contact, subject));
-    	txtF_CredistSubject.setText(mainController.getSubjectNameContact(contact, subject));
+		txtF_SubjectName.setText(mainController.getSubjectNameContact(contact, subject));
+		txtF_CredistSubject.setText(mainController.getSubjectNameContact(contact, subject));
 	}
-	
+
 	private void loadCBoxMonths() {
 		ObservableList<String> list = FXCollections.observableArrayList(Agenda.MONTHS);
 		cBox_MonthBirthday.setItems(list);
 	}
-	
+
 	/**
 	 * change the contact window view for to edit subject, able editing, and shows only the options that are allowed
 	 */
@@ -440,7 +442,7 @@ public class ContactController implements Initializable{
 		txtF_DayBirthday.setEditable(true);
 		cBox_MonthBirthday.setEditable(true);
 		txtF_Carrera.setEditable(true);
-		
+
 		loadCBoxMonths();
 	}
 
@@ -484,9 +486,9 @@ public class ContactController implements Initializable{
 		txtF_CredistSubject.setEditable(false);
 		txtF_SubjectDep.setEditable(false);
 		txtF_SubjectName.setEditable(false);
-		
+
 	}
-	
+
 	public void setVisual_ListViewSubject() {
 		ObservableList<String> list = FXCollections.observableArrayList(mainController.getSubjectsNameContact(contact));
 		listView_ContactSubject.setItems(list);
@@ -508,7 +510,7 @@ public class ContactController implements Initializable{
 
 		image_EditContact.setFitWidth(MainController.ICONE_SIZE);
 		image_deleteContact.setFitWidth(MainController.ICONE_SIZE);
-		
+
 		image_BackToContact.setVisible(true);
 		image_BackToContact.setFitWidth(MainController.ICONE_SIZE);
 		image_nextContact.setVisible(true);

@@ -3,6 +3,9 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -34,6 +38,9 @@ public class SummaryController implements Initializable{
 	private Label labelCreditsForStudent;
 
 	@FXML
+	private ImageView image_AddSubject;
+
+	@FXML
 	private ListView<String> listView_Subject;
 
 	@FXML
@@ -43,41 +50,13 @@ public class SummaryController implements Initializable{
 	private Label label_LessEnrolledSubject;
 
 	@FXML
-	private HBox HBox_imagesOptionsSubjects;
-		
-	@FXML
-	private TextField txtF_SubjectName;
-
-	@FXML
-	private TextField txtF_CredistSubject;
+	private Label label_StudentsEnrolledSubject;
 
 	@FXML
 	private TextField txtF_SubjectDep;
 
-	@FXML
-	private Label label_StudentsEnrolledSubject;
-	
-    @FXML
-    private ImageView image_AddSubject;
-
-    @FXML
-    private ImageView image_EditSubject;
-
-    @FXML
-    private ImageView image_CancelEditSubject;
-
-    @FXML
-    private ImageView image_DeleteSubject;
-
-    @FXML
-    private ImageView image_CheckEditSubject;
-
-
-    @FXML
-    private Label label_Dep;
-	
 	private MainController main;
-	
+
 	private int subject;
 
 	@Override
@@ -85,10 +64,11 @@ public class SummaryController implements Initializable{
 	 * This method initializes the current controller for the current stage.
 	 */
 	public void initialize(URL location, ResourceBundle resources) {
-		HBox_imagesOptionsSubjects.setVisible(false);
-		txtF_SubjectName.setEditable(false);
+		main = new MainController();
+		showSubject();
+		
 	}
-	
+
 	/**
 	 * this method sets the main controller.
 	 * <b>Pre:</b> the maincontroller is not null.
@@ -97,60 +77,29 @@ public class SummaryController implements Initializable{
 	public void setMainController(MainController mainController) {
 		this.main = mainController;
 	}
-	
-    @FXML
-    void addNewSubject(MouseEvent event) {
-    
-    }
+
+	@FXML
+	void addNewSubject(MouseEvent event) {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\ui\\NewSubject.fxml"));
+		Parent root;
+		try {
+			root = loader.load();
+			Scene scene = new Scene(root);
+			Stage stage = new Stage();
+			stage.setTitle("Nueva materia");
+			Image image = new Image("https://image.flaticon.com/icons/png/512/116/116345.png");
+			stage.getIcons().add(image);
+			stage.setScene(scene);
+			stage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		NewSubjectController newSubject = loader.getController();
+	}
 
 	private void showSubject() {
-		//pedir info
+		main = new MainController();
+		ObservableList<String> list = FXCollections.observableArrayList(main.getSubjectsName());
+		listView_Subject.setItems(list);
 	}
-	
-	////SET VISUAL////////////////////////////////////////////////////////////
-	
-	private void setVisual_EditSubject() {
-		txtF_CredistSubject.setEditable(false);
-		txtF_SubjectName.setEditable(false);
-		
-		txtF_SubjectDep.setEditable(false);
-		txtF_SubjectDep.setVisible(false);
-	}
-	
-	private void setVisual_ShowSubject() {
-		txtF_CredistSubject.setEditable(false);
-		txtF_SubjectName.setEditable(false);
-		
-		txtF_SubjectDep.setEditable(false);
-		txtF_SubjectDep.setVisible(false);
-	}
-	
-	public void setVisual_ShowSummary() {
-		setVisual_ShowSubject();
-	}
-
-	    @FXML
-	    void addSubject(MouseEvent event) {
-
-	    }
-
-	    @FXML
-	    void cancelEditSubject(MouseEvent event) {
-
-	    }
-
-	    @FXML
-	    void checkEditSubject(MouseEvent event) {
-
-	    }
-
-	    @FXML
-	    void delateSubject(MouseEvent event) {
-
-	    }
-
-	    @FXML
-	    void editSubject(MouseEvent event) {
-
-	    }
 }

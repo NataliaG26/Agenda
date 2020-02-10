@@ -278,7 +278,7 @@ public class AgendaController implements Initializable{
 	 */
 	private void summary(MouseEvent event) {
 		summaryController = loadScene(MainController.ID_SUMMARY).getController();
-		summaryController.setVisual_ShowSummary();
+		summaryController.setMainController(mainController);
 	}
 	
 	@FXML
@@ -326,6 +326,14 @@ public class AgendaController implements Initializable{
 			System.out.println(txtF_Search.getText()+" Age");
 			mainController.masterSearch(cBox_Principal.getValue(), cBox_OtherOption.getValue(), txtF_Search.getText(), day1, cBox_MonthsFirstDate.getValue(), day2, cBox_MonthsSecondDate.getValue());
 		
+			
+		}
+		else if(cBox_Principal.getValue().equals(Agenda.SEARCH_BIRTHDAY)) {
+			
+		}
+		else if(btnSearch.getText().equals("Ordenar")) {
+			mainController.masterSort(cBox_Principal.getValue());
+			System.out.println("ordenar");
 			
 		}
 		updateListView_Contacts();
