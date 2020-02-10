@@ -398,6 +398,12 @@ public class Agenda {
 				contacts.get(studentId).getMySubjects().remove(subjectName);
 				int x = subjects.get(subjectName).getStudentsEnrolled();
 				subjects.get(subjectName).setStudentsEnrolled(x-1);
+				
+				int y = contacts.get(studentId).getEnrolledCredits();
+				int c = subjects.get(subjectName).getNumberCredits();
+				
+				contacts.get(studentId).setEnrolledCredits(y-c);
+				
 				removed = true;
 			}
 
