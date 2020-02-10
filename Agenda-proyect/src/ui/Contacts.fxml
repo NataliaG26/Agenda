@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -53,7 +54,10 @@
          <children>
             <VBox alignment="CENTER" prefHeight="191.0" prefWidth="270.0">
                <children>
-                  <ImageView fx:id="image_Contact" fitHeight="141.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="image_Contact" fitHeight="141.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin></ImageView>
                   <TextField fx:id="txtF_Name" alignment="CENTER" promptText="Nombre" style="-fx-background-color: white;" />
                   <TextField fx:id="txtF_LastName" alignment="CENTER" promptText="Apellido" style="-fx-background-color: white;" />
                </children>

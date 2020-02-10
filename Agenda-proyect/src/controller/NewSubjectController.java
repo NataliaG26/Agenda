@@ -6,7 +6,9 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class NewSubjectController implements Initializable{
 	
@@ -18,10 +20,16 @@ public class NewSubjectController implements Initializable{
 
     @FXML
     private TextField txtF_Credits;
+        
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+	}
 
     @FXML
     void cancel(MouseEvent event) {
-
+    	Stage stage = (Stage) txtF_Name.getScene().getWindow();
+    	stage.close();
     }
 
     @FXML
@@ -31,11 +39,4 @@ public class NewSubjectController implements Initializable{
     public void setContact(ContactController contactC) {
     	contact = contactC;
     }
-    
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

@@ -32,7 +32,7 @@ public class MainController {
 		agenda = new Agenda();
 
 	}
-
+	
 	/**
 	 * This method returns the size of the visible list for the user, after executing the requested filter.
 	 * @return the size of the list.
@@ -46,6 +46,15 @@ public class MainController {
 	 */
 	public String getContactName(int i) {
 		return agenda.getContactsView().get(i).getName();
+	}
+	
+	/**
+	 * Returns the avatar of the contact in the position i from the visible list for the user
+	 * @param i the position of the contact
+	 * @return the avatar of the contact
+	 */
+	public String getContactAvatar(int i) {
+		return agenda.getContactsView().get(i).getAvatar();
 	}
 
 	/*
@@ -85,13 +94,6 @@ public class MainController {
 	}
 
 	/*
-	 * retorna la carrera del contacto en la posicion i de la lista que sera visible al usuario, despues de realizar el filtro solicitado
-	 *
-	public String getContactCarrera(int i) {
-		return agenda.getContacts().get(i).getCarrera();
-	}*/
-
-	/*
 	 * retorna la fecha de cumpelaños del contacto en la posicion i de la lista que sera visible al usuario, despues de realizar el filtro solicitado
 	 */
 	public String getContactEnrolledCreditsNumber(int i) {
@@ -119,19 +121,7 @@ public class MainController {
 		return agenda.getContactsView().get(contact).getListOfSubjects().get(subject).getNumberCredits()+"";
 	}
 
-	/*
-	 * retorna el departamento de la materia en la posicion subject de la lista de las materias del contacto en la posicion contact de la lista contactsView
-	 *
-	public String getSubjectDepContact(int contact, int subject) {
-		return agenda.getContactsView().get(contact).getMySubjects().get(subject).
-	}
-
-	 */
 	
-	public void masterFilter(String type1, String type2, String type3, String type4, String type5, String type6) {
-		
-	}
-
 	public List<String> getContactsName(){
 		return agenda.getContactsName();
 	}
@@ -199,7 +189,7 @@ public class MainController {
 	}
 	
 	/**
-	 * return a list with birthday option searching
+	 * return a list with subjects
 	 */
 	public List<String> getSearchSubjectOptions(){
 		List<String> subjectOptions = new ArrayList<String>();
@@ -217,9 +207,13 @@ public class MainController {
 		//nueva materia, parametros 
 		
 	}
-
-	/*
-	 * 
+	
+	/**
+	 * This method allows to connect between the different controllers and fxml files.
+	 * <b>Pre:</b> the fxmlloader exists.
+	 * <b>Pos:</b> the connection is loaded when requested.
+	 * @param fxml the responsible for loading the connection.
+	 * @param controller the responsible for manage the connection.  
 	 */
 	public void conection(FXMLLoader fxml, String controller) {
 		if(controller.equals(ID_AGENDA)) {

@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class AddSubjectController implements Initializable{
 	
@@ -25,9 +26,15 @@ public class AddSubjectController implements Initializable{
     @FXML
     private ImageView image_Check;
 
+    @Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+    	
+	}
+    
     @FXML
     void cancel(MouseEvent event) {
-    	
+    	Stage stage = (Stage) cBox_Subject.getScene().getWindow();
+    	stage.close();
     }
 
     @FXML
@@ -50,11 +57,4 @@ public class AddSubjectController implements Initializable{
     	ObservableList<String> list = FXCollections.observableArrayList(subjects);
 		cBox_Subject.setItems(list);
     }
-    
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

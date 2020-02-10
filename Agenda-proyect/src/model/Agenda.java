@@ -22,7 +22,7 @@ import java.util.logging.SimpleFormatter;
 import javafx.scene.control.ListView;
 
 /**
- * This class manage the necessary attributes and methods to create agenda.
+ * This class manage the necessary attributes and methods to create agendas.
  * @author Natalia Isabel Gonzalez
  * @author Lina Johanna Salinas
  * @author Luis Felipe Sanchez
@@ -37,7 +37,7 @@ public class Agenda {
 
 	//contact's list visible for the user
 	private List<Contact> contactsView;
-	private List<Subject> subjectView; ///all subjects******************
+	private List<Subject> subjectView; 
 	
 	private List<String> contactsName;
 
@@ -62,29 +62,98 @@ public class Agenda {
 	public final static String FILTER_AGE_OLDER = "Mayor que";
 	public final static String FILTER_AGE_JOUNGER = "Menor que";
 
-	//public final static String ORDER = "Ordenar";
 	//Sorting interests
 	public final static String ORDER_NAME = "Por nombre A-Z";
 	public final static String ORDER_BIRTHDAY = "Por fecha de cumpleaños";
 	public final static String ORDER_AGE = "Por edad";
-
+	
+	//Months of the year
 	public final static String[] MONTHS = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
 
 	/**
 	 * <b>Agenda Constructor</b>
+	 * This method allows to build agendas.
 	 */
 	public Agenda() {
-
+		
 		contacts = new Hashtable<String, Contact>();
 		subjects = new Hashtable<String, Subject>();
 
 		readStudents();
 		readSubjects();
 		listOfContacts();
-		//writeContacts();
-		//writeSubjects();
+		listOfSubjects();
+	}
+	
+	/**
+	 * This method returns the contacts list saved on this agenda.
+	 * <b>Pre:</b> the agenda exists.
+	 * @return the contacts list.
+	 */
+	public Hashtable<String, Contact> getContacts(){
+		return contacts;
 	}
 
+	/**
+	 * This method returns the available subjects list saved on this agenda.
+	 * <b>Pre:</b> the agenda exists.
+	 * @return the subjects list.
+	 */
+	public Hashtable<String, Subject> getSubjects(){
+		return subjects;
+	}
+
+	/**
+	 * This method returns the contacts list used for the visibility for the user.
+	 * <b>Pre:</b> the agenda exists.
+	 * @return the contacts list.
+	 */
+	public List<Contact> getContactsView(){
+		return contactsView;
+	}
+
+	/**
+	 * This method returns the subject list used for the visibility for the user.
+	 * <b>Pre:</b> the agenda exists.
+	 * @return the contacts list.
+	 */
+	public List<Subject> getSubjectView(){
+		return subjectView;
+	}
+	
+	/**
+	 * This method lists all the subjects stored on the agenda until now.
+	 * <b>Pos:</b> the subjects are stored on a list.
+	 */
+	public void listOfSubjects() {
+		subjectView = new ArrayList<Subject>(subjects.values());
+	}
+	
+	/**
+	 * This method lists all the contacts stored on the agenda until now.
+	 * (on alphabetical order using lexicographic order).
+	 * <b>Pos:</b> the contacts are stored in alphabetical order inside a list. 
+	 */
+	public void listOfContacts() {
+		
+		contactsView = new ArrayList<Contact>(contacts.values());
+		
+		Collections.sort(contactsView, new Comparator<Contact>() {
+
+			@Override
+			public int compare(Contact o1, Contact o2) {
+				
+				if (o1.getName().compareTo(o2.getName()) > 0) {
+					return 1;
+				}else if (o1.getName().compareTo(o2.getName()) < 0) {
+					return -1;
+				}else {
+					return 0;
+				}	
+			}
+		});	
+	}
+	
 	/**
 	 * This method adds a new entry contact 
 	 * <b>Pre:</b> the information of the contact is valid
@@ -143,8 +212,6 @@ public class Agenda {
 		return contacts.get(id);
 
 	}
-
-
 
 	/**
 	 * This method searchs a contact by its name.
@@ -293,35 +360,6 @@ public class Agenda {
 		}
 
 	}
-
-	public void listOfSubjects() {
-
-		subjectView = new ArrayList<Subject>(subjects.values());
-
-	}
-	
-	public void listOfContacts() {
-		
-		contactsView = new ArrayList<Contact>(contacts.values());
-		
-		Collections.sort(contactsView, new Comparator<Contact>() {
-
-			@Override
-			public int compare(Contact o1, Contact o2) {
-				
-				if (o1.getName().compareTo(o2.getName()) > 0) {
-					return 1;
-				}else if (o1.getName().compareTo(o2.getName()) < 0) {
-					return -1;
-				}else {
-					return 0;
-				}
-				
-			}
-		});
-		
-		
-	}
 	
 	public List<String> getContactsName(){
 		contactsName=new ArrayList<String>();
@@ -348,7 +386,15 @@ public class Agenda {
 		}
 
 	}
-
+	
+	/**
+	 * This method created a new subject that later will be available to be add to a contact subject's list.
+	 * <b>Pre:</b> the given data is valid.
+	 * <b>Pos:</b> the subject is created.
+	 * @param name the name of the subject
+	 * @param numberOfCredits the number of credits of the subject.
+	 * @return a boolean that indicates either if the subject could be created or not.
+	 */
 	public boolean createSubject(String name, int numberOfCredits) {
 
 		boolean created = false;
@@ -358,9 +404,7 @@ public class Agenda {
 			subjects.put(name, sub);
 			created = true;
 		}
-
 		return created;
-
 	}
 
 	/**
@@ -482,42 +526,6 @@ public class Agenda {
 	}
 
 	/**
-	 * This method returns the contacts list saved on this agenda.
-	 * <b>Pre:</b> the agenda exists.
-	 * @return the contacts list.
-	 */
-	public Hashtable<String, Contact> getContacts(){
-		return contacts;
-	}
-
-	/**
-	 * This method returns the available subjects list saved on this agenda.
-	 * <b>Pre:</b> the agenda exists.
-	 * @return the subjects list.
-	 */
-	public Hashtable<String, Subject> getSubjects(){
-		return subjects;
-	}
-
-	/**
-	 * This method returns the contacts list used for the visibility for the user.
-	 * <b>Pre:</b> the agenda exists.
-	 * @return the contacts list.
-	 */
-	public List<Contact> getContactsView(){
-		return contactsView;
-	}
-
-	/**
-	 * This method returns the subject list used for the visibility for the user.
-	 * <b>Pre:</b> the agenda exists.
-	 * @return the contacts list.
-	 */
-	public List<Subject> getSubjectView(){
-		return subjectView;
-	}
-
-	/**
 	 * This method reads the information from a database to create the subjects available for contacts
 	 * <b>Pre:</b> the file exists.
 	 * <b>Pos:</b> the information of the subjects is read and the subjects are created.
@@ -631,16 +639,18 @@ public class Agenda {
 			}
 		}
 	}
-
+	
+	/**
+	 * This method overrides the subjects database everytime information is edited.
+	 * <b>Pre:</b> the subjects exists.
+	 * <b>Pos:</b> the information of the subjects is overrided.
+	 */
 	public void writeSubjects() {
 		String message = "";
 
 		List<Subject> sub = new ArrayList<Subject>(subjects.values());
 
 		for (Subject c : sub) {
-
-			
-
 			try {
 				message += c.getName() + "," + c.getNumberCredits() + "," + c.getStudentsEnrolled() + "\n";
 
@@ -657,11 +667,4 @@ public class Agenda {
 			}
 		}
 	}
-
 }
-
-
-
-
-
-

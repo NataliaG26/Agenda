@@ -18,6 +18,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
@@ -126,6 +127,45 @@ public class ContactController implements Initializable{
 		mainController = null;
 	}
 	
+	/**
+	 * change the object mainController for to do the conection with the main controller class
+	 * @param mainController
+	 */
+	public void setMainController(MainController mainController) {
+		this.mainController = mainController;
+		subject = 0;
+		contact =0;
+	}
+	
+	/**
+	 * shows the contact´s information in contacts window
+	 */
+	private void showContact() {
+		//conectar modelo, lista con la info de los contactos
+		//info por parametro correo, codigo, edad, cumplaños, carrera, creditos, avatar, materias,
+		txtF_Name.setText(mainController.getContactName(contact));
+		txtF_PhoneNumber.setText(mainController.getContactPhonenumber(contact));
+		txtF_Email.setText(mainController.getContactEmail(contact));
+		txtF_id.setText(mainController.getContactId(contact));
+		txtF_age.setText(mainController.getContactAge(contact));
+		String[] birthday = mainController.getContactBirthday(contact).split("/");
+		txtF_DayBirthday.setText(birthday[0]);
+		cBox_MonthBirthday.setPromptText(birthday[1]);
+		cBox_MonthBirthday.setEditable(false);
+		txtF_Carrera.setEditable(false);
+		label_TotalCredits.setText(mainController.getContactEnrolledCreditsNumber(contact));
+		String url = mainController.getContactAvatar(contact);
+		if(!url.contains(" ")) {
+			image_Contact.setImage(new Image(url));
+		}
+		else {
+			image_Contact.setImage(new Image("https://www.orthopaedix.de/sites/default/files/2019-12/person.png"));
+		}
+		ObservableList<String> list = FXCollections.observableArrayList(mainController.getSubjectsNameContact(contact));
+		listView_ContactSubject.setItems(list);
+		
+	}
+	
 	@FXML
 	/**
 	 * This method adds a new subject into the current student subject list.
@@ -146,7 +186,6 @@ public class ContactController implements Initializable{
 			stage.setScene(scene);
 			stage.show();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		AddSubjectController addSubject = loader.getController();
@@ -166,10 +205,11 @@ public class ContactController implements Initializable{
 			Scene scene = new Scene(root);
 			Stage stage = new Stage();
 			stage.setTitle("Nueva materia");
+			Image image = new Image("https://image.flaticon.com/icons/png/512/116/116345.png");
+			stage.getIcons().add(image);
 			stage.setScene(scene);
 			stage.show();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		NewSubjectController newSubject = loader.getController();
@@ -196,7 +236,6 @@ public class ContactController implements Initializable{
 		}
 		showContact();
 		setVisual_ShowSubjectNotSelected();
-		System.out.println("back To Contact");
 	}
 
 	@FXML
@@ -210,7 +249,6 @@ public class ContactController implements Initializable{
 		showSubject();
 		//con el contacto actual
 		//no hacer ningun cambio
-		System.out.println("cancel edit contact");
 	}
 
 	@FXML
@@ -223,7 +261,6 @@ public class ContactController implements Initializable{
 		setVisual_ShowSubjectSelected();
 		//con el contacto actual
 		//no hacer ningun cambio
-		System.out.println("cancel edit subject");
 	}
 
 	@FXML
@@ -317,6 +354,8 @@ public class ContactController implements Initializable{
 	//cambia la vista de la ventana para el estado de agregar contacto
 	public void setVisualNewContact() {
 		setVisual_EditContact();
+		
+		
 		//create a contact conect with model
 
 	}
@@ -326,33 +365,8 @@ public class ContactController implements Initializable{
 	 */
 	private void showSubject() {
 		//modificar info subject
-		/*
     	txtF_SubjectName.setText(mainController.getSubjectNameContact(contact, subject));
-    	txtF_CredistSubject.setText(mainController.getSubjectNameContact(contact, subject));
-    	//txtF_SubjectDep.setText(mainController.getSubjectDepContact(contact, subject);
-		 */
-	}
-
-	/**
-	 * shows the contact´s information in contacts window
-	 */
-	private void showContact() {
-		//conectar modelo, lista con la info de los contactos
-		//info por parametro correo, codigo, edad, cumplaños, carrera, creditos, avatar, materias,
-		txtF_Name.setText(mainController.getContactName(contact));
-		txtF_PhoneNumber.setText(mainController.getContactPhonenumber(contact));
-		txtF_Email.setText(mainController.getContactEmail(contact));
-		txtF_id.setText(mainController.getContactId(contact));
-		txtF_age.setText(mainController.getContactAge(contact));
-		String[] birthday = mainController.getContactBirthday(contact).split(" ");
-		txtF_DayBirthday.setText(birthday[0]);
-		//cBox_MonthBirthday.setPromptText(birthday[1]);
-		//txtF_Carrera.setText(mainController.getContactCarrera(contact));
-		label_TotalCredits.setText(mainController.getContactEnrolledCreditsNumber(contact));
-		//image_Avatar.mainController.getContactId(contact));
-		ObservableList<String> list = FXCollections.observableArrayList(mainController.getSubjectsNameContact(contact));
-		listView_ContactSubject.setItems(list);
-		
+    	txtF_CredistSubject.setText(mainController.getSubjectNameContact(contact, subject));		
 	}
 	
 	private void loadCBoxMonths() {
@@ -360,7 +374,6 @@ public class ContactController implements Initializable{
 		cBox_MonthBirthday.setItems(list);
 	}
 	
-
 	/**
 	 * change the contact window view for to edit subject, able editing, and shows only the options that are allowed
 	 */
@@ -379,7 +392,6 @@ public class ContactController implements Initializable{
 		image_EditSubject.setFitWidth(0);
 
 		txtF_CredistSubject.setEditable(true);
-		//txtF_SubjectDep.setEditable(true);
 		txtF_SubjectName.setEditable(true);
 	}
 
@@ -489,19 +501,4 @@ public class ContactController implements Initializable{
 		txtF_Carrera.setEditable(false);
 		showContact();
 	}
-
-	/**
-	 * change the object mainController for to do the conection with the main controller class
-	 * @param mainController
-	 */
-	public void setMainController(MainController mainController) {
-		this.mainController = mainController;
-		subject = 0;
-		contact =0;
-	}
-
-
-   
-
-    
 }

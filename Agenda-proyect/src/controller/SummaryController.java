@@ -1,14 +1,19 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import javafx.fxml.Initializable;
 
 /**
@@ -39,22 +44,7 @@ public class SummaryController implements Initializable{
 
 	@FXML
 	private HBox HBox_imagesOptionsSubjects;
-	
-	@FXML
-	private ImageView image_AddSubject;
-
-	@FXML
-	private ImageView image_EditSubject;
-
-	@FXML
-	private ImageView image_CancelEditSubject;
-
-	@FXML
-	private ImageView image_DeleteSubject;
-
-	@FXML
-	private ImageView image_CheckEditSubject;
-	
+		
 	@FXML
 	private TextField txtF_SubjectName;
 
@@ -67,9 +57,6 @@ public class SummaryController implements Initializable{
 	@FXML
 	private Label label_StudentsEnrolledSubject;
 	
-	@FXML
-	private Label label_Dep;
-
 	private MainController main;
 	
 	private int subject;
@@ -80,67 +67,28 @@ public class SummaryController implements Initializable{
 	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		HBox_imagesOptionsSubjects.setVisible(false);
+		txtF_SubjectName.setEditable(false);
 	}
 	
-	@FXML
 	/**
-	 * this method adds a subject into the agenda through the gui.
-	 * <b>Pre:</b> The agenda exists.
-	 * <b>Pos:</b> the subject is added.
-	 * @param event the event triggered by the user.
+	 * this method sets the main controller.
+	 * <b>Pre:</b> the maincontroller is not null.
+	 * @param mainController the maincontroller.
 	 */
-	void addSubject(MouseEvent event) {
-		System.out.println("add");
-	}
-
-	@FXML
-	/**
-	 * This method cancels the edition of a subject through the gui.
-	 * <b>Pos:</b> the subject edition is cancelled.
-	 * @param event the event triggered by the user.
-	 */
-	void cancelEditSubject(MouseEvent event) {
-
-	}
-
-	@FXML
-	/**
-	 * This method confirms that a subject is going to be edited.
-	 * @param event the event triggered by the user.
-	 */
-	void checkEditSubject(MouseEvent event) {
-
-	}
-
-	@FXML
-	/**
-	 * This method removes a subject from a contact.
-	 * <b>Pos:</b> the subject is removed.
-	 * @param event the event triggered by the user.
-	 */
-	void removeSubject(MouseEvent event) {
-
-	}
-	//String name = listView.getSelectionModel().getSelectedItem();
-
-	@FXML
-	/**
-	 * This method confirms the edition of a subject.
-	 * <b>Pos:</b> the subject is edited.
-	 * @param event the event triggered by the user.
-	 */
-	void editSubject(MouseEvent event) {
-
+	public void setMainController(MainController mainController) {
+		this.main = mainController;
 	}
 	
-	@FXML
-    void delateSubject(MouseEvent event) {
-		
+    @FXML
+    void addNewSubject(MouseEvent event) {
+    
     }
-	
+
 	private void showSubject() {
 		//pedir info
 	}
+	
+	////SET VISUAL////////////////////////////////////////////////////////////
 	
 	private void setVisual_EditSubject() {
 		txtF_CredistSubject.setEditable(false);
@@ -159,21 +107,6 @@ public class SummaryController implements Initializable{
 	}
 	
 	public void setVisual_ShowSummary() {
-		
 		setVisual_ShowSubject();
-		image_DeleteSubject.setVisible(false);
-		image_DeleteSubject.setFitWidth(0);
-		image_AddSubject.setVisible(false);
-		image_AddSubject.setFitWidth(0);
 	}
-
-	/**
-	 * this method sets the main controller.
-	 * <b>Pre:</b> the maincontroller is not null.
-	 * @param mainController the maincontroller.
-	 */
-	public void setMainController(MainController mainController) {
-		this.main = mainController;
-	}
-
 }

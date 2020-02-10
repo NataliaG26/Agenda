@@ -120,13 +120,42 @@ public class AgendaController implements Initializable{
 		mainController = new MainController();
 		contactController = null;
 		summaryController = null;
-		//summaryController = loadScene("Summary").getController();
 		setVisual_InitialSearchPage();
 	}
 	
-	//cambia el objeto main controller para realizar la coneccion con la clase controladora principal de
+	/**
+	 * This method sets the maincontroller for this scene in order to manage requested information.
+	 * @param mainController the main controller to be set.
+	 */
 	public void setMainController(MainController mainController) {
 		this.mainController = mainController;
+	}
+	
+	@FXML
+	/**
+	 * This method shows or hides the main menu.
+	 * @param event the event triggered by the user.
+	 */
+	private void menu(MouseEvent  event) {
+		if(menu.getWidth()<=40) {
+			menu.setMinWidth(225);
+			menuContainer2.setVisible(true);
+		}else {
+			menuContainer2.setVisible(false);
+			menu.setMinWidth(40);	    	
+		}
+	}
+	
+	@FXML
+	/**
+	 * This method shows the menu with the sorting options.
+	 * <b>Pos:</b> the menu is shown.
+	 * @param event the event triggered by the user.
+	 */
+	void orderPage(MouseEvent event) {
+		setVisual_InitialOrderPage();
+		//sorts the contacts by name and then shows them on screen.
+		showContacts();
 	}
 	
 	@FXML
@@ -162,10 +191,12 @@ public class AgendaController implements Initializable{
 			break;
 		}
 	}
-
-	//muestra mas opciones dependiendo de la opcion seleccionada
-	//habilita los nodos correspondientes
+	
 	@FXML
+	/**
+	 * This method shows the extra options for the searching request.
+	 * @param event the event triggered by the user.
+	 */
 	private void changeCBoxOtherOption(ActionEvent event) {
 		//setVisual_OtherOption();
 		String selected = cBox_OtherOption.getValue();
@@ -198,23 +229,73 @@ public class AgendaController implements Initializable{
 		
 	}
 	
+	/**
+	 * This method loads the scene to be shown on the main window.
+	 * @param page the scene that is going to be loaded.
+	 * @return a FXMLLoader that allows to loads the scene with its respective controller.
+	 */
+	private FXMLLoader loadScene(String page) {
+		Parent root = null;
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(getClass().getResource("..\\ui\\"+page+".fxml"));
+			root = loader.load();
+			mainController.conection(loader, page);
+		}catch(IOException ex){
+			System.err.println(ex);
+		}
+		borderPane.setCenter(root);
+		return loader;
+	}
+	
+	//cambia la ventana del anchorpane y muestra la ventana de contactos con el primer contacto
+	private void showContacts() {
+		contactController = loadScene(MainController.ID_CONTACTS).getController();
+		contactController.setVisual_ShowContact();
+		contactController.setVisual_ShowSubjectNotSelected();
+	}
+	
+	//muestra vista de contacto
+	//txtF habilitados para editar
+	//esconder simbolos de borrar y editar
+	//habilitar signos de check y cancel
+	@FXML
+	private void newContact(MouseEvent event) {
+		contactController = loadScene(MainController.ID_CONTACTS).getController();
+		contactController.setVisualNewContact();
+		contactController.setVisual_ShowSubjectNotSelected();
+	}
+	
+	@FXML
+	/**
+	 * This method shows the summary scene.
+	 * <b>Pre:</b> the fxml file of the summary scene exists.
+	 * <b>Pos:</b> the summary scene is loaded.
+	 * @param event the event triggered by the user.
+	 */
+	private void summary(MouseEvent event) {
+		summaryController = loadScene(MainController.ID_SUMMARY).getController();
+		summaryController.setVisual_ShowSummary();
+	}
+	
 	@FXML
     private void monthSelected(ActionEvent event) {
 		
     }
 	
+	//muestra en el menau las opciones de busqueda y filtrado
 	@FXML
 	/**
-	 * This method shows the menu with the sorting options.
-	 * <b>Pos:</b> the menu is shown.
+	 * This method shows on the menu the options of searching and filtering
 	 * @param event the event triggered by the user.
 	 */
-	void orderPage(MouseEvent event) {
-		setVisual_InitialOrderPage();
-		//sorts the contacts by name and then shows them on screen.
-		setVisual_ShowContacts();
+	private void searchPage(MouseEvent event) {
+		setVisual_InitialSearchPage();
+		showContacts();
+		showList();
+		//contactController.setVisual_ShowContact();
 	}
-
+	
 	//realiza el filtro con las espesificaciones dadas por el usuario
 	//realizar verificacion de fechas, numeros y que los txtF contengan algo
 	@FXML
@@ -228,34 +309,8 @@ public class AgendaController implements Initializable{
 		//lista con la info de los contactos a mostrar
 		updateListView_Contacts();
 		
-		
 	}
-
-	//muestra en el menau las opciones de busqueda y filtrado
-	@FXML
-	/**
-	 * This method shows on the menu the options of searching and filtering
-	 * @param event the event triggered by the user.
-	 */
-	private void searchPage(MouseEvent event) {
-		setVisual_InitialSearchPage();
-		setVisual_ShowContacts();
-		showList();
-		//contactController.setVisual_ShowContact();
-	}
-
-	//muestra vista de contacto
-	//txtF habilitados para editar
-	//esconder simbolos de borrar y editar
-	//habilitar signos de check y cancel
-	@FXML
-	private void newContact(MouseEvent event) {
-		contactController = loadScene(MainController.ID_CONTACTS).getController();
-		System.out.println("contacts");
-		contactController.setVisualNewContact();
-		contactController.setVisual_ShowSubjectNotSelected();
-	}
-
+	
 	/////////////////UPDATES VISIBLE LISTS//////////////////////////
 
 	private void updateListView_Contacts() {
@@ -363,11 +418,11 @@ public class AgendaController implements Initializable{
 
 	private void setVisual_SearchSubject() {
 		row_cBox_OtherOption.setMinHeight(HEIGHT_ROW);
-		cBox_OtherOption.setVisible(true);
-		cBox_OtherOption.setEditable(true);
+		cBox_OtherOption.setVisible(false);
+		cBox_OtherOption.setEditable(false);
 		row_btn_Search.setMinHeight(HEIGHT_ROW);
-		txtF_Search.setVisible(false);
-		txtF_Search.setEditable(false);
+		txtF_Search.setVisible(true);
+		txtF_Search.setEditable(true);
 		row_txtF_Search.setMaxHeight(0);
 		btnSearch.setVisible(true);
 		btnSearch.setText("Buscar");
@@ -379,7 +434,6 @@ public class AgendaController implements Initializable{
 		btnSearch.setVisible(true);
 		btnSearch.setText("Ordenar");
 	}
-
 	
 	private void setVisual_FilterBirthay() {
 		row_HBox_FirstDateContainer.setMinHeight(HEIGHT_ROW);
@@ -392,7 +446,6 @@ public class AgendaController implements Initializable{
 		btnSearch.setVisible(true);
 		btnSearch.setText("Buscar");
 	}
-	
 	
 	private void setVisual_disableSecondDate() {
 		row_HBox_SecondDateContainer.setMaxHeight(0);
@@ -433,14 +486,6 @@ public class AgendaController implements Initializable{
 		updateCBox_Months(cBox_MonthsSecondDate);
 	}
 
-	//cambia la ventana del anchorpane y muestra la ventana de contactos con el primer contacto
-	private void setVisual_ShowContacts() {
-		contactController = loadScene(MainController.ID_CONTACTS).getController();
-		System.out.println("contacts");
-		contactController.setVisual_ShowContact();
-		contactController.setVisual_ShowSubjectNotSelected();
-	}
-
 	//solo deja visible y habilitado el primer comboBox para busqueda
 	private void setVisual_InitialSearchPage() {
 		setVisual_InitialPage();
@@ -463,7 +508,7 @@ public class AgendaController implements Initializable{
 		HBox_FirstDateContainer.setVisible(false);
 		HBox_SecondDateContainer.setVisible(false);
 		btnSearch.setVisible(false);
-		listView_Contacts.setVisible(false);
+		listView_Contacts.setVisible(true);
 
 		cBox_OtherOption.setMaxHeight(0);
 		txtF_Search.setMaxHeight(0);
@@ -480,12 +525,11 @@ public class AgendaController implements Initializable{
 		row_listView_Contacts.setMaxHeight(0);
 	}
 	
-	
 	private void setVisual_OtherOption() {
 		txtF_Search.setVisible(false);
 		HBox_FirstDateContainer.setVisible(false);
 		HBox_SecondDateContainer.setVisible(false);
-		listView_Contacts.setVisible(false);
+		listView_Contacts.setVisible(true);
 
 		txtF_Search.setMaxHeight(0);
 		HBox_FirstDateContainer.setMaxHeight(0);
@@ -496,45 +540,5 @@ public class AgendaController implements Initializable{
 		row_HBox_FirstDateContainer.setMaxHeight(0);
 		row_HBox_SecondDateContainer.setMaxHeight(0);
 		row_listView_Contacts.setMaxHeight(0);
-	}
-
-	/////////////////////////////////////////////////////////////////////////////////
-
-	//muestra la scena de Summary
-	@FXML
-	private void summary(MouseEvent event) {
-		summaryController = loadScene(MainController.ID_SUMMARY).getController();
-		System.out.println("summary");
-		summaryController.setVisual_ShowSummary();
-	}
-
-	//carga la scene en el anchor pane
-	//page is the name of scene
-	private FXMLLoader loadScene(String page) {
-		Parent root = null;
-		FXMLLoader loader = null;
-		try {
-			loader = new FXMLLoader(getClass().getResource("..\\ui\\"+page+".fxml"));
-			root = loader.load();
-			mainController.conection(loader, page);
-		}catch(IOException ex){
-			System.err.println(ex);
-		}
-		borderPane.setCenter(root);
-		return loader;
-	}
-
-	//muestra o esconde el menu
-	@FXML
-	private void menu(MouseEvent  event) {
-
-		if(menu.getWidth()<=40) {
-			menu.setMinWidth(225);
-			menuContainer2.setVisible(true);
-		}else {
-			menuContainer2.setVisible(false);
-			menu.setMinWidth(40);	    	
-		}
-
 	}
 }
