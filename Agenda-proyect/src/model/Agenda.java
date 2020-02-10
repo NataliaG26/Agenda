@@ -291,9 +291,9 @@ public class Agenda {
 		
 	}
 	
-	public void subjectsOfAStudent(String studentId) {
+	public void listOfSubjects() {
 		
-		subjectView = new ArrayList<Subject>(contacts.get(studentId).getMySubjects().values());
+		subjectView = new ArrayList<Subject>(subjects.values());
 		
 	}
 
