@@ -230,25 +230,9 @@ public class MainController {
 		}
 	}
 	
-	public void masterSort(String sorter, String criterio) {
+	public void masterSort(String sorter) {
 		
-		switch (sorter) {
-		
-		case Agenda.ORDER_NAME:
-			
-			break;
-			
-		case Agenda.ORDER_AGE:
-			
-			break;
-			
-		case Agenda.ORDER_BIRTHDAY:
-			
-			break;
-
-		default:
-			break;
-		}
+		agenda.sort(sorter);
 		
 	}
 	
