@@ -1,5 +1,7 @@
 package controller;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +34,7 @@ public class MainController {
 		agenda = new Agenda();
 
 	}
-	
+
 	/**
 	 * This method returns the size of the visible list for the user, after executing the requested filter.
 	 * @return the size of the list.
@@ -47,7 +49,7 @@ public class MainController {
 	public String getContactName(int i) {
 		return agenda.getContactsView().get(i).getName();
 	}
-	
+
 	/**
 	 * Returns the avatar of the contact in the position i from the visible list for the user
 	 * @param i the position of the contact
@@ -121,11 +123,11 @@ public class MainController {
 		return agenda.getContactsView().get(contact).getListOfSubjects().get(subject).getNumberCredits()+"";
 	}
 
-	
+
 	public List<String> getContactsName(){
 		return agenda.getContactsName();
 	}
-	
+
 	public List<String> getSubjectsName(){
 		List<String> names = new ArrayList<String>();
 		for (int i = 0; i < agenda.getSubjectView().size(); i++) {
@@ -133,7 +135,7 @@ public class MainController {
 		}
 		return names;
 	}
-	
+
 	public List<String> getSubjectsNameContact(int contact){
 		List<String> names = new ArrayList<String>();
 		for (int i = 0; i < agenda.getContactsView().get(contact).getListOfSubjects().size(); i++) {
@@ -164,7 +166,7 @@ public class MainController {
 		searchOptions.add(Agenda.ORDER_BIRTHDAY);
 		return searchOptions;
 	}
-	
+
 	/**
 	 * return a list with birthday option searching
 	 */
@@ -176,7 +178,7 @@ public class MainController {
 		searchOptions.add(Agenda.FILTER_BIRTHDAY_MONTHS);
 		return searchOptions;
 	}
-	
+
 	/**
 	 * return a list with order options
 	 */
@@ -187,7 +189,7 @@ public class MainController {
 		searchOptions.add(Agenda.FILTER_AGE_OLDER);
 		return searchOptions;
 	}
-	
+
 	/**
 	 * return a list with subjects
 	 */
@@ -198,16 +200,16 @@ public class MainController {
 		}
 		return subjectOptions;
 	}
-	
+
 	public void addSubject(int contact, String nameSubject) {
 		agenda.addSubject(nameSubject, agenda.getContactsView().get(contact).getId());
 	}
-	
+
 	public void newSubject(String subjectName, int credits) {//**********************
 		//nueva materia, parametros 
-		
+
 	}
-	
+
 	/**
 	 * This method allows to connect between the different controllers and fxml files.
 	 * <b>Pre:</b> the fxmlloader exists.
@@ -227,4 +229,162 @@ public class MainController {
 			obj.setMainController(this);
 		}
 	}
+	
+	public void masterSort(String sorter, String criterio) {
+		
+		switch (sorter) {
+		
+		case Agenda.ORDER_NAME:
+			
+			break;
+			
+		case Agenda.ORDER_AGE:
+			
+			break;
+			
+		case Agenda.ORDER_BIRTHDAY:
+			
+			break;
+
+		default:
+			break;
+		}
+		
+	}
+	
+	public void masterSearch(String filter, String secondOption, String age, int day1, String month1, int day2, String month2) {
+
+		switch (filter) {
+
+		case Agenda.SEARCH_NAME:
+
+			agenda.searchByName(secondOption);
+
+			break;
+
+		case Agenda.SEARCH_BIRTHDAY:
+
+			if (secondOption.equals(Agenda.FILTER_BIRTHDAY)) {
+				int mes1 = convertMonth(month1);
+				agenda.searchByDateOfBirth(day1, mes1, -1, -1, 0);
+
+			}else if (secondOption.equals(Agenda.FILTER_BIRTHDAY_BETWEEN_DATES)) {
+				int mes1 = convertMonth(month1);
+				int mes2 = convertMonth(month2);
+				agenda.searchByDateOfBirth(day1, mes1, day2, mes2, 3);
+
+			}else if (secondOption.equals(Agenda.FILTER_BIRTHDAY_BETWEEN_MONTHS)) {
+				int mes1 = convertMonth(month1);
+				int mes2 = convertMonth(month2);
+				agenda.searchByDateOfBirth(-1, mes1, -1, mes2, 2);
+
+			}else if(secondOption.equals(Agenda.FILTER_BIRTHDAY_MONTHS)) {
+				int mes1 = convertMonth(month1);
+				agenda.searchByDateOfBirth(-1, mes1, -1, -1, 1);
+
+			}
+
+			break;
+
+		case Agenda.SEARCH_AGE:
+
+			int edad = Integer.valueOf(age);
+
+			if (secondOption.equals(Agenda.FILTER_AGE)) {
+
+				agenda.searchByAge(edad, 0);
+
+			}else if (secondOption.equals(Agenda.FILTER_AGE_JOUNGER)) {
+
+				agenda.searchByAge(edad, 1);
+
+			}else if (secondOption.equals(Agenda.FILTER_AGE_OLDER)) {
+
+				agenda.searchByAge(edad, 2);
+
+			}
+
+			break;
+
+		default:
+			break;
+		}
+
+	}
+
+	private int convertMonth(String month) {
+		
+		int salida;
+		switch (month) {
+
+		case "Enero":
+			salida = 1;
+			break;
+
+		case "Febrero":
+			salida = 2;
+			break;
+
+		case "Marzo":
+			salida = 3;
+			break;
+
+		case "Abril":
+			salida = 4;
+			break;
+
+		case "Mayo":
+			salida = 5;
+			break;
+
+		case "Junio":
+			salida = 6;
+			break;
+
+		case "Julio":
+			salida = 7;
+			break;
+
+		case "Agosto":
+			salida = 8;
+			break;
+
+		case "Septiembre":
+			salida = 9;
+			break;
+
+		case "Octubre":
+			salida = 10;
+			break;
+
+		case "Noviembre":
+			salida = 11;
+			break;
+			
+		case "Diciembre":
+			salida = 12;
+			break;
+
+		default:
+			salida = 1;
+			break;
+		}
+		
+		return salida;
+
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

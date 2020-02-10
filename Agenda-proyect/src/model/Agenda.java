@@ -296,32 +296,23 @@ public class Agenda {
 				}
 			}
 
-		}else if (operation == 1) { // fechas anteriores a day1/month1
+		}else if (operation == 1) { // fechas en el mismo mes
 
 			for (int i = 0; i < contactsView.size(); i++) {
 
-				if (contactsView.get(i).getDateOfBirth().getMonthValue() > month1) {
+				if (contactsView.get(i).getDateOfBirth().getMonthValue() != month1) {
 					contactsView.remove(i);
-				}else if (contactsView.get(i).getDateOfBirth().getMonthValue() == month1) {
-
-					if (contactsView.get(i).getDateOfBirth().getDayOfMonth() >= day1) {
-						contactsView.remove(i);
-					}
 				}
 
 			}
 
-		}else if (operation == 2) { // fechas posteriores a day1/month1
+		}else if (operation == 2) { // fechas entre dos meses
 
 			for (int i = 0; i < contactsView.size(); i++) {
 
-				if (contactsView.get(i).getDateOfBirth().getMonthValue() < month1) {
+				if (contactsView.get(i).getDateOfBirth().getMonthValue() < month1 ||
+						contactsView.get(i).getDateOfBirth().getMonthValue() > month2) {
 					contactsView.remove(i);
-				}else if (contactsView.get(i).getDateOfBirth().getMonthValue() == month1) {
-
-					if (contactsView.get(i).getDateOfBirth().getDayOfMonth() <= day1) {
-						contactsView.remove(i);
-					}
 				}
 
 			}
