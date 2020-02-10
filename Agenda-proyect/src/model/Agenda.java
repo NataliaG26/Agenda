@@ -79,7 +79,7 @@ public class Agenda {
 		readStudents();
 		readSubjects();
 
-		writeContacts();
+		//writeContacts();
 	}
 
 	/**
@@ -101,8 +101,8 @@ public class Agenda {
 
 		Contact newContact = new Contact(id, avatar, name, email, phonenumber, dateofbirth, age, 0);
 
-		if (!contacts.containsKey(name)) {
-			contacts.put(name, newContact);
+		if (!contacts.containsKey(id)) {
+			contacts.put(id, newContact);
 			added = true;
 		}
 
@@ -116,12 +116,12 @@ public class Agenda {
 	 * @param name the name of the contact to be deleted
 	 * @return a boolean that indicate either if the contact could be deleted or not.
 	 */
-	public boolean deleteContact(String name) {
+	public boolean deleteContact(String id) {
 
 		boolean deleted = false;
 
-		if (!contacts.containsKey(name)) {
-			contacts.remove(name);
+		if (contacts.containsKey(id)) {
+			contacts.remove(id);
 			deleted = true;
 		}
 
@@ -137,61 +137,11 @@ public class Agenda {
 	 */
 	public Contact searchByID(String id){
 
-		List<Contact> list = (List<Contact>) contacts.values();
-
-		list.sort(new Comparator<Contact>() {
-
-			@Override
-			public int compare(Contact o1, Contact o2) {
-
-				if(o1.getId().compareTo(o2.getId()) > 0)
-					return 1;
-				else if(o1.getId().compareTo(o2.getId()) < 0)
-					return -1;
-				else 
-					return 0;
-			}
-
-		});
-
-		int index = binarySearch(list, 0, list.size()-1, id);
-
-		if (index == -1) {
-			return null;
-		}else {
-			return list.get(index);
-		}
+		return contacts.get(id);
+		
 	}
 
-	/**
-	 * This method uses binary searching to search inside the contacts list.
-	 * <b>Pre:</b> the key is valid.
-	 * <b>Pos:</b> the contact that match with the key is returned.
-	 * @param list the contact´s list with the contacts of interest.
-	 * @param l the first index of the list.
-	 * @param r the last index of the list.
-	 * @param key the attribute to be compare with the rest inside the list to partitionate the list.
-	 * @return the index where is located the contact that match with the key received.
-	 */
-	private int binarySearch(List<Contact> list, int l, int r, String key) {
-
-		if (r >= l) { 
-			int mid = l + (r - l) / 2; 
-
-
-			if (list.get(mid).getId().compareToIgnoreCase(key) == 0) 
-				return mid; 
-
-
-			if (list.get(mid).getId().compareToIgnoreCase(key) > 0) 
-				return binarySearch(list, l, mid - 1, key); 
-
-
-			return binarySearch(list, mid + 1, r, key); 
-		} 
-
-		return -1; 
-	}
+	
 
 	/**
 	 * This method searchs a contact by its name.
@@ -200,17 +150,17 @@ public class Agenda {
 	 * @param name the name of the contact(s) to be searched.
 	 * @return the list that contains all the possible entries that match with the received name.
 	 */
-	public List<Contact> searchByName(String name){
+	public void searchByName(String name){
 
-		List<Contact> list = (List<Contact>) contacts.values();
+		contactsView = (List<Contact>) contacts.values();
 
-		for (int i = 0; i < list.size(); i++) {
-			if (!list.get(i).getName().equalsIgnoreCase(name)) {
-				list.remove(i);
+		for (int i = 0; i < contactsView.size(); i++) {
+			if (!contactsView.get(i).getName().contains(name)) {
+				contactsView.remove(i);
 			}
 		}
 
-		return list;
+		
 	}
 
 	/**
@@ -220,17 +170,50 @@ public class Agenda {
 	 * @param age the age of the contact(s) to be searched.
 	 * @return the list that contains all the possible entries that match with the received age.
 	 */
-	public List<Contact> searchByAge(int age){
+	public void searchByAge(int age1, int age2, int operation){
 
-		List<Contact> list = (List<Contact>) contacts.values();
-
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getAge() != age) {
-				list.remove(i);
+		contactsView = (List<Contact>) contacts.values();
+		
+		if (operation == 0) {
+			
+			for (int i = 0; i < contactsView.size(); i++) {
+				if (contactsView.get(i).getAge() != age1) {
+					contactsView.remove(i);
+				}
+			}
+			
+		}else if (operation == 1) { //buscar menores a age1
+			
+			for (int i = 0; i < contactsView.size(); i++) {
+				if (contactsView.get(i).getAge() >= age1) {
+					contactsView.remove(i);
+				}
+			}
+			
+		}else if (operation == 2) { //buscar mayores a age1
+		
+			for (int i = 0; i < contactsView.size(); i++) {
+				if (contactsView.get(i).getAge() <= age1) {
+					contactsView.remove(i);
+				}
+			}
+			
+		}else {
+			searchBetweenTwoAges(age1, age2);
+		}
+		
+	
+	}
+	
+	private void searchBetweenTwoAges(int age1, int age2){
+		
+		
+		for (int i = 0; i < contactsView.size(); i++) {
+			if (contactsView.get(i).getAge() <= age1 || contactsView.get(i).getAge() >= age2) {
+				contactsView.remove(i);
 			}
 		}
-
-		return list;
+		
 	}
 
 	/**
@@ -240,17 +223,74 @@ public class Agenda {
 	 * @param date the date of birth of the contact(s) to be searched.
 	 * @return the list that contains all the possible entries that match with the received date of birth.
 	 */
-	public List<Contact> searchByDateOfBirth(LocalDate date){
+	public void searchByDateOfBirth(int day1, int month1, int day2, int month2, int operation){
 
-		List<Contact> list = (List<Contact>) contacts.values();
+		contactsView  = (List<Contact>) contacts.values();
 
-		for (int i = 0; i < list.size(); i++) {
-			if (!list.get(i).getDateOfBirth().equals(date)) {
-				list.remove(i);
+		if (operation == 0) { // fechas iguales a day1/month1
+			
+			for (int i = 0; i < contactsView.size(); i++) {
+				if(contactsView.get(i).getDateOfBirth().getDayOfMonth() != day1 || 
+						contactsView.get(i).getDateOfBirth().getMonthValue() != month1) {
+					
+					contactsView.remove(i);
+				}
 			}
+			
+		}else if (operation == 1) { // fechas anteriores a day1/month1
+			
+			for (int i = 0; i < contactsView.size(); i++) {
+				
+				if (contactsView.get(i).getDateOfBirth().getMonthValue() > month1) {
+					contactsView.remove(i);
+				}else if (contactsView.get(i).getDateOfBirth().getMonthValue() == month1) {
+					
+					if (contactsView.get(i).getDateOfBirth().getDayOfMonth() >= day1) {
+						contactsView.remove(i);
+					}
+				}
+				
+			}
+			
+		}else if (operation == 2) { // fechas posteriores a day1/month1
+			
+			for (int i = 0; i < contactsView.size(); i++) {
+				
+				if (contactsView.get(i).getDateOfBirth().getMonthValue() < month1) {
+					contactsView.remove(i);
+				}else if (contactsView.get(i).getDateOfBirth().getMonthValue() == month1) {
+					
+					if (contactsView.get(i).getDateOfBirth().getDayOfMonth() <= day1) {
+						contactsView.remove(i);
+					}
+				}
+				
+			}
+			
+		}else {
+			searchBetweenTwoDates(day1, month1, day2, month2);
 		}
 
-		return list;
+	}
+	
+	private void searchBetweenTwoDates(int day1, int month1, int day2, int month2) {
+		
+		for (int i = 0; i < contactsView.size(); i++) {
+			
+			if (contactsView.get(i).getDateOfBirth().getMonthValue() < month1 
+					|| contactsView.get(i).getDateOfBirth().getMonthValue() > month2) {
+				
+				contactsView.remove(i);
+				
+			}else if ((contactsView.get(i).getDateOfBirth().getDayOfMonth() < day1 && contactsView.get(i).getDateOfBirth().getMonthValue() == month1) 
+					|| (contactsView.get(i).getDateOfBirth().getDayOfMonth() > day2 && contactsView.get(i).getDateOfBirth().getMonthValue() == month2)) {
+				
+				contactsView.remove(i);
+				
+			}
+			
+		}
+		
 	}
 
 	/**
@@ -258,19 +298,17 @@ public class Agenda {
 	 * <b>Pre:</b> the subject name is valid.
 	 * <b>Pos:</b> the list with the possible matchings is returned.
 	 * @param name the name of the subject that the contact(s) would have added to their lists.
-	 * @return the list that contains all the possible entries that match with the received subject's name.
 	 */
-	public List<Contact> searchBySubject(String name){ 
+	public void searchBySubject(String name){ 
 
-		List<Contact> list = (List<Contact>) contacts.values();
+		contactsView = (List<Contact>) contacts.values();
 
-		for (int i = 0; i < list.size(); i++) {
-			if (!list.get(i).getMySubjects().containsKey(name)) {
-				list.remove(i);
+		for (int i = 0; i < contactsView.size(); i++) {
+			if (!contactsView.get(i).getMySubjects().containsKey(name)) {
+				contactsView.remove(i);
 			}
 		}
 
-		return list;
 	}
 
 	/**
