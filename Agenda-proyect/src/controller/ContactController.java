@@ -123,7 +123,7 @@ public class ContactController implements Initializable{
 	 * This method initializes the current controller for the current stage.
 	 */
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		contact = -1;
+		contact = 0;
 		mainController = null;
 	}
 	
@@ -134,7 +134,7 @@ public class ContactController implements Initializable{
 	public void setMainController(MainController mainController) {
 		this.mainController = mainController;
 		subject = 0;
-		contact =0;
+		contact = 0;
 	}
 	
 	/**

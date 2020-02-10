@@ -255,6 +255,7 @@ public class AgendaController implements Initializable{
 		contactController = loadScene(MainController.ID_CONTACTS).getController();
 		contactController.setVisual_ShowContact();
 		contactController.setVisual_ShowSubjectNotSelected();
+		contactController.setVisual_ListViewSubject();
 	}
 	
 	//muestra vista de contacto
@@ -313,13 +314,23 @@ public class AgendaController implements Initializable{
 		
 		if(cBox_Principal.getValue().equals(Agenda.SEARCH_NAME)) {
 			mainController.masterSearch(cBox_Principal.getValue(), txtF_Search.getText(), "", 0, "", 0, "");
-		}else {
-			int day1 = Integer.parseInt(txtF_DayFirstDate.getText());
-			int day2 = Integer.parseInt(txtF_DaySecondDate.getText());
+		}else if(cBox_Principal.getValue().equals(Agenda.SEARCH_AGE)){
+			int day1 = 0;
+			int day2 = 0;
+			try{
+				day1 = Integer.parseInt(txtF_DayFirstDate.getText());
+				day2 = Integer.parseInt(txtF_DaySecondDate.getText());
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
+			System.out.println(txtF_Search.getText()+" Age");
 			mainController.masterSearch(cBox_Principal.getValue(), cBox_OtherOption.getValue(), txtF_Search.getText(), day1, cBox_MonthsFirstDate.getValue(), day2, cBox_MonthsSecondDate.getValue());
+		
+			
 		}
 		updateListView_Contacts();
 		showContacts();
+		showList();
 		row_listView_Contacts.setMinHeight(200);
 		listView_Contacts.setVisible(true);
 		listView_Contacts.setMinHeight(200);
