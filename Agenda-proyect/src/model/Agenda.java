@@ -477,15 +477,17 @@ public class Agenda {
 			public int compare(Subject o1, Subject o2) {
 
 				if (o1.getStudentsEnrolled() > o2.getStudentsEnrolled()) {
-
+					System.out.println("case 1");
+					System.out.println(o1.getStudentsEnrolled());
+					System.out.println(o2.getStudentsEnrolled());
 					return 1;
 
 				}else if (o1.getStudentsEnrolled() < o2.getStudentsEnrolled()) {
-
+					System.out.println("case 2");
 					return -1;
 
 				}else {
-
+					System.out.println();
 					return 0;
 				}
 			}
@@ -500,14 +502,11 @@ public class Agenda {
 	public Subject lessEnrolledSubject() {
 
 		List<Subject> list = new ArrayList<Subject>(subjects.values());
-
 		Collections.sort(list, new Comparator<Subject>() {
 
 			@Override
 			public int compare(Subject o1, Subject o2) {
-
 				if (o1.getStudentsEnrolled() > o2.getStudentsEnrolled()) {
-
 					return 1;
 
 				}else if (o1.getStudentsEnrolled() < o2.getStudentsEnrolled()) {
@@ -738,11 +737,3 @@ public class Agenda {
 
 	}
 }
-
-
-
-
-
-
-
-

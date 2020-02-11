@@ -66,7 +66,8 @@ public class SummaryController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		main = new MainController();
 		showSubject();
-		
+		label_MoreEnrolledSubject.setText(label_MoreEnrolledSubject.getText() + main.moreEnrolledSubject().getName());
+		label_LessEnrolledSubject.setText(label_LessEnrolledSubject.getText() + main.lessEnrolledSubject().getName());
 	}
 
 	/**
