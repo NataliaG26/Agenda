@@ -7,6 +7,8 @@ import java.util.List;
 
 import javafx.fxml.FXMLLoader;
 import model.Agenda;
+import model.Contact;
+import model.Subject;
 
 /**
  * This class manage the necessary attributtes and methods to launch the user interface.
@@ -124,7 +126,15 @@ public class MainController {
 	public String getSubjectCreditsContact(int contact, int subject) {
 		return agenda.getContactsView().get(contact).getListOfSubjects().get(subject).getNumberCredits()+"";
 	}
-
+	
+	public Subject lessEnrolledSubject() {
+		System.out.println("main");
+		return agenda.lessEnrolledSubject();
+	}
+	
+	public Subject moreEnrolledSubject() {
+		return agenda.moreEnrolledSubject();
+	}
 
 	public List<String> getContactsName(){
 		return agenda.getContactsName();
