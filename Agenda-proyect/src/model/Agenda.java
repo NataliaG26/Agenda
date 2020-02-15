@@ -78,11 +78,15 @@ public class Agenda {
 
 		contacts = new Hashtable<String, Contact>();
 		subjects = new Hashtable<String, Subject>();
-
-		readStudents();
+		
 		readSubjects();
+		readStudents();
 		listOfContacts();
 		listOfSubjects();
+		
+		List<Contact> list = new ArrayList<Contact>(contacts.values());
+		
+		
 	}
 
 	/**
@@ -415,9 +419,9 @@ public class Agenda {
 	public boolean addSubject(String subjectName, String studentId) { 
 
 		boolean added = false;
-
+		
 		if (subjects.containsKey(subjectName) && contacts.containsKey(studentId)) {
-
+			
 			contacts.get(studentId).getMySubjects().put(subjectName, subjects.get(subjectName));
 			int x = subjects.get(subjectName).getStudentsEnrolled();
 			subjects.get(subjectName).setStudentsEnrolled(x+1);
@@ -591,6 +595,7 @@ public class Agenda {
 				
 				for (int i = 8; i < p.length; i++) {
 					addSubject(p[i], id);
+					
 				}
 			
 				line = br.readLine();
