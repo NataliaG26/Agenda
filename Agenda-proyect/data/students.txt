@@ -1,4 +1,4 @@
-A00355727,https://pbs.twimg.com/media/C_A9sjWXoAEmAUQ.jpg,Luis Felipe Sanchez Vega,vegafelipe015@gmail.com,3176737525,27/9/2000,19,1120
+A00355727,https://pbs.twimg.com/media/C_A9sjWXoAEmAUQ.jpg,Luis Felipe Sanchez Vega,vegafelipe015@gmail.com,3176737525,27/9/2000,19,0
 A00354849,     ,Natalia Isabel Gonzalez Murillo,natalia.gonzalez3@correo.icesi.edu.co,3217335600,26/11/1999,20,0
 A00056020,   ,Gabriel Cruz Libreros,gabrielcl45@gmail.com,3113165736,26/2/1994,25,0
 A00295744,https://vignette.wikia.nocookie.net/jojo/images/3/35/Jotarokujo_anime.png/revision/latest?cb=20170302000829&path-prefix=es,Johann Andrei Ocampo Torres,johann0117@live.com,3156352435,20/6/2000,19,0
@@ -9,7 +9,7 @@ A00356210,    ,Juan David Hernández,juanher0825@gmail.com,3155462882,25/8/2000,1
 A00351771,https://pbs.twimg.com/profile_images/1341405140/jd1_400x400.GIF,Naranjo Tafur Juan Diego,juannaranjo1206@gmail.com,3145608074,12/6/2000,19,0
 A00293816,https://1drv.ms/u/s!Ahn1-zXaWeeugoc1ipNri10i0rEkMQ?e=vKwy9O,Juan David Vera Usman,juandaveru@gmail.com,3184696446,16/8/1998,21,0
 A00355117,https://pbs.twimg.com/profile_images/701925334267125761/oPFULyy2_400x400.jpg,Yimar David Tamayo Hernandez,yimar2001@gmail.com,3164403798,22/4/2001,18,0
-A00354904,https://www.rockandpop.cl/wp-content/uploads/2019/03/64c87618ca8a75cf849759e97605e8e4fcc9195169798bf1afd2e6b6e36a5ca0-400x360.jpg,Juan Jose Valencia Jaramillo,juanchouni@hotmail.com,3136353922,13/3/2002,17,0
+A00354904,https://www.rockandpop.cl/wp-content/uploads/2019/03/64c87618ca8a75cf849759e97605e8e4fcc9195169798bf1afd2e6b6e36a5ca0-400x360.jpg,Juan José Valencia Jaramillo,juanchouni@hotmail.com,3136353922,13/3/2002,17,0
 A00351728,https://pbs.twimg.com/profile_images/985501710469750786/A9YVxSRl_400x400.jpg,Balanta Quintero Manuel,mbalantaq@gmail.com,3218746583,7/3/2000,19,0
 A00049184,https://drive.google.com/file/d/0B-3IR2yxjXOseHpVQnRhTFlfREU/view?usp=sharing,Santiago Rosero Cordoba,santiago.rosero1@correo.icesi.edu.co,3106584281,17/7/1998,21,0
 A00049152,https://drive.google.com/open?id=1eniDi-vy6PwBfg4z8W6wb5jvZInrSOoD,Elías Estupinan,simply753@gmail.com,3225921114,12/12/1996,23,0
@@ -22,6 +22,6 @@ A00348047,   ,Lina Salinas Delgado,linasalinasd7@gmail.com,3182614334,31/5/1999,
 A00354694,https://s3.eestatic.com/2018/05/25/espana/tribunales/Audiencia_Nacional-Estado_Islamico-GAL-Tribunales_309980854_79280221_1024x576.jpg,Daniel Fernández,alejo.dafr@gmail.com,3122199411,3/4/2001,18,0
 A00354217,   ,Jairo Emilio Rodriguez Viveros,jairitox2000@gmail.com,3101234452,29/3/2000,19,0
 A00355710,https://avatars2.githubusercontent.com/u/47871531?s=460&v=4,Mora Mora Jhon Edward,jhonedmora@gmail.com,3166360553,13/12/2000,19,0
-A00354350,    ,Alejandro Martinez Martinez,alejomam2011@gmail.com,3112345674,27/3/2000,19,0
+A00354350,    ,Alejandro Martinez Martinez,alejomam2011@gmail.com,3112345674,27/3/2000,19,4,Fisica y laboratorio
 A00351422,  ,Ramirez Ramirez Mateo,mateoboom@hotmail.com,3174149631,10/11/2000,19,0
 A00355275,   ,Critian Camilo Lasso Hernandez,crisca_25@hotmail.com,3165301157,25/6/2000,19,0

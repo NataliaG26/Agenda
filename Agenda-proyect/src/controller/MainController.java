@@ -34,9 +34,6 @@ public class MainController {
 	 */
 	public MainController() {
 		agenda = new Agenda();
-		agenda.addSubject("Liderazgo", "A00355727");
-		agenda.addSubject("Cálculo de varias variables", "A00355727");
-		agenda.writeContacts();
 	}
 
 	/**
@@ -128,7 +125,6 @@ public class MainController {
 	}
 	
 	public Subject lessEnrolledSubject() {
-		System.out.println("main");
 		return agenda.lessEnrolledSubject();
 	}
 	
@@ -215,16 +211,16 @@ public class MainController {
 
 	public void addSubject(int contact, String nameSubject) {
 		agenda.addSubject(nameSubject, agenda.getContactsView().get(contact).getId());
+		agenda.writeContacts();
 	}
 
 	public void newSubject(String subjectName, int credits) {//**********************
 		//nueva materia, parametros 
-
 	}
 	
 	public void newContact(String id, String avatar, String name, String email, String phonenumber, LocalDate dateofbirth, int age) {
 		agenda.addContact(id, avatar, name, email, phonenumber, dateofbirth, age);
-		agenda.writeContacts();
+		
 	}
 
 	/**

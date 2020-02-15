@@ -164,7 +164,6 @@ public class ContactController implements Initializable{
 		}
 		ObservableList<String> list = FXCollections.observableArrayList(mainController.getSubjectsNameContact(contact));
 		listView_ContactSubject.setItems(list);
-
 	}
 
 	@FXML

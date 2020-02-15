@@ -323,7 +323,6 @@ public class AgendaController implements Initializable{
 			}catch (Exception e) {
 				// TODO: handle exception
 			}
-			System.out.println(txtF_Search.getText()+" Age");
 			mainController.masterSearch(cBox_Principal.getValue(), cBox_OtherOption.getValue(), txtF_Search.getText(), day1, cBox_MonthsFirstDate.getValue(), day2, cBox_MonthsSecondDate.getValue());
 		
 			
@@ -333,7 +332,6 @@ public class AgendaController implements Initializable{
 		}
 		else if(btnSearch.getText().equals("Ordenar")) {
 			mainController.masterSort(cBox_Principal.getValue());
-			System.out.println("ordenar");
 			
 		}
 		updateListView_Contacts();

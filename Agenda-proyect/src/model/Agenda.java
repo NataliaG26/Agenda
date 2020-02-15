@@ -426,6 +426,7 @@ public class Agenda {
 			int c = subjects.get(subjectName).getNumberCredits();
 
 			contacts.get(studentId).setEnrolledCredits(y+c);
+			
 			added = true;
 		}
 
@@ -453,7 +454,7 @@ public class Agenda {
 
 				int y = contacts.get(studentId).getEnrolledCredits();
 				int c = subjects.get(subjectName).getNumberCredits();
-
+				
 				contacts.get(studentId).setEnrolledCredits(y-c);
 
 				removed = true;
@@ -477,13 +478,9 @@ public class Agenda {
 			public int compare(Subject o1, Subject o2) {
 
 				if (o1.getStudentsEnrolled() > o2.getStudentsEnrolled()) {
-					System.out.println("case 1");
-					System.out.println(o1.getStudentsEnrolled());
-					System.out.println(o2.getStudentsEnrolled());
 					return 1;
 
 				}else if (o1.getStudentsEnrolled() < o2.getStudentsEnrolled()) {
-					System.out.println("case 2");
 					return -1;
 
 				}else {
@@ -588,17 +585,14 @@ public class Agenda {
 					int day = Integer.valueOf(parts[0]);
 				LocalDate date2 = LocalDate.of(year, month, day);
 				int age = Integer.valueOf(st.nextToken());
-				int enrolledcreditsnumber = Integer.valueOf(st.nextToken());
 				
-				Contact con = new Contact(id, avatar, name, email, phoneNumber, date2, age, enrolledcreditsnumber);
+				Contact con = new Contact(id, avatar, name, email, phoneNumber, date2, age, 0);
 				contacts.put(id, con);
 				
 				for (int i = 8; i < p.length; i++) {
 					addSubject(p[i], id);
 				}
-				
-				
-
+			
 				line = br.readLine();
 			}
 			br.close();
@@ -627,7 +621,6 @@ public class Agenda {
 			String date = d + "/" + m + "/" + y;
 
 			try {
-				
 				List<Subject> sub = new ArrayList<Subject>(c.getMySubjects().values());
 				String materias = "";
 				for (int i = 0; i < sub.size(); i++) {
