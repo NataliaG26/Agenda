@@ -59,16 +59,7 @@ public class SummaryController implements Initializable{
     private TextField txtF_SubjectName;
 
     @FXML
-    private ImageView image_EditSubject;
-
-    @FXML
-    private ImageView image_CancelEditSubject;
-
-    @FXML
     private ImageView image_DeleteSubject;
-
-    @FXML
-    private ImageView image_CheckEditSubject;
 
     @FXML
     private TextField txtF_CredistSubject;
@@ -130,7 +121,9 @@ public class SummaryController implements Initializable{
 	
 	 @FXML
 	 private void subjectSelected(MouseEvent event) {
-		 
+		System.out.println(listView_Subject.getSelectionModel().getSelectedItem());
+		//metodo felipe
+		//subject = mainController.getSubjectPos(listView_Subject.getSelectionModel().getSelectedItem());
 	 }
 
 		@FXML
@@ -145,26 +138,6 @@ public class SummaryController implements Initializable{
 			//no hacer ningun cambio
 		}
 
-
-		@FXML
-		/**
-		 * This method updates the information of the contact when edited.
-		 * <b>Pos:</b> the information of the contact is updated.
-		 * @param event the event triggered by the user.
-		 */
-		void checkEditSubject(MouseEvent event) {
-			//tomar la info de los txtF y actualizar la info de la materia
-			//mostar materia
-			setVisual_ShowSubjectSelected();
-			showSubject();
-
-		}
-
-	    @FXML
-	    void editSubject(MouseEvent event) {
-	    	
-	    }
-
 	    @FXML
 	    void removeSubject(MouseEvent event) {
 	    	
@@ -174,16 +147,8 @@ public class SummaryController implements Initializable{
 		 * change the contact window view for show the contact when subject has been selected, disable editing, and shows only the options that are allowed
 		 */
 		public void setVisual_ShowSubjectSelected() {
-			image_CancelEditSubject.setVisible(false);
-			image_CheckEditSubject.setVisible(false);
-
-			image_CancelEditSubject.setFitWidth(0);
-			image_CheckEditSubject.setFitWidth(0);
-
-			image_EditSubject.setVisible(true);
 			image_DeleteSubject.setVisible(true);
 
-			image_EditSubject.setFitWidth(MainController.ICONE_SIZE);
 			image_DeleteSubject.setFitWidth(MainController.ICONE_SIZE);
 
 			txtF_CredistSubject.setEditable(false);
@@ -195,16 +160,7 @@ public class SummaryController implements Initializable{
 		 * change the contact window view for show the contact when no subject has been selected, disable editing, and shows only the options that are allowed
 		 */
 		public void setVisual_ShowSubjectNotSelected() {
-			image_CancelEditSubject.setVisible(false);
-			image_CheckEditSubject.setVisible(false);
-
-			image_CancelEditSubject.setFitWidth(0);
-			image_CheckEditSubject.setFitWidth(0);
-
-			image_EditSubject.setVisible(false);
 			image_DeleteSubject.setVisible(false);
-
-			image_EditSubject.setFitWidth(0);
 			image_DeleteSubject.setFitWidth(0);
 
 			txtF_CredistSubject.setEditable(false);

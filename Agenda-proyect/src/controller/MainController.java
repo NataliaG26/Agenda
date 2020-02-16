@@ -59,6 +59,18 @@ public class MainController {
 	public void removeSubjectContact(String subjectName, String studentId) {
 		agenda.removeSubject(subjectName, studentId);
 	}
+	
+	public void getSubjectPos(String subjectName) {
+		//agenda. (subjectName);
+	}
+	
+	public void getSubjectContactPos(String subjectName, String id) {
+		//agenda. (subjectName);
+	}
+	
+	public void editSubject() {
+		
+	}
 
 	/**
 	 * Returns the avatar of the contact in the position i from the visible list for the user
@@ -224,7 +236,7 @@ public class MainController {
 	}
 
 	public void newSubject(String subjectName, int credits) {//**********************
-		//nueva materia, parametros 
+		agenda.createSubject(subjectName, credits);
 	}
 	
 	public void newContact(String id, String avatar, String name, String email, String phonenumber, String day, String month, int age) {
