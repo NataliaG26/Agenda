@@ -150,6 +150,27 @@ public class Agenda {
 		});	
 	}
 	
+	public void editContact(int pos, String id, String name, String email, String phoneNumber, 
+			LocalDate dateOfBirth, int age, int enrolledcreditsnumber ) {
+		
+		contacts.get(id).setName(name);
+		contacts.get(id).setEmail(email);
+		contacts.get(id).setPhonenumber(phoneNumber);
+		contacts.get(id).setDateOfBirth(dateOfBirth);
+		contacts.get(id).setAge(age);
+		contacts.get(id).setEnrolledCredits(enrolledcreditsnumber);
+		
+		contactsView.get(pos).setName(name);
+		contactsView.get(pos).setEmail(email);
+		contactsView.get(pos).setPhonenumber(phoneNumber);
+		contactsView.get(pos).setDateOfBirth(dateOfBirth);
+		contactsView.get(pos).setAge(age);
+		contactsView.get(pos).setEnrolledCredits(enrolledcreditsnumber);
+		
+		
+		
+	}
+	
 	public int getIndexInGlobalSubjects(String name) {
 		
 		
@@ -167,6 +188,14 @@ public class Agenda {
 		}
 		
 		return index;
+		
+	}
+	
+	public int getIndexInGlobalContacts(String key) {
+		
+		Contact con = contacts.get(key);
+		
+		return contactsView.lastIndexOf(con);
 		
 	}
 	
