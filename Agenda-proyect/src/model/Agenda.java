@@ -174,9 +174,9 @@ public class Agenda {
 			added = true;
 			writeContacts();
 			listOfContacts();
-			System.out.println("add");
+			
 		}
-		System.out.println("fin add");
+		
 		return added;
 	}
 
@@ -192,8 +192,20 @@ public class Agenda {
 		boolean deleted = false;
 
 		if (contacts.containsKey(id)) {
+			
+			for (Subject sub : contacts.get(id).getMySubjects().values()) {
+				int n = sub.getStudentsEnrolled();;
+				subjects.get(sub.getName()).setStudentsEnrolled(n-1);;
+			}
+			
 			contacts.remove(id);
 			deleted = true;
+			contactsView.remove(contacts.get(id));
+			
+			writeContacts();
+			listOfContacts();
+			
+			
 		}
 
 		return deleted;
