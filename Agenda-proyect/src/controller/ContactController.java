@@ -283,12 +283,9 @@ public class ContactController implements Initializable{
 			String phonenumber = txtF_PhoneNumber.getText();
 			int age = Integer.parseInt(txtF_age.getText());
 			cBox_MonthBirthday.setEditable(true);
-			String date = txtF_DayBirthday.getText()+"/"+cBox_MonthBirthday.getValue()+"/1999";
-			String sDate = "23/08/1999";
-	        //convirtiendolo a java.time.LocalDate
-	        LocalDate dateofbirth = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-	        System.out.println("String -> java.time.LocalDate: " + dateofbirth);
-			mainController.newContact(id, avatar, name, email, phonenumber, dateofbirth, age);
+			String day = txtF_DayBirthday.getText();
+			String month = cBox_MonthBirthday.getValue();
+	        mainController.newContact(id, avatar, name, email, phonenumber, day, month, age);
 			contact=0;
 		}
 		setVisual_ShowContact();

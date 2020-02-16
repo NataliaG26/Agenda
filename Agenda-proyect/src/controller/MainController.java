@@ -2,6 +2,7 @@ package controller;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -218,7 +219,10 @@ public class MainController {
 		//nueva materia, parametros 
 	}
 	
-	public void newContact(String id, String avatar, String name, String email, String phonenumber, LocalDate dateofbirth, int age) {
+	public void newContact(String id, String avatar, String name, String email, String phonenumber, String day, String month, int age) {
+		String date = day+"/"+convertMonth(month)+"/1999";
+		LocalDate dateofbirth = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        System.out.println("String -> java.time.LocalDate: " + dateofbirth);
 		agenda.addContact(id, avatar, name, email, phonenumber, dateofbirth, age);
 		System.out.println("ddd");
 	}
@@ -262,21 +266,21 @@ public class MainController {
 		case Agenda.SEARCH_BIRTHDAY:
 
 			if (secondOption.equals(Agenda.FILTER_BIRTHDAY)) {
-				int mes1 = convertMonth(month1);
+				int mes1 = Integer.parseInt(convertMonth(month1));
 				agenda.searchByDateOfBirth(day1, mes1, -1, -1, 0);
 
 			}else if (secondOption.equals(Agenda.FILTER_BIRTHDAY_BETWEEN_DATES)) {
-				int mes1 = convertMonth(month1);
-				int mes2 = convertMonth(month2);
+				int mes1 = Integer.parseInt(convertMonth(month1));
+				int mes2 = Integer.parseInt(convertMonth(month2));
 				agenda.searchByDateOfBirth(day1, mes1, day2, mes2, 3);
 
 			}else if (secondOption.equals(Agenda.FILTER_BIRTHDAY_BETWEEN_MONTHS)) {
-				int mes1 = convertMonth(month1);
-				int mes2 = convertMonth(month2);
+				int mes1 = Integer.parseInt(convertMonth(month1));
+				int mes2 = Integer.parseInt(convertMonth(month2));
 				agenda.searchByDateOfBirth(-1, mes1, -1, mes2, 2);
 
 			}else if(secondOption.equals(Agenda.FILTER_BIRTHDAY_MONTHS)) {
-				int mes1 = convertMonth(month1);
+				int mes1 = Integer.parseInt(convertMonth(month1));
 				agenda.searchByDateOfBirth(-1, mes1, -1, -1, 1);
 
 			}
@@ -309,61 +313,61 @@ public class MainController {
 
 	}
 
-	private int convertMonth(String month) {
+	private String convertMonth(String month) {
 		
-		int salida;
+		String salida;
 		switch (month) {
 
 		case "Enero":
-			salida = 1;
+			salida = "01";
 			break;
 
 		case "Febrero":
-			salida = 2;
+			salida = "02";
 			break;
 
 		case "Marzo":
-			salida = 3;
+			salida = "03";
 			break;
 
 		case "Abril":
-			salida = 4;
+			salida = "04";
 			break;
 
 		case "Mayo":
-			salida = 5;
+			salida = "05";
 			break;
 
 		case "Junio":
-			salida = 6;
+			salida = "06";
 			break;
 
 		case "Julio":
-			salida = 7;
+			salida = "07";
 			break;
 
 		case "Agosto":
-			salida = 8;
+			salida = "08";
 			break;
 
 		case "Septiembre":
-			salida = 9;
+			salida = "09";
 			break;
 
 		case "Octubre":
-			salida = 10;
+			salida = "10";
 			break;
 
 		case "Noviembre":
-			salida = 11;
+			salida = "11";
 			break;
 			
 		case "Diciembre":
-			salida = 12;
+			salida = "12";
 			break;
 
 		default:
-			salida = 1;
+			salida = "1";
 			break;
 		}
 		

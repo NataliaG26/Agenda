@@ -293,6 +293,7 @@ public class AgendaController implements Initializable{
 	 * @param event the event triggered by the user.
 	 */
 	private void searchPage(MouseEvent event) {
+		mainController.masterSort(Agenda.ORDER_NAME);
 		setVisual_InitialSearchPage();
 		showContacts();
 		showList();
@@ -389,7 +390,6 @@ public class AgendaController implements Initializable{
 	
 	private void showList() {
 		listView_Contacts.setVisible(true);
-		mainController.masterSort(Agenda.ORDER_NAME);
 		ObservableList<String> list = FXCollections.observableArrayList(mainController.getContactsName());
 		listView_Contacts.setItems(list);
 		row_listView_Contacts.setMinHeight(200);
@@ -536,6 +536,7 @@ public class AgendaController implements Initializable{
 
 	//solo deja visible y habilitado el primer comboBox 
 	private void setVisual_InitialPage() {
+		
 		cBox_OtherOption.setVisible(false);
 		txtF_Search.setVisible(false);
 		HBox_FirstDateContainer.setVisible(false);
