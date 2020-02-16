@@ -7,19 +7,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.logging.SimpleFormatter;
-
-import javafx.scene.control.ListView;
 
 /**
  * This class manage the necessary attributes and methods to create agendas.
@@ -84,9 +78,7 @@ public class Agenda {
 		listOfContacts();
 		listOfSubjects();
 		
-		List<Contact> list = new ArrayList<Contact>(contacts.values());
-		
-		
+		//writeContacts();
 	}
 
 	/**
@@ -263,7 +255,7 @@ public class Agenda {
 		}else if (operation == 1) { //buscar menores a age1
 
 			for (int i = 0; i < contactss.size(); i++) {
-				if (contactss.get(i).getAge() <= age1) {
+				if (contactss.get(i).getAge() < age1) {
 					contactsView.add(contactss.get(i));
 				}
 			}
@@ -271,7 +263,7 @@ public class Agenda {
 		}else if (operation == 2) { //buscar mayores a age1
 
 			for (int i = 0; i < contactss.size(); i++) {
-				if (contactss.get(i).getAge() >= age1) {
+				if (contactss.get(i).getAge() > age1) {
 					contactsView.add(contactss.get(i));
 				}
 			}
@@ -344,7 +336,7 @@ public class Agenda {
 	private void searchBetweenTwoDates(int day1, int month1, int day2, int month2) {
 		
 		contactsView = new ArrayList<Contact>();
-		List<Contact> contactss = new ArrayList<Contact>(contacts.values());
+		//List<Contact> contactss = new ArrayList<Contact>(contacts.values());
 
 
 		for (int i = 0; i < contactsView.size(); i++) {
@@ -496,7 +488,8 @@ public class Agenda {
 				}
 			}
 		});
-		return list.get(0);
+		
+		return list.get(list.size()-1);
 	}
 
 	/**
@@ -522,7 +515,9 @@ public class Agenda {
 				}
 			}
 		});
-		return list.get(list.size()-1);
+		
+		
+		return list.get(0);
 	}
 
 	/**
@@ -720,9 +715,9 @@ public class Agenda {
 				@Override
 				public int compare(Contact o1, Contact o2) {
 
-					if (o1.getDateOfBirth().compareTo(o2.getDateOfBirth()) > 1) {
+					if (o1.getDateOfBirth().compareTo(o2.getDateOfBirth()) > 0) {
 						return 1;
-					}else if (o1.getDateOfBirth().compareTo(o2.getDateOfBirth()) < 1) {
+					}else if (o1.getDateOfBirth().compareTo(o2.getDateOfBirth()) < 0) {
 						return -1;
 					}else {
 						return 0;
