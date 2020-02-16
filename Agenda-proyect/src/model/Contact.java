@@ -145,6 +145,12 @@ public class Contact {
 	public LocalDate getDateOfBirth() {
 		return dateofbirth;
 	}
+	
+	public void setDateOfBirth(LocalDate date) {
+		
+		this.dateofbirth = date;
+		
+	}
 
 	/**
 	 * This method returns a string representation of the date of birth for this contact
