@@ -373,13 +373,15 @@ public class Agenda {
 	 */
 	public void searchBySubject(String name){ 
 
-		contactsView = (List<Contact>) contacts.values();
+		contactsView = new ArrayList<Contact>(contacts.values());
 
 		for (int i = 0; i < contactsView.size(); i++) {
 			if (!contactsView.get(i).getMySubjects().containsKey(name)) {
 				contactsView.remove(i);
 			}
 		}
+		
+		
 
 	}
 
