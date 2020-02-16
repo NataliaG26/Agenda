@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
@@ -124,7 +125,7 @@ public class ContactController implements Initializable{
 	 * This method initializes the current controller for the current stage.
 	 */
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		contact = 0;
+		contact = -1;
 		mainController = null;
 	}
 
@@ -135,13 +136,14 @@ public class ContactController implements Initializable{
 	public void setMainController(MainController mainController) {
 		this.mainController = mainController;
 		subject = 0;
-		contact = 0;
+		contact = -1;
 	}
 
 	/**
 	 * shows the contact´s information in contacts window
 	 */
 	private void showContact() {
+		contact = contact==-1?0:contact;
 		//conectar modelo, lista con la info de los contactos
 		//info por parametro correo, codigo, edad, cumplaños, carrera, creditos, avatar, materias,
 		txtF_Name.setText(mainController.getContactName(contact));
@@ -275,16 +277,20 @@ public class ContactController implements Initializable{
 		//mostrar contacto
 		if(contact == -1) {
 			String id = txtF_id.getText();
-			String avatar = "";
+			String avatar = "    ";
 			String name = txtF_Name.getText();
 			String email = txtF_Email.getText();
 			String phonenumber = txtF_PhoneNumber.getText();
 			int age = Integer.parseInt(txtF_age.getText());
-			String date = txtF_DayBirthday.getText()+","+cBox_MonthBirthday.getValue();
-			LocalDate dateofbirth = LocalDate.parse(date);
+			cBox_MonthBirthday.setEditable(true);
+			String date = txtF_DayBirthday.getText()+"/"+cBox_MonthBirthday.getValue()+"/1999";
+			String sDate = "23/08/1999";
+	        //convirtiendolo a java.time.LocalDate
+	        LocalDate dateofbirth = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	        System.out.println("String -> java.time.LocalDate: " + dateofbirth);
 			mainController.newContact(id, avatar, name, email, phonenumber, dateofbirth, age);
+			contact=0;
 		}
-
 		setVisual_ShowContact();
 		showContact();
 
@@ -497,7 +503,7 @@ public class ContactController implements Initializable{
 	 * change the contact window view for show the contact, disable editing, and shows only the options that are allowed
 	 */
 	public void setVisual_ShowContact() {
-
+		
 		image_CancelEditContact.setVisible(false);
 		image_CheckEditContact.setVisible(false);
 

@@ -174,14 +174,17 @@ public class Agenda {
 	public boolean addContact(String id, String avatar, String name, String email, String phonenumber,LocalDate dateofbirth, int age) {
 
 		boolean added = false;
-
+		
 		Contact newContact = new Contact(id, avatar, name, email, phonenumber, dateofbirth, age, 0);
 
 		if (!contacts.containsKey(id)) {
 			contacts.put(id, newContact);
 			added = true;
+			writeContacts();
+			listOfContacts();
+			System.out.println("add");
 		}
-
+		System.out.println("fin add");
 		return added;
 	}
 

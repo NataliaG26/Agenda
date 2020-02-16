@@ -389,6 +389,7 @@ public class AgendaController implements Initializable{
 	
 	private void showList() {
 		listView_Contacts.setVisible(true);
+		mainController.masterSort(Agenda.ORDER_NAME);
 		ObservableList<String> list = FXCollections.observableArrayList(mainController.getContactsName());
 		listView_Contacts.setItems(list);
 		row_listView_Contacts.setMinHeight(200);
