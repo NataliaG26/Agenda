@@ -149,7 +149,14 @@ public class Agenda {
 			}
 		});	
 	}
-
+	
+	public int getIndexInGlobalSubjects(String name) {
+		
+		
+		return subjectView.indexOf(subjects.get(name));
+		
+	}
+	
 	/**
 	 * This method adds a new entry contact 
 	 * <b>Pre:</b> the information of the contact is valid
