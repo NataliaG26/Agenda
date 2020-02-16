@@ -157,6 +157,19 @@ public class Agenda {
 		
 	}
 	
+	public int getIndexInParticularContact(String id, String name) {
+		
+		int index = -1;
+		
+		if (contacts.get(id).getMySubjects().containsKey(name)) {
+			List<Subject> sub = contacts.get(id).getListOfSubjects();
+			index = sub.indexOf(contacts.get(id).getMySubjects().get(name));
+		}
+		
+		return index;
+		
+	}
+	
 	/**
 	 * This method adds a new entry contact 
 	 * <b>Pre:</b> the information of the contact is valid
