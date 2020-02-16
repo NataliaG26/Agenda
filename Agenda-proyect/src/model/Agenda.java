@@ -715,16 +715,25 @@ public class Agenda {
 				@Override
 				public int compare(Contact o1, Contact o2) {
 
-					if (o1.getDateOfBirth().compareTo(o2.getDateOfBirth()) > 0) {
+					if (o1.getDateOfBirth().getMonth().compareTo(o2.getDateOfBirth().getMonth()) > 0) {
 						return 1;
-					}else if (o1.getDateOfBirth().compareTo(o2.getDateOfBirth()) < 0) {
+					}else if (o1.getDateOfBirth().getMonth().compareTo(o2.getDateOfBirth().getMonth()) < 0) {
 						return -1;
 					}else {
-						return 0;
+						
+						if (o1.getDateOfBirth().getDayOfMonth() > o2.getDateOfBirth().getDayOfMonth()) {
+							return 1;
+						}else if (o1.getDateOfBirth().getDayOfMonth() < o2.getDateOfBirth().getDayOfMonth()) {
+							return -1;
+						}else {
+							return 0;
+						}
+						
 					}	
 				}
 			});	
-
+			
+			
 			break;
 
 		default:
