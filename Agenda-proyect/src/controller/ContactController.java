@@ -16,10 +16,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -276,21 +278,37 @@ public class ContactController implements Initializable{
 		//tomar la info de los txtF y cBox, para actualizar la info del contact
 		//mostrar contacto
 		if(contact == -1) {
-			String id = txtF_id.getText();
-			String avatar = "    ";
-			String name = txtF_Name.getText();
-			String email = txtF_Email.getText();
-			String phonenumber = txtF_PhoneNumber.getText();
-			int age = Integer.parseInt(txtF_age.getText());
-			cBox_MonthBirthday.setEditable(true);
-			String day = txtF_DayBirthday.getText();
-			String month = cBox_MonthBirthday.getValue();
-	        mainController.newContact(id, avatar, name, email, phonenumber, day, month, age);
-			contact=0;
+			try {
+				String id = txtF_id.getText();
+				String avatar = "    ";
+				String name = txtF_Name.getText();
+				String email = txtF_Email.getText();
+				String phonenumber = txtF_PhoneNumber.getText();
+				int age = Integer.parseInt(txtF_age.getText());
+				cBox_MonthBirthday.setEditable(true);
+				String day = txtF_DayBirthday.getText();
+				String month = cBox_MonthBirthday.getValue();
+				if(day.length()<2 || id.isEmpty() || name.isEmpty() || email.isEmpty() || phonenumber.isEmpty() 
+						|| day.isEmpty() || month.isEmpty()) {
+					Alert a = new Alert(AlertType.WARNING);
+					a.setTitle("Invalid Information");
+					a.setContentText("Please make sure you're entering valid information");
+					a.show();
+				}
+				else {	
+					mainController.newContact(id, avatar, name, email, phonenumber, day, month, age);
+					contact=0;
+					setVisual_ShowContact();
+					showContact();
+				}
+			}
+			catch(NumberFormatException nfe) {
+				Alert a = new Alert(AlertType.WARNING);
+				a.setTitle("Invalid Information");
+				a.setContentText("Please make sure you're entering valid information");
+				a.show();
+			}
 		}
-		setVisual_ShowContact();
-		showContact();
-
 	}
 
 	@FXML
