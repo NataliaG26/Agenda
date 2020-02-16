@@ -170,6 +170,14 @@ public class Agenda {
 		
 	}
 	
+	public int getIndexInGlobalContacts(String key) {
+		
+		Contact con = contacts.get(key);
+		
+		return contactsView.lastIndexOf(con);
+		
+	}
+	
 	/**
 	 * This method adds a new entry contact 
 	 * <b>Pre:</b> the information of the contact is valid
