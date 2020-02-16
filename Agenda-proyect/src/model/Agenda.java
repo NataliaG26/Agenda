@@ -149,7 +149,27 @@ public class Agenda {
 			}
 		});	
 	}
-
+	
+	public int getIndexInGlobalSubjects(String name) {
+		
+		
+		return subjectView.indexOf(subjects.get(name));
+		
+	}
+	
+	public int getIndexInParticularContact(String id, String name) {
+		
+		int index = -1;
+		
+		if (contacts.get(id).getMySubjects().containsKey(name)) {
+			List<Subject> sub = contacts.get(id).getListOfSubjects();
+			index = sub.indexOf(contacts.get(id).getMySubjects().get(name));
+		}
+		
+		return index;
+		
+	}
+	
 	/**
 	 * This method adds a new entry contact 
 	 * <b>Pre:</b> the information of the contact is valid
@@ -423,7 +443,19 @@ public class Agenda {
 		
 		if (subjects.containsKey(name)) {
 			
+			for (Contact con : contacts.values()) {
+				
+				if (con.getMySubjects().containsKey(name)) {
+					con.getMySubjects().remove(name);
+					int act = con.getEnrolledCredits();
+					int cre = con.getMySubjects().get(name).getNumberCredits();
+					con.setEnrolledCredits(act - cre);
+				}
+				
+			}
 			
+			subjects.remove(name);
+			deleted = true;
 			
 		}
 		
