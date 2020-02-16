@@ -174,9 +174,9 @@ public class Agenda {
 			added = true;
 			writeContacts();
 			listOfContacts();
-			System.out.println("add");
+			
 		}
-		System.out.println("fin add");
+		
 		return added;
 	}
 
@@ -192,8 +192,20 @@ public class Agenda {
 		boolean deleted = false;
 
 		if (contacts.containsKey(id)) {
+			
+			for (Subject sub : contacts.get(id).getMySubjects().values()) {
+				int n = sub.getStudentsEnrolled();;
+				subjects.get(sub.getName()).setStudentsEnrolled(n-1);;
+			}
+			
 			contacts.remove(id);
 			deleted = true;
+			contactsView.remove(contacts.get(id));
+			
+			writeContacts();
+			listOfContacts();
+			
+			
 		}
 
 		return deleted;
@@ -373,13 +385,15 @@ public class Agenda {
 	 */
 	public void searchBySubject(String name){ 
 
-		contactsView = (List<Contact>) contacts.values();
+		contactsView = new ArrayList<Contact>(contacts.values());
 
 		for (int i = 0; i < contactsView.size(); i++) {
 			if (!contactsView.get(i).getMySubjects().containsKey(name)) {
 				contactsView.remove(i);
 			}
 		}
+		
+		
 
 	}
 
@@ -401,6 +415,19 @@ public class Agenda {
 			created = true;
 		}
 		return created;
+	}
+	
+	public boolean deleteSubject(String name) {
+		
+		boolean deleted = false;
+		
+		if (subjects.containsKey(name)) {
+			
+			
+			
+		}
+		
+		return deleted;
 	}
 
 	/**
@@ -715,16 +742,25 @@ public class Agenda {
 				@Override
 				public int compare(Contact o1, Contact o2) {
 
-					if (o1.getDateOfBirth().compareTo(o2.getDateOfBirth()) > 0) {
+					if (o1.getDateOfBirth().getMonth().compareTo(o2.getDateOfBirth().getMonth()) > 0) {
 						return 1;
-					}else if (o1.getDateOfBirth().compareTo(o2.getDateOfBirth()) < 0) {
+					}else if (o1.getDateOfBirth().getMonth().compareTo(o2.getDateOfBirth().getMonth()) < 0) {
 						return -1;
 					}else {
-						return 0;
+						
+						if (o1.getDateOfBirth().getDayOfMonth() > o2.getDateOfBirth().getDayOfMonth()) {
+							return 1;
+						}else if (o1.getDateOfBirth().getDayOfMonth() < o2.getDateOfBirth().getDayOfMonth()) {
+							return -1;
+						}else {
+							return 0;
+						}
+						
 					}	
 				}
 			});	
-
+			
+			
 			break;
 
 		default:
