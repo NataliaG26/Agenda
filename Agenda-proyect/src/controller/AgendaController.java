@@ -332,6 +332,10 @@ public class AgendaController implements Initializable{
 		else if(cBox_Principal.getValue().equals(Agenda.SEARCH_BIRTHDAY)) {
 			
 		}
+		else if(cBox_Principal.getValue().equals(Agenda.SEARCH_SUBJECT)) {
+			
+			
+		}
 		else if(btnSearch.getText().equals("Ordenar")) {
 			mainController.masterSort(cBox_Principal.getValue());
 			

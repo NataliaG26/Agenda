@@ -119,11 +119,18 @@ public class SummaryController implements Initializable{
 		listView_Subject.setItems(list);
 	}
 	
+	private void showSubjectSelected() {
+		txtF_SubjectName.setText(main.getSubjectName(subject));
+		txtF_CredistSubject.setText(main.getSubjectCredits(subject)+"");
+		label_StudentsEnrolledSubject.setText(main.getSubjectName(subject));
+	}
+	
 	 @FXML
 	 private void subjectSelected(MouseEvent event) {
 		System.out.println(listView_Subject.getSelectionModel().getSelectedItem());
-		//metodo felipe
-		//subject = mainController.getSubjectPos(listView_Subject.getSelectionModel().getSelectedItem());
+		subject = main.getSubjectPos(listView_Subject.getSelectionModel().getSelectedItem());
+		setVisual_ShowSubjectSelected();
+		showSubjectSelected();
 	 }
 
 		@FXML

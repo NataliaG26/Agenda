@@ -60,12 +60,12 @@ public class MainController {
 		agenda.removeSubject(subjectName, studentId);
 	}
 	
-	public void getSubjectPos(String subjectName) {
-		//agenda. (subjectName);
+	public int getSubjectPos(String subjectName) {
+		return agenda.getIndexInGlobalSubjects(subjectName);
 	}
 	
-	public void getSubjectContactPos(String subjectName, String id) {
-		//agenda. (subjectName);
+	public int getSubjectContactPos(String subjectName, String id) {
+		return agenda.getIndexInParticularContact(id, subjectName);
 	}
 	
 	public void editSubject() {
@@ -247,6 +247,19 @@ public class MainController {
 		System.out.println("ddd");
 	}
 
+	public String getSubjectName(int pos) {
+		return agenda.getSubjectView().get(pos).getName();
+	}
+	
+	
+	public int getSubjectCredits(int pos) {
+		return agenda.getSubjectView().get(pos).getNumberCredits();
+	}
+	
+	public int getSubjectStudentsEnrolled(int pos) {
+		return agenda.getSubjectView().get(pos).getStudentsEnrolled();
+	}
+		
 	/**
 	 * This method allows to connect between the different controllers and fxml files.
 	 * <b>Pre:</b> the fxmlloader exists.

@@ -297,6 +297,8 @@ public class ContactController implements Initializable{
 				a.setContentText("Please make sure you're entering valid information");
 				a.show();
 			}
+		}else {
+			//mainController.
 		}
 	}
 
@@ -359,20 +361,22 @@ public class ContactController implements Initializable{
 		setVisual_ShowSubjectNotSelected();
 	}
 	
+	private void showSubjectSelected() {
+		txtF_SubjectName.setText(mainController.getSubjectNameContact(contact, subject));
+		txtF_CredistSubject.setText(mainController.getSubjectCreditsContact(contact, subject));
+	}
+	
 	@FXML
 	 private void subjectSelected(MouseEvent event) {
 		System.out.println(listView_ContactSubject.getSelectionModel().getSelectedItem());
-		//metodo felipe
-		//subject = mainController.getSubjectContactPos(listView_Subject.getSelectionModel().getSelectedItem(), txtF_id);
-	 }
+		subject = mainController.getSubjectContactPos(listView_ContactSubject.getSelectionModel().getSelectedItem(), txtF_id.getText());
+		setVisual_ShowSubjectSelected();
+		showSubjectSelected();
+	}
 
 	//cambia la vista de la ventana para el estado de agregar contacto
 	public void setVisualNewContact() {
 		setVisual_EditContact();
-
-
-		//create a contact conect with model
-
 	}
 
 	/**
