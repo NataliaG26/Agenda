@@ -423,7 +423,19 @@ public class Agenda {
 		
 		if (subjects.containsKey(name)) {
 			
+			for (Contact con : contacts.values()) {
+				
+				if (con.getMySubjects().containsKey(name)) {
+					con.getMySubjects().remove(name);
+					int act = con.getEnrolledCredits();
+					int cre = con.getMySubjects().get(name).getNumberCredits();
+					con.setEnrolledCredits(act - cre);
+				}
+				
+			}
 			
+			subjects.remove(name);
+			deleted = true;
 			
 		}
 		
