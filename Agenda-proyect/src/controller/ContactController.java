@@ -2,8 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
@@ -331,10 +329,13 @@ public class ContactController implements Initializable{
 	 * </b>Pos:</b> the contact is deleted.
 	 * @param event the event triggered by the user.
 	 */
-	void deleteContact(MouseEvent event) {//*******************************
+	private void deleteContact(MouseEvent event) {//*******************************
 		//mensaje de confirmacion
 		//si: borrar contacto seleccionado
 		//no: no hacer nada
+		mainController.deleteContact(txtF_id.getText());
+		
+		showContact();
 	}
 
 
@@ -348,6 +349,9 @@ public class ContactController implements Initializable{
 		//mensaje de confirmacion
 		//si: borrar relacion del contacto con la materia selecionada
 		//no: no hacer nada
+		mainController.removeSubjectContact(txtF_SubjectName.getText(), txtF_id.getText());
+		showSubject();
+		
 	}
 
 	@FXML
