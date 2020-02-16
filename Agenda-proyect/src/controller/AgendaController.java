@@ -279,6 +279,7 @@ public class AgendaController implements Initializable{
 	private void summary(MouseEvent event) {
 		summaryController = loadScene(MainController.ID_SUMMARY).getController();
 		summaryController.setMainController(mainController);
+		summaryController.setVisual_ShowSubjectNotSelected();
 	}
 	
 	@FXML
