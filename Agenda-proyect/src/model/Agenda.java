@@ -416,6 +416,19 @@ public class Agenda {
 		}
 		return created;
 	}
+	
+	public boolean deleteSubject(String name) {
+		
+		boolean deleted = false;
+		
+		if (subjects.containsKey(name)) {
+			
+			
+			
+		}
+		
+		return deleted;
+	}
 
 	/**
 	 * This method adds a new subject to a contact subject's list. 
