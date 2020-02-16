@@ -51,6 +51,14 @@ public class MainController {
 	public String getContactName(int i) {
 		return agenda.getContactsView().get(i).getName();
 	}
+	
+	public void deleteContact(String id) {
+		agenda.deleteContact(id);
+	}
+	
+	public void removeSubjectContact(String subjectName, String studentId) {
+		agenda.removeSubject(subjectName, studentId);
+	}
 
 	/**
 	 * Returns the avatar of the contact in the position i from the visible list for the user
