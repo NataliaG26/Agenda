@@ -74,7 +74,7 @@
                      </children>
                   </HBox>
                   <Region prefHeight="18.0" prefWidth="203.0" />
-                  <ListView fx:id="listView_Subject" prefHeight="195.0" prefWidth="203.0" style="-fx-background-color: #54a4a6;" />
+                  <ListView fx:id="listView_Subject" onMouseClicked="#subjectSelected" prefHeight="195.0" prefWidth="203.0" style="-fx-background-color: #54a4a6;" />
                </children>
             </VBox>
             <Region prefHeight="241.0" prefWidth="32.0" />
@@ -119,25 +119,10 @@
                                           <Font name="Arial Bold" size="13.0" />
                                        </font>
                                     </TextField>
-                                    <ImageView fx:id="image_EditSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#editSubject" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../design/icons/pencil-48.png" />
-                                       </image>
-                                    </ImageView>
                                     <Region minHeight="15.0" prefHeight="25.0" prefWidth="14.0" />
-                                    <ImageView fx:id="image_CancelEditSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#cancelEditSubject" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../design/icons/xbox-x-60.png" />
-                                       </image>
-                                    </ImageView>
                                     <ImageView fx:id="image_DeleteSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#removeSubject" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../design/icons/trash-52.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView fx:id="image_CheckEditSubject" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#checkEditSubject" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../design/icons/checked-48.png" />
                                        </image>
                                     </ImageView>
                                  </children>
