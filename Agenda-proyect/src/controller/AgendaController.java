@@ -221,6 +221,8 @@ public class AgendaController implements Initializable{
 			break;
 		case Agenda.FILTER_AGE_JOUNGER:
 			break;
+		case Agenda.SEARCH_SUBJECT:
+			break;
 		case Agenda.ORDER_NAME:
 			break;
 		case Agenda.ORDER_BIRTHDAY:
